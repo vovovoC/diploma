@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import AuthPage from "./app/pages/auth";
 import { fakeAuthProvider } from "./helper/fakeAuthProvider";
+import FilterHousingPage from "./app/pages/filter-housing";
 
 export default function App() {
   return (
@@ -151,7 +152,13 @@ function LoginPage() {
 }
 
 function PublicPage() {
-  return <h3>Public</h3>;
+  return (
+    <div>
+      {/* <FilterHousingPage/> */}
+      Public Page
+      <FilterHousingPage/>
+    </div>
+  );
 }
 
 function ProtectedPage() {
