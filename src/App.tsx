@@ -1,29 +1,24 @@
 import * as React from "react";
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
-import AuthPage from "./app/pages/auth";
-import { fakeAuthProvider } from "./helper/fakeAuthProvider";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import SignIn from "./app/pages/signin";
 import FilterHousingPage from "./app/pages/filter-housing";
+import { Register } from "./app/pages/register";
+import { fakeAuthProvider } from "./app/shared/fakeAuthProvider";
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<Layout />}>
+        <Route>
           <Route path="/" element={<PublicPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/regisrer" element={<Register />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/filter" element={<FilterHousingPage />} />
           <Route
-            path="/protected"
+            path="/main"
             element={
               <RequireAuth>
-                <ProtectedPage />
+                <FilterHousingPage />
               </RequireAuth>
             }
           />
@@ -32,26 +27,6 @@ export default function App() {
     </AuthProvider>
   );
 }
-
-function Layout() {
-  return (
-    <div>
-      <AuthStatus />
-
-      <ul>
-        <li>
-          <Link to="/">Public Page</Link>
-        </li>
-        <li>
-          <Link to="/protected">Protected Page</Link>
-        </li>
-      </ul>
-
-      <Outlet />
-    </div>
-  );
-}
-
 interface AuthContextType {
   user: any;
   signin: (user: string, callback: VoidFunction) => void;
@@ -86,28 +61,6 @@ function useAuth() {
   return React.useContext(AuthContext);
 }
 
-function AuthStatus() {
-  let auth = useAuth();
-  let navigate = useNavigate();
-
-  if (!auth.user) {
-    return <p>You are not logged in.</p>;
-  }
-
-  return (
-    <p>
-      Welcome {auth.user}!{" "}
-      <button
-        onClick={() => {
-          auth.signout(() => navigate("/"));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  );
-}
-
 function RequireAuth({ children }: { children: JSX.Element }) {
   let auth = useAuth();
   let location = useLocation();
@@ -119,52 +72,6 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   return children;
 }
 
-function LoginPage() {
-  let navigate = useNavigate();
-  let location = useLocation();
-  let auth = useAuth();
-
-  let from = location.state?.from?.pathname || "/";
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    let formData = new FormData(event.currentTarget);
-    let username = formData.get("username") as string;
-
-    auth.signin(username, () => {
-      navigate(from, { replace: true });
-    });
-  }
-
-  return (
-    <div>
-      <p>You must log in to view the page at {from}</p>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username: <input name="username" type="text" />
-        </label>{" "}
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-}
-
 function PublicPage() {
-  return (
-    <div>
-      {/* <FilterHousingPage/> */}
-      Public Page
-      <FilterHousingPage/>
-    </div>
-  );
-}
-
-function ProtectedPage() {
-  return (
-    <div>
-      <AuthPage />
-    </div>
-  );
+  return <FilterHousingPage />;
 }
