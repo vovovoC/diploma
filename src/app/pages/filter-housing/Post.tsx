@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from "react";
+import {duration} from '../../shared/filter';
 
 const Post = ({ item }) => {
   return (
@@ -20,7 +21,7 @@ const Post = ({ item }) => {
                     })}</div>
                     <b>Duraction: </b>{Val.duraction}<br/>
                     <b>Rooms: </b>{Val.rooms}<br/>
-                    <b>Gender: </b>{Val.gender}<br/>
+                    <b>Gender: </b>{(Val.gender==1)?"Male":"Female"}<br/>
                     <b>Verified: </b>{String(Val.verified)}<br/>
               </div>
             );
