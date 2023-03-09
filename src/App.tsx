@@ -4,6 +4,8 @@ import SignIn from "./app/pages/signin";
 import FilterHousingPage from "./app/pages/filter-housing";
 import { Register } from "./app/pages/register";
 import { fakeAuthProvider } from "./app/shared/fakeAuthProvider";
+import { Post } from "./app/pages/post";
+import { Profile } from "./app/pages/profile";
 
 export default function App() {
   return (
@@ -11,9 +13,11 @@ export default function App() {
       <Routes>
         <Route>
           <Route path="/" element={<PublicPage />} />
-          <Route path="/regisrer" element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/filter" element={<FilterHousingPage />} />
+          <Route path="/post" element={<Post />} />
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/main"
             element={
