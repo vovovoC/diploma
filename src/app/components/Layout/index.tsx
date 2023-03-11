@@ -1,5 +1,4 @@
 import { Container, ThemeProvider } from "@mui/material";
-import React, { ReactNode } from "react";
 import { Footer } from "../Footer";
 import Header from "../Header";
 import "./index.scss";

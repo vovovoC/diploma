@@ -1,49 +1,161 @@
-// @ts-nocheck
-import "./index.scss";
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
+import { useFormik } from "formik";
+import { createTheme } from "@mui/material/styles";
 import Data from "./Data";
-import Post from "./Post";
-import Buttons from "./Buttons";
-import { render } from "@testing-library/react";
+import { duration } from "../../shared/filter";
+import { city } from "../../shared/filter";
+import { gender } from "../../shared/filter";
+import { amenities } from "../../shared/filter";
+import { housingCategory } from "../../shared/filter";
+import SelectInput from "../../components/Select";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { Post } from "../../components/Post";
+import Layout from "../../components/Layout";
+import "./index.scss";
 
-interface IProps {
-  children?: number | string | React.ReactNode | Array<any>;
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
+interface Value {
+  city: string;
+  firstName: string;
+  lastName: string;
 }
 
+const validate = (values: Value) => {
+  const errors: Value = {
+    city: "",
+    firstName: "",
+    lastName: "",
+  };
 
-const FilterHousingPage = () => {
-  const [item, setItem] = useState(Data);
-
-  function check(post:any, obj:any): boolean{
-    let keys = Object.keys(obj);
-    let res = true;
-    keys.forEach((key) => {
-      if(post[key] !== obj[key] && obj[key] !== undefined){
-        res = false;
-      }     
-    });
-    return res;
+  if (!values.city) {
+    errors.city = "Required";
   }
 
-  const filter = (obj:any) => {
-    const newItem = Data.filter((newVal) => {
-      return check(newVal, obj);
+  if (!values.firstName) {
+    errors.firstName = "Required";
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Required";
+  }
+
+  return errors;
+};
+
+const FilterHousingPage = () => {
+  const theme = createTheme();
+  const [item, setItem] = useState(Data);
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      city: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  const citys = useMemo(() => {
+    return city.map((option) => {
+      const firstLetter = option.name[0].toUpperCase();
+      return {
+        firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
+        ...option,
+      };
     });
-    setItem(newItem);
-  };
+  }, []);
+
   return (
-    <>
-      <div className="container-fluid">
-        <div className="row m-3" >
-          <Buttons
-            filter={filter}
-            setItem={setItem}
+    <Layout theme={theme}>
+      <div className="row m-3">
+        <form className="filter" onSubmit={formik.handleSubmit}>
+          <FormControlLabel control={<Switch />} label="Verified" />
+          <Autocomplete
+            size="small"
+            id="city"
+            sx={{ width: 150 }}
+            getOptionLabel={(option) => option.name}
+            options={citys.sort(
+              (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
+            )}
+            groupBy={(option) => option.firstLetter}
+            renderInput={(params) => (
+              <TextField {...params} label="City" name="city" />
+            )}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-          <Post item={item}/>
+          <SelectInput options={housingCategory} name="Category" />
+          <TextField
+            id="standard-basic"
+            size="small"
+            label="Price (тг)"
+            variant="outlined"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <SelectInput options={gender} name="Gender" />
+          <SelectInput options={duration} name="Duration" />
+          <Autocomplete
+            multiple
+            id="multiple-limit-tags"
+            size="small"
+            options={amenities}
+            limitTags={2}
+            getOptionLabel={(option) => option.name}
+            renderOption={(props, option, { selected }) => (
+              <li {...props} key={option.id}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                />
+                {option.name}
+              </li>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Amenities"
+                placeholder="Amenities"
+              />
+            )}
+            sx={{ m: 1, width: "500px" }}
+          />
+          <TextField
+            id="outlined-number"
+            label="Rooms"
+            type="number"
+            size="small"
+          />
+          <Box sx={{ "& button": { m: 1 } }}>
+            <Button variant="contained" onClick={() => setItem(Data)}>
+              All
+            </Button>
+          </Box>
+        </form>
+
+        <div className="post-list">
+          {item.map((value: any) => (
+            <Post item={value} />
+          ))}
         </div>
       </div>
-    </>
+    </Layout>
   );
-}
+};
 
 export default FilterHousingPage;

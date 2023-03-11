@@ -1,6 +1,16 @@
-.filter{
-    max-width: 80%;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: rgba(128, 128, 128, 0.434);
+.filter {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+}
+.filter >div {
+    margin: 0;
+}
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+.post-list > div {
+    height: 400px;
 }

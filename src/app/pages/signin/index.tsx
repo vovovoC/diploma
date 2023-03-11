@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useFormik } from "formik";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,15 +16,40 @@ import Layout from "../../components/Layout";
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+interface Value {
+  password: string | null;
+  email: string | null;
+}
+
+const validate = (values: Value) => {
+  const errors: Value = {
+    password: null,
+    email: null,
   };
+
+  if (!values.password) {
+    errors.password = "Required";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  return errors;
+};
+
+export default function SignIn() {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <Layout theme={theme}>
@@ -42,7 +68,12 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.handleSubmit();
+          }}
+        >
           <TextField
             margin="normal"
             required
@@ -52,6 +83,11 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            error={!!formik.errors.email}
+            helperText={formik.errors.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
           />
           <TextField
             margin="normal"
@@ -61,7 +97,12 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            error={!!formik.errors.password}
+            helperText={formik.errors.password}
+            autoComplete="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -87,7 +128,7 @@ export default function SignIn() {
               </Link>
             </Grid>
           </Grid>
-        </Box>
+        </form>
       </Box>
     </Layout>
   );
