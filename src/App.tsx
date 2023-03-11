@@ -6,6 +6,7 @@ import { Register } from "./app/pages/register";
 import { fakeAuthProvider } from "./app/shared/fakeAuthProvider";
 import { Post } from "./app/pages/post";
 import { Profile } from "./app/pages/profile";
+import DetailPage from "./app/pages/detail";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/filter" element={<FilterHousingPage />} />
+          <Route path="/filter/:id" element={<DetailPage />} />
           <Route path="/post" element={<Post />} />
           <Route path="/profile" element={<Profile />} />
           <Route

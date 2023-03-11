@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import { createTheme } from "@mui/material/styles";
 import Data from "./Data";
@@ -20,6 +20,7 @@ import Button from "@mui/material/Button";
 import { Post } from "../../components/Post";
 import Layout from "../../components/Layout";
 import "./index.scss";
+import { getCategories } from "../../utils/api/request";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -66,6 +67,10 @@ const FilterHousingPage = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const citys = useMemo(() => {
     return city.map((option) => {
