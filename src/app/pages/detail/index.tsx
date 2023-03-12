@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import { createTheme } from "@mui/material/styles";
-import { duration } from "../../shared/filter";
-import { city } from "../../shared/filter";
-import { gender } from "../../shared/filter";
-import { amenities } from "../../shared/filter";
-import { housingCategory } from "../../shared/filter";
+import { duration } from "../../../shared/filter";
+import { city } from "../../../shared/filter";
+import { gender } from "../../../shared/filter";
+import { amenities } from "../../../shared/filter";
+import { housingCategory } from "../../../shared/filter";
 import SelectInput from "../../components/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";

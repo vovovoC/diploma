@@ -1,13 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useFormik } from "formik";
-import { createTheme } from "@mui/material/styles";
-import Data from "./Data";
-import { duration } from "../../../shared/filter";
-import { city } from "../../../shared/filter";
-import { gender } from "../../../shared/filter";
-import { amenities } from "../../../shared/filter";
-import { housingCategory } from "../../../shared/filter";
-import SelectInput from "../../components/Select";
+import SelectInput from "../../../../app/components/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import TextField from "@mui/material/TextField";
@@ -17,10 +10,8 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Post } from "../../components/Post";
-import Layout from "../../components/Layout";
-import "./index.scss";
-import { getCategories } from "../../utils/api/request";
+import { categoryModel, getCategoryList, useCategories } from "../../model";
+import { useDispatch } from "react-redux";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -53,9 +44,7 @@ const validate = (values: Value) => {
   return errors;
 };
 
-const FilterHousingPage = () => {
-  const theme = createTheme();
-  const [item, setItem] = useState(Data);
+export const CategoryBar = () => {
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -68,26 +57,27 @@ const FilterHousingPage = () => {
     },
   });
 
+  const dispatch = useDispatch<any>();
+  const categories = useCategories(); // data
   useEffect(() => {
-    getCategories();
-  }, []);
-
-  const citys = useMemo(() => {
-    return city.map((option) => {
-      const firstLetter = option.name[0].toUpperCase();
-      return {
-        firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
-        ...option,
-      };
-    });
+    dispatch(getCategoryList());
+    console.log(categories);
   }, []);
 
   return (
-    <Layout theme={theme}>
-      <div className="row m-3">
-        <form className="filter" onSubmit={formik.handleSubmit}>
-          <FormControlLabel control={<Switch />} label="Verified" />
-          <Autocomplete
+    <form className="filter" onSubmit={formik.handleSubmit}>
+      <FormControlLabel control={<Switch />} label="Verified" />
+      {categories && categories.isLoading ? (
+        <div>loading</div>
+      ) : categories && Array.isArray(categories.data) ? (
+        <div>
+          {categories.data.map((item: any) => (
+            <div>{item.name}</div>
+          ))}
+        </div>
+      ) : null}
+
+      {/* <Autocomplete
             size="small"
             id="city"
             sx={{ width: 150 }}
@@ -139,28 +129,18 @@ const FilterHousingPage = () => {
               />
             )}
             sx={{ m: 1, width: "500px" }}
-          />
-          <TextField
-            id="outlined-number"
-            label="Rooms"
-            type="number"
-            size="small"
-          />
-          <Box sx={{ "& button": { m: 1 } }}>
-            <Button variant="contained" onClick={() => setItem(Data)}>
-              All
-            </Button>
-          </Box>
-        </form>
-
-        <div className="post-list">
-          {item.map((value: any) => (
-            <Post item={value} />
-          ))}
-        </div>
-      </div>
-    </Layout>
+          /> */}
+      <TextField
+        id="outlined-number"
+        label="Rooms"
+        type="number"
+        size="small"
+      />
+      {/* <Box sx={{ "& button": { m: 1 } }}>
+        <Button variant="contained" onClick={() => setItem(Data)}>
+          All
+        </Button>
+      </Box> */}
+    </form>
   );
 };
-
-export default FilterHousingPage;

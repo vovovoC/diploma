@@ -1,8 +1,10 @@
-import { combineReducers, createStore } from "@reduxjs/toolkit";
-import { busket } from "./reducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
 
-const _reducers = combineReducers({ busket });
+import { categoryModel } from "../../entities/category/model";
 
-const store = createStore(_reducers);
 
-export default store;
+
+export const store = configureStore({
+  reducer: combineReducers({categories: categoryModel.reducer})
+});

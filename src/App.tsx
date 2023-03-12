@@ -3,10 +3,11 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import SignIn from "./app/pages/signin";
 import FilterHousingPage from "./app/pages/filter-housing";
 import { Register } from "./app/pages/register";
-import { fakeAuthProvider } from "./app/shared/fakeAuthProvider";
+import { fakeAuthProvider } from "./shared/fakeAuthProvider";
 import { Post } from "./app/pages/post";
 import { Profile } from "./app/pages/profile";
 import DetailPage from "./app/pages/detail";
+import { FilterBar } from "./pages";
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
           <Route path="/" element={<PublicPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/filter" element={<FilterHousingPage />} />
+          <Route path="/filter" element={<FilterBar />} />
           <Route path="/filter/:id" element={<DetailPage />} />
           <Route path="/post" element={<Post />} />
           <Route path="/profile" element={<Profile />} />
