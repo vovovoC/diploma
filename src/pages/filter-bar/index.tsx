@@ -1,5 +1,13 @@
-import { CategoryBar } from "../../entities/category/ui";
+import { createTheme } from "@mui/material";
+import Layout from "../../app/components/Layout";
+import { FilterContent } from "../../features/filter/filter";
 
 export const FilterBar = () => {
-  return <CategoryBar />; // post list
+  const theme = createTheme();
+
+  return (
+    <Layout theme={theme}>
+      <FilterContent />
+    </Layout>
+  );
 };

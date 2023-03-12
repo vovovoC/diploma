@@ -10,7 +10,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { categoryModel, getCategoryList, useCategories } from "../../model";
+import { setCategoryFilter, getCategoryList, useCategories } from "../../model";
 import { useDispatch } from "react-redux";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -45,23 +45,25 @@ const validate = (values: Value) => {
 };
 
 export const CategoryBar = () => {
+  const dispatch = useDispatch<any>();
+  const categories = useCategories();
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       city: "",
+      gender: null,
+      duration: null,
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(setCategoryFilter(values));
     },
   });
 
-  const dispatch = useDispatch<any>();
-  const categories = useCategories(); // data
   useEffect(() => {
     dispatch(getCategoryList());
-    console.log(categories);
   }, []);
 
   return (
@@ -72,7 +74,16 @@ export const CategoryBar = () => {
       ) : categories && Array.isArray(categories.data) ? (
         <div>
           {categories.data.map((item: any) => (
-            <div>{item.name}</div>
+            <div key={item.name}>
+              <h6>{item.name}</h6>
+              <div>
+                {Array.isArray(item.subcategories)
+                  ? item.subcategories.map((sub: any, index: number) => {
+                      return <p key={index}> {sub?.name}</p>;
+                    })
+                  : null}
+              </div>
+            </div>
           ))}
         </div>
       ) : null}

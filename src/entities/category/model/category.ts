@@ -19,10 +19,12 @@ import {
   
   export const initialState: {
     data: any[]; // update
-    isLoading: boolean
+    isLoading: boolean;
+    filterData: any
   } = {
     data: [],
-    isLoading: false
+    isLoading: false,
+    filterData: {}
   };
   
   export const categoryModel = createSlice({
@@ -37,9 +39,13 @@ import {
       SET_CATEGORY_LOADING: (state = initialState, { payload }: PayloadAction<boolean>) => {
         state.isLoading = payload;
       },
+      SET_CATEGORY_FILTER: (state = initialState, { payload }: PayloadAction<any[]>) => {
+        console.log(payload)
+        state.filterData = {...payload};                              
+      },
     },
   });
-  const { SET_CATEGORY, SET_CATEGORY_LOADING } = categoryModel.actions
+  const { SET_CATEGORY, SET_CATEGORY_LOADING, SET_CATEGORY_FILTER } = categoryModel.actions
 
   export const useCategories = () =>
     useSelector(
@@ -58,9 +64,22 @@ import {
         });
       }
     }
+
+    export const setCategoryFilter = (params: any) => {
+      return async (dispatch: Dispatch) => {
+        console.log(params)
+          dispatch(SET_CATEGORY_FILTER(params))
+      }
+    }
   
-    export const setCagetoryList = (obj: any) => ({
+  
+    export const setCategoryList = (obj: any) => ({
       type: 'SET_CATEGORY',
+      payload: {...obj}
+    })
+
+    export const setCategoryData = (obj: any) => ({
+      type: 'SET_CATEGORY_FILTER',
       payload: {...obj}
     })
   
