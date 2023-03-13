@@ -1,0 +1,86 @@
+header{
+    background: #FEFEFF;
+    box-shadow: 0px 4px 39px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+    padding: 0 50px;
+}
+.app-logo{
+    width: 50px;
+    height: 50px;
+}
+.nav-button{
+    width: 92px;
+    height: 44px;
+    font-family: 'poppins400';
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 8px;
+    margin: 0 8px;
+}
+.outlined{
+    color: #5D89FA;
+    background-color: transparent;
+    border: 1px solid #5D89FA;
+}
+.contained{
+    background: #5D89FA;
+    color: white;
+}
+.reverse-butt{
+    padding: 6px 19px 5px;
+    border-radius: 5px;
+    margin: 0 9px;
+}
+.reverse-butt.not-active{
+    background: #E0E5FC;
+}
+.reverse-butt.not-active img{
+    margin-right: 5px;
+}
+.rotate {
+    animation: rotate-keyframes 1s;
+}
+   
+@keyframes rotate-keyframes {
+    from {
+     transform: rotate(0deg);
+    }
+   
+    to {
+     transform: rotate(180deg);
+    }
+}
+@media screen and (max-width: 700px){
+    header{
+        height: 50px;
+        padding: 0 5%;
+    }
+    .app-logo{
+        width: 40px;
+        height: 40px;
+    }
+    .nav-button{
+        width: 70px;
+        height: 35px;
+        font-size: 12px;
+        margin: 0 3px;
+    }
+    .reverse-butt{
+        padding: 4px 14px 3px;
+        border-radius: 5px;
+        margin: 0 6px;
+    }
+    .reverse-butt img{
+        width: 20px;
+    }
+    .reverse-butt.not-active img{
+        margin-right: 3px;
+    }
+}
+@media screen and (max-width: 600px){
+    .reverse{
+        display: none;
+    }
+}

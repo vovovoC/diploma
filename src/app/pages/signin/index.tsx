@@ -2,7 +2,6 @@ import * as React from "react";
 import { useFormik } from "formik";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -11,10 +10,9 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme } from "@mui/material/styles";
-import Layout from "../../components/Layout";
+import "./index.scss";
 
-const theme = createTheme();
+
 
 interface Value {
   password: string | null;
@@ -39,7 +37,7 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export default function SignIn() {
+export default function SignIn(props:any) {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -52,22 +50,17 @@ export default function SignIn() {
   });
 
   return (
-    <Layout theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+    <div className="sign-in">
+        <div className="card-title">
+            <div className="card-title-welcome">
+              <p>Welcome to Qonys</p>
+              <h5>Sign in</h5>
+            </div>
+            <div className="card-title-question">
+              <p>No Account ?</p>
+              <button onClick={props.fn}>Sign up</button>
+            </div>
+          </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -79,7 +72,7 @@ export default function SignIn() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Username or email address"
             name="email"
             autoComplete="email"
             autoFocus
@@ -104,32 +97,37 @@ export default function SignIn() {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Grid container sx={{justifyContent: "space-between", alignItems: "center"}}>
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2" sx={{color: "#AD3113", textDecoration: "none"}}>
+                Forgot password
+              </Link>
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ 
+              mt: 3, mb: 2, p: "15px 0",
+              backgroundColor:  "#0032E4", 
+              borderRadius: "10px", 
+              fontFamily: 'poppins500',
+              fontSize: "16px",
+              lineHeight: "24px",
+              textTransform: "none"
+          }}
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
-      </Box>
-    </Layout>
+     
+    </div>
   );
 }

@@ -1,7 +1,10 @@
 .filter {
    display: flex;
    align-items: center;
-   gap: 4px;
+
+   background: #FFFFFF;
+   border-radius: 6px;
+   padding: 30px 0;
 }
 .filter >div {
     margin: 0;
@@ -14,3 +17,29 @@
 .post-list > div {
     height: 400px;
 }
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3.5rem 2rem 1.5rem;
+}
+.title>h6{
+    font-family: 'poppins600';
+    font-size: 39px;
+    line-height: 58px;
+}
+.search{
+    width: 254px;
+    height: 48px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    padding: 5px;
+}
+.search:focus {
+    outline: none;
+   border: 2px solid #69a3f98c;
+}
+
+.filter-btn{
+    border-color: red !important;
+ }

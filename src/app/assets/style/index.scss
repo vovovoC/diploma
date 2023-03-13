@@ -1,5 +1,56 @@
-.container {
-    width: 100%;
-    height: auto;
-    padding: 20px 0px;
+@font-face {
+    font-family: 'poppins400';
+    src: url("../fonts/Poppins/Poppins-Regular.ttf") 
+    format('truetype');
+    font-weight:400;font-style:normal
+}
+@font-face {
+    font-family: 'poppins500';
+    src: url("../fonts/Poppins/Poppins-Medium.ttf") 
+    format('truetype');
+    font-weight:500;font-style:normal
+}
+@font-face {
+    font-family: 'poppins600';
+    src: url("../fonts/Poppins/Poppins-SemiBold.ttf") 
+    format('truetype');
+    font-weight:600;font-style:normal
+}
+@font-face {
+    font-family: 'poppins700';
+    src: url("../fonts/Poppins/Poppins-Bold.ttf") 
+    format('truetype');
+    font-weight:700;font-style:normal
+}
+:root{
+    --color-primary: #5D89FA;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    --max-width: 1120px;
+}
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+    font-family: 'poppins400';
+}
+body{
+    background: #F7F7FD;
+}
+.wrapper{
+    width: var(--max-width);
+    margin: 0 auto;
+}
+.center{
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 1125px){
+    .wrapper{
+        width: 90%;
+    }
 }

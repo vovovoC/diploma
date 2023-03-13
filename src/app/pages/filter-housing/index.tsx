@@ -84,13 +84,17 @@ const FilterHousingPage = () => {
 
   return (
     <Layout theme={theme}>
+      <div className="title">
+        <h6>Search properties or room</h6>
+        <input type="search" className="search" name="user-search" id="user-search" />
+      </div>
       <div className="row m-3">
         <form className="filter" onSubmit={formik.handleSubmit}>
           <FormControlLabel control={<Switch />} label="Verified" />
           <Autocomplete
             size="small"
             id="city"
-            sx={{ width: 150 }}
+            style={{width: 300}}
             getOptionLabel={(option) => option.name}
             options={citys.sort(
               (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
@@ -146,7 +150,7 @@ const FilterHousingPage = () => {
             type="number"
             size="small"
           />
-          <Box sx={{ "& button": { m: 1 } }}>
+          <Box>
             <Button variant="contained" onClick={() => setItem(Data)}>
               All
             </Button>
