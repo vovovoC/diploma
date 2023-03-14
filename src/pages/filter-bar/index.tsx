@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 import Layout from "../../app/components/Layout";
-import { FilterContent } from "../../features/filter/filter";
+import { FilterContent } from "../../features/filter";
 
 export const FilterBar = () => {
   const theme = createTheme();

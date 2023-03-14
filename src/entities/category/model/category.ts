@@ -4,21 +4,10 @@ import {
     PayloadAction,
   } from "@reduxjs/toolkit";
   import { useSelector } from "react-redux";
-  import { useIsFetching } from "react-query";
-  import { schema, normalize } from "normalizr";
   import { getCategories } from "../../../shared/model";
 
-
-  type NormalizedCategories = Record<string, any>;
-  
-  export const categorySchema = new schema.Entity<any>("categories");
-  export const normalizeCategory = (data: any) =>
-    normalize<any, { categories: NormalizedCategories }>(data, categorySchema);
-  export const normalizeCategories = (data: any[]) =>
-    normalize<any, { categories: NormalizedCategories }>(data, [categorySchema]);
-  
   export const initialState: {
-    data: any[]; // update
+    data: any[]; 
     isLoading: boolean;
     filterData: any
   } = {
