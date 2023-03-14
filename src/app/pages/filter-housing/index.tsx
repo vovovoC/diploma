@@ -19,8 +19,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Post } from "../../components/Post";
 import Layout from "../../components/Layout";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import "./index.scss";
 import { getCategories } from "../../utils/api/request";
+import {useStyles} from "../../assets/style/filter-style";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -56,6 +59,7 @@ const validate = (values: Value) => {
 const FilterHousingPage = () => {
   const theme = createTheme();
   const [item, setItem] = useState(Data);
+  const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -89,12 +93,12 @@ const FilterHousingPage = () => {
         <input type="search" className="search" name="user-search" id="user-search" />
       </div>
       <div className="row m-3">
-        <form className="filter" onSubmit={formik.handleSubmit}>
-          <FormControlLabel control={<Switch />} label="Verified" />
+        <form className="filter mb-5" onSubmit={formik.handleSubmit}>
+          {/* <FormControlLabel control={<Switch />} label="Verified" /> */}
           <Autocomplete
             size="small"
             id="city"
-            style={{width: 300}}
+            className={classes.root}
             getOptionLabel={(option) => option.name}
             options={citys.sort(
               (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
@@ -110,7 +114,8 @@ const FilterHousingPage = () => {
           <TextField
             id="standard-basic"
             size="small"
-            label="Price (тг)"
+            className={classes.root}
+            label="Price(tg)"
             variant="outlined"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -121,6 +126,7 @@ const FilterHousingPage = () => {
             multiple
             id="multiple-limit-tags"
             size="small"
+            className={classes.root}
             options={amenities}
             limitTags={2}
             getOptionLabel={(option) => option.name}
@@ -142,12 +148,13 @@ const FilterHousingPage = () => {
                 placeholder="Amenities"
               />
             )}
-            sx={{ m: 1, width: "500px" }}
+            sx={{ m: 1, width: "230px" }}
           />
           <TextField
             id="outlined-number"
             label="Rooms"
             type="number"
+            className={classes.root}
             size="small"
           />
           <Box>
@@ -162,6 +169,9 @@ const FilterHousingPage = () => {
             <Post item={value} />
           ))}
         </div>
+        <Stack spacing={2}>
+          <Pagination count={10} color="primary" sx={{m: "2rem auto 3rem"}} />
+        </Stack>
       </div>
     </Layout>
   );

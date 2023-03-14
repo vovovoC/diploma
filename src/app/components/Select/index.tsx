@@ -4,21 +4,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {useStyles} from "../../assets/style/filter-style";
+
 
 export default function SelectInput(props) {
   const [state, setState] = useState('');
+  const classes = useStyles();
   const handleChange = (e) => {
-    // let name = props.name.toLowerCase();
-    // let newFilter = {name: undefined};
-    // if(e.target.value !== 0){
-    //   newFilter.category = e.target.value;
-    // }
-    // props.filter(newFilter);
-    console.log(e.target.value);
     setState(e.target.value);
   };
   return (
-    <FormControl sx={{ minWidth: 120 }} size="small">
+    <FormControl sx={{ minWidth: 130}} className={classes.root} size="small">
     <InputLabel id="demo-select-small">{props.name}</InputLabel>
     <Select
       labelId="demo-select-small"

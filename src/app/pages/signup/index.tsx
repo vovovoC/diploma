@@ -57,7 +57,7 @@ export default function SignUp(props:any) {
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      alert(JSON.stringify(values, null, 4));
     },
   });
 
@@ -102,7 +102,6 @@ export default function SignUp(props:any) {
                   fullWidth
                   id="name"
                   label="User name"
-                  type="text"
                   name="name"
                   error={!!formik.errors.name}
                   helperText={formik.errors.name}
@@ -118,7 +117,6 @@ export default function SignUp(props:any) {
                 fullWidth
                 id="phonenumber"
                 label="Contact Number"
-                type="text"
                 name="phonenumber"
                 error={!!formik.errors.phonenumber}
                 helperText={formik.errors.phonenumber}
