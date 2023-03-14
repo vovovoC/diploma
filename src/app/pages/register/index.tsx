@@ -28,10 +28,10 @@ export const Register = () => {
               >
                 <div className="card">
                   <div className="card-back">
-                     <SignIn fn={changePage}/>
+                    <SignUp fn={changePage}/>
                   </div>
                   <div className="card-front">
-                    <SignUp fn={changePage}/>
+                    <SignIn fn={changePage}/>
                   </div>
                 </div>
             
