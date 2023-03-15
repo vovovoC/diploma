@@ -20,16 +20,13 @@ import {
     name: "categories",
     initialState,
     reducers: {
-      SET_CATEGORY: (state = initialState, {payload}: PayloadAction<any[]>) => {
-        
-        state.data = [...payload];                
-                        
+      SET_CATEGORY: (state = initialState, {payload}: PayloadAction<any[]>) => {     
+        state.data = [...payload];                                       
       },
       SET_CATEGORY_LOADING: (state = initialState, { payload }: PayloadAction<boolean>) => {
         state.isLoading = payload;
       },
       SET_CATEGORY_FILTER: (state = initialState, { payload }: PayloadAction<any[]>) => {
-        console.log(payload)
         state.filterData = {...payload};                              
       },
     },
@@ -56,7 +53,6 @@ import {
 
     export const setCategoryFilter = (params: any) => {
       return async (dispatch: Dispatch) => {
-        console.log(params)
           dispatch(SET_CATEGORY_FILTER(params))
       }
     }

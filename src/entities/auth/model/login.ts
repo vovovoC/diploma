@@ -37,12 +37,14 @@ import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
         dispatch(SET_LOADING(true))
         return login(params).then((data) => {
           dispatch(SET_LOADING(false))
+          alert("User entered successfully")
           return dispatch(SET_TOKEN(data as any))
         });
       }
       export const fetchRegister = (params: any) => async (dispatch: Dispatch) => {
         dispatch(SET_LOADING(true))
         return register(params).then((data) => {
+          alert("User created successfully")
           dispatch(SET_LOADING(false))
           return dispatch(SET_TOKEN(data as any))
         });
