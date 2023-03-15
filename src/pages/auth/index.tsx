@@ -24,10 +24,10 @@ export const AuthPage = ({ type }: { type: string }) => {
       <div className="flippable-card-container">
         <CSSTransition in={showFront} timeout={500} classNames="flip">
           <div className="card">
-            <div className="card-back">
+            <div className={showFront ? "card-back  notshow": "card-back"} >
               <RegisterContent />
             </div>
-            <div className="card-front">
+            <div className={showFront ? "card-front": "card-front  notshow"}>
               <LoginContent />
             </div>
           </div>

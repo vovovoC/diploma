@@ -33,7 +33,7 @@ interface Props {
 export const Post = (props: Props) => {
   const { item } = props;
   return (
-    <Card sx={{ maxWidth: 345 }} className="card">
+    <Card sx={{ maxWidth: 345, height: 400 }} className="card">
       <CardMedia sx={{ height: 200, borderRadius: "6px" }} image={item.img} title={item.location} />
       <CardContent sx={{ m:"5px 10px 0px 30px" }}>
       <Grid container spacing={2}>

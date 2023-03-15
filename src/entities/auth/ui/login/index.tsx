@@ -6,39 +6,46 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
+import { fetchLogin } from "../../model";
+import { useDispatch } from "react-redux";
 
 interface Value {
-  password: string | null;
   email: string | null;
+  password: string | null;
 }
 
 const validate = (values: Value) => {
-  const errors: Value = {
-    password: null,
-    email: null,
-  };
-
-  if (!values.password) {
-    errors.password = "Required";
-  }
+  const errors: any = {};
 
   if (!values.email) {
-    errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+      errors.email = "Email address required";
+      return errors;
+   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+      return errors;
+  }
+
+  if (!values.password) {
+    errors.password = "Password is required";
+    return errors;
   }
   return errors;
 };
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
+  
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validate,
     onSubmit: (values) => {
+      dispatch(fetchLogin(values));
+
+      //validate
+
       alert(JSON.stringify(values, null, 2));
     },
   });

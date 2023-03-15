@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import { setCategoryFilter, getCategoryList, useCategories } from "../../model";
 import { useDispatch } from "react-redux";
 import { useStyles } from "../../../../app/assets/style/filter-style";
+import "./index.scss";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
