@@ -1,22 +1,43 @@
-import Data from "./Data";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Post } from "../../../../app/components/Post";
-import { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../../../../app/assets/style/index.scss";
 import "./index.scss";
+import { getPostList, usePostList } from "../../model";
+import { useCategories } from "../../../category/model";
 
 export const PostList = () => {
-  const [item, setItem] = useState(Data);
+  const dispatch = useDispatch<any>();
+  const { filterData } = useCategories();
+  const { isLoading, data } = usePostList();
+
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    // request by 2 times fix
+    dispatch(getPostList({ ...filterData, page }));
+  }, [dispatch, filterData, page]);
+
   return (
     <div className="wrapper">
       <div className="post-list">
-        {item.map((value: any) => (
-          <Post item={value} />
-        ))}
+        {isLoading ? (
+          <div>loading</div>
+        ) : (
+          Array.isArray(data) && data.map((value: any) => <Post item={value} />)
+        )}
       </div>
       <Stack spacing={2}>
-        <Pagination count={10} color="primary" sx={{ m: "2rem auto 3rem" }} />
+        <Pagination
+          count={10}
+          color="primary"
+          sx={{ m: "2rem auto 3rem" }}
+          onChange={(_e, p) => {
+            setPage(p);
+          }}
+        />
       </Stack>
     </div>
   );

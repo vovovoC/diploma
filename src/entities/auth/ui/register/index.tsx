@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import { fetchRegister } from "../../model";
 import { useDispatch } from "react-redux";
 
@@ -12,12 +11,11 @@ const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
 interface Value {
   password: string;
   name: string;
- // phonenumber: string;
   email: string;
 }
 
 const validate = (values: Value) => {
-  const errors : any = {};
+  const errors: any = {};
 
   if (!values.email) {
     errors.email = "Enter your email address";
@@ -30,20 +28,17 @@ const validate = (values: Value) => {
     errors.name = "Enter your full name";
     return errors;
   } else if (!USERNAME_REGEX.test(values.name)) {
-    errors.name = "Username should be 3-40 characters and shouldn't include any special character and numbers!";
+    errors.name =
+      "Username should be 3-40 characters and shouldn't include any special character and numbers!";
     return errors;
   }
-  
-  // if(!/^[0-9]{11,}$/i.test(values.phonenumber)) {
-  //   errors.phonenumber = "Phonenumber should be at leats 11 number!";
-  //   return errors;
-  // }
 
   if (!values.password) {
     errors.password = "Enter password";
     return errors;
   } else if (!PWD_REGEX.test(values.password)) {
-    errors.password = "Password should be 8-20 characters and include at least 1 letter, 1 number!";
+    errors.password =
+      "Password should be 8-20 characters and include at least 1 letter, 1 number!";
     return errors;
   }
   return errors;
@@ -57,13 +52,11 @@ export const Register = () => {
     initialValues: {
       email: "",
       name: "",
-     // phonenumber: "",
       password: "",
     },
     validate,
     onSubmit: (values) => {
-      //dispatch(fetchRegister(values));     
-      alert(JSON.stringify(values, null, 2));
+      dispatch(fetchRegister(values));
     },
   });
 

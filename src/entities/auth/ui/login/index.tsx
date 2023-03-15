@@ -18,11 +18,11 @@ const validate = (values: Value) => {
   const errors: any = {};
 
   if (!values.email) {
-      errors.email = "Email address required";
-      return errors;
-   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
-      return errors;
+    errors.email = "Email address required";
+    return errors;
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+    return errors;
   }
 
   if (!values.password) {
@@ -35,18 +35,15 @@ const validate = (values: Value) => {
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
-  
+
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: null,
+      password: null,
     },
     onSubmit: (values) => {
+      validate(values);
       dispatch(fetchLogin(values));
-
-      //validate
-
-      alert(JSON.stringify(values, null, 2));
     },
   });
 

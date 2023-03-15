@@ -16,4 +16,6 @@ interface Register {
 export const login = ( params: Login ) => axiosInstance.post(`${NEW_API_URL}/users/login`, params);
 export const register = ( params: Register ) => axiosInstance.post(`${NEW_API_URL}/users/register`, params);
 
+export const getPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/list`, params);
+export const getPostId = (id: number| string) => axiosInstance.get(`${NEW_API_URL}/posts/list${id}`);
 export const getCategories = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
