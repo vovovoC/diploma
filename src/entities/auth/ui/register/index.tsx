@@ -1,11 +1,8 @@
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import { fetchRegister, getToken } from "../../model";
-import { useDispatch } from "react-redux";
-import "./index.scss";
-
 interface Value {
   password: string | null;
   name: string | null;
@@ -39,9 +36,8 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export default function Register(props: any) {
-  const dispatch = useDispatch<any>();
-  const token = getToken();
+export const Register = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -51,10 +47,7 @@ export default function Register(props: any) {
     },
     validate,
     onSubmit: (values) => {
-      dispatch(fetchRegister(values));
-      if (token) {
-        alert("register done");
-      }
+      alert(JSON.stringify(values, null, 4));
     },
   });
 
@@ -67,7 +60,7 @@ export default function Register(props: any) {
         </div>
         <div className="card-title-question">
           <p>Have an Account ?</p>
-          <button onClick={props.fn}>Sign in</button>
+          <button onClick={() => navigate("/login")}>Sign in</button>
         </div>
       </div>
       <form
@@ -99,7 +92,6 @@ export default function Register(props: any) {
               fullWidth
               id="name"
               label="User name"
-              type="text"
               name="name"
               error={!!formik.errors.name}
               helperText={formik.errors.name}
@@ -115,7 +107,6 @@ export default function Register(props: any) {
               fullWidth
               id="phonenumber"
               label="Contact Number"
-              type="text"
               name="phonenumber"
               error={!!formik.errors.phonenumber}
               helperText={formik.errors.phonenumber}
@@ -161,4 +152,4 @@ export default function Register(props: any) {
       </form>
     </div>
   );
-}
+};

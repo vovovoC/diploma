@@ -1,31 +1,25 @@
 import * as React from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import SignIn from "./app/pages/signin";
-import FilterHousingPage from "./app/pages/filter-housing";
-import { Register } from "./app/pages/register";
+import { AuthPage } from "./pages/auth";
 import { fakeAuthProvider } from "./shared/fakeAuthProvider";
-import { Post } from "./app/pages/post";
-import { Profile } from "./app/pages/profile";
-import DetailPage from "./app/pages/detail";
-import { FilterBar } from "./pages";
+import { Post } from "./pages/post";
+import { FilterPage } from "./pages";
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route>
-          <Route path="/" element={<PublicPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/filter" element={<FilterBar />} />
-          <Route path="/filter/:id" element={<DetailPage />} />
+          <Route path="/" element={<FilterPage />} />
+          <Route path="/register" element={<AuthPage type="register" />} />
+          <Route path="/login" element={<AuthPage type="login" />} />
+          <Route path="/filter" element={<FilterPage />} />
           <Route path="/post" element={<Post />} />
-          <Route path="/profile" element={<Profile />} />
           <Route
             path="/main"
             element={
               <RequireAuth>
-                <FilterHousingPage />
+                <FilterPage />
               </RequireAuth>
             }
           />
@@ -77,8 +71,4 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   }
 
   return children;
-}
-
-function PublicPage() {
-  return <FilterHousingPage />;
 }

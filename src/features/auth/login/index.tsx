@@ -1,3 +1,5 @@
-export const Auth = () => {
-  return <div></div>;
+import { Login } from "../../../entities/auth/ui";
+
+export const LoginContent = () => {
+  return <Login />;
 };

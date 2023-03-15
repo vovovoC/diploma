@@ -1,8 +1,8 @@
-import Data from "../../../../app/pages/filter-housing/Data";
+import Data from "./Data";
 import { Post } from "../../../../app/components/Post";
 import { useState } from "react";
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import "../../../../app/assets/style/index.scss";
 
 export const PostList = () => {
@@ -15,9 +15,8 @@ export const PostList = () => {
         ))}
       </div>
       <Stack spacing={2}>
-          <Pagination count={10} color="primary" sx={{m: "2rem auto 3rem"}} />
+        <Pagination count={10} color="primary" sx={{ m: "2rem auto 3rem" }} />
       </Stack>
     </div>
-    
   );
 };
