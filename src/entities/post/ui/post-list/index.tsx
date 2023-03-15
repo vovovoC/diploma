@@ -17,7 +17,8 @@ export const PostList = () => {
 
   useEffect(() => {
     // request by 2 times fix
-    dispatch(getPostList({ ...filterData, page }));
+    // ?limit=10&page=1
+    dispatch(getPostList({ ...filterData, page, limit: 10 }));
   }, [dispatch, filterData, page]);
 
   return (

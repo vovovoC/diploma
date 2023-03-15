@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import SelectInput from "../../../../app/components/Select";
@@ -57,6 +58,7 @@ export const CategoryBar = () => {
     validate,
     onSubmit: (values) => {
       dispatch(setCategoryFilter(values));
+      console.log(values);
     },
   });
 
@@ -94,12 +96,15 @@ export const CategoryBar = () => {
                     options={item.subcategories}
                     name={item.name}
                     key={item.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
                 ))}
                 <TextField
                   id="standard-basic"
                   size="small"
                   label="Price (tg)"
+                  name="price"
                   variant="outlined"
                   sx={{ width: "120px" }}
                   className={classes.root}
@@ -113,6 +118,9 @@ export const CategoryBar = () => {
                   type="number"
                   className={classes.root}
                   size="small"
+                  name="room"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
                 <Button
                   variant="contained"
