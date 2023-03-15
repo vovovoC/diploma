@@ -55,18 +55,18 @@ export const Login = (props:any) => {
           title: "Success",
           msg: "Success Login",
         },
-        {
-          id: props.props.ntfList.length+1,
-          type: "warning",
-          title: "Warning",
-          msg: "Just warning",
-        },
-        {
-          id: props.props.ntfList.length+2,
-          type: "danger",
-          title: "Danger",
-          msg: "Can not connect to server",
-        },
+        // {
+        //   id: props.props.ntfList.length+1,
+        //   type: "warning",
+        //   title: "Warning",
+        //   msg: "Just warning",
+        // },
+        // {
+        //   id: props.props.ntfList.length+2,
+        //   type: "danger",
+        //   title: "Danger",
+        //   msg: "Can not connect to server",
+        // },
       ];
 
       props.props.showNtf(ntf);
