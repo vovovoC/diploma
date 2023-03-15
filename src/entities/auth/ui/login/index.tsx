@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -8,7 +9,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { fetchLogin } from "../../model";
 import { useDispatch } from "react-redux";
-
+import { Notification } from "../../../../app/components/Notification";
 interface Value {
   email: string | null;
   password: string | null;
@@ -32,10 +33,11 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export const Login = () => {
+export const Login = (props:any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
-  
+  //const [ntfList, setNtfList] = useState<ntfType[]>([]);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -44,12 +46,32 @@ export const Login = () => {
     onSubmit: (values) => {
       dispatch(fetchLogin(values));
 
-      //validate
+      //notification msgs
+      const ntf = [...props.props.ntfList,
+        {
+          id: props.props.ntfList.length,
+          type: "success",
+          title: "Success",
+          msg: "Success Login",
+        },
+        {
+          id: props.props.ntfList.length+1,
+          type: "warning",
+          title: "Warning",
+          msg: "Just warning",
+        },
+        {
+          id: props.props.ntfList.length+2,
+          type: "danger",
+          title: "Danger",
+          msg: "Can not connect to server",
+        },
+      ];
 
-      alert(JSON.stringify(values, null, 2));
+      props.props.showNtf(ntf);
+      //alert(JSON.stringify(values, null, 2));
     },
   });
-
   return (
     <div className="sign-in">
       <div className="card-title">

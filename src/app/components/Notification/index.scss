@@ -1,0 +1,84 @@
+.warning{
+    border: 1px solid rgba(255, 170, 12, 0.2);
+    box-shadow: rgba(255, 170, 12, 0.2) 0px 5px 15px;
+}
+.warning:hover{
+    box-shadow: rgba(255, 170, 12, 0.4) 0px 5px 15px;
+}
+.warning .ntf-title{
+    color: rgba(255, 170, 12);
+}
+.success{
+    border: 1px solid rgba(0, 161, 0, 0.2);
+    box-shadow: rgba(0, 161, 0, 0.2) 0px 5px 15px;
+}
+.success:hover{
+    box-shadow: rgba(0, 161, 0, 0.4) 0px 5px 15px;
+}
+.success .ntf-title{
+    color: rgba(0, 161, 0);
+}
+.danger{
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    box-shadow: rgba(255, 0, 0, 0.2) 0px 5px 15px;
+}
+.danger:hover{
+    box-shadow: rgba(255, 0, 0, 0.4) 0px 5px 15px;
+}
+.danger .ntf-title{
+    color: rgba(255, 0, 0);
+}
+.info{
+    border: 1px solid rgba(93, 137, 250, 0.2);
+    box-shadow: rgba(93, 137, 250, 0.2) 0px 5px 15px;
+}
+.info:hover{
+    box-shadow: rgba(93, 137, 250, 0.4) 0px 5px 15px;
+}
+.info .ntf-title{
+    color: rgba(93, 137, 250);
+}
+.ntf{
+    width: 100vw;
+}
+.notification-item{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    z-index: 7;
+}
+.ntfcard>div{
+    font-family: "poppins400";
+    font-size: 14px;
+    width: 250px;
+    background-color: white;
+    padding: 5%;
+    border-radius: 5px;    
+    animation: ntf-right .5s;
+    margin-bottom: 5%;
+}
+@keyframes ntf-right{
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+.close-btn{
+    float: right;
+    background-color: transparent;
+    font-size: 16px;
+
+}
+.ntfcard p{
+    text-align: start;
+    padding: 0;
+    margin: 0;
+}
+.ntf-title{
+    font-family: "poppins500";
+}
+.ntf-msg, .close-btn{
+    color: #484848;
+}

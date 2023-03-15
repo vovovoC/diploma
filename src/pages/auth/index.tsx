@@ -6,14 +6,21 @@ import "./index.scss";
 import { CSSTransition } from "react-transition-group";
 import { useEffect, useState } from "react";
 import { LoginContent, RegisterContent } from "../../features/auth";
+import { Notification } from "../../app/components/Notification";
+
+type ntfType = { id: string, type: string, title: string, msg: string };
 
 export const AuthPage = ({ type }: { type: string }) => {
   const [showFront, setShowFront] = useState<boolean>(true);
+  const [ntfList, setNtfList] = useState<ntfType[]>([]);
 
   useEffect(() => {
     setShowFront(type === "login");
   }, [type]);
 
+  function showNtf(arr:any){
+    setNtfList(arr);
+  }
   return (
     <div className="register">
       <img src={logo} alt="" className="logo" />
@@ -21,6 +28,8 @@ export const AuthPage = ({ type }: { type: string }) => {
         <img src={img1} alt="" className="img1" />
         <img src={img2} alt="" className="img2" />
       </div>
+      <Notification list={ntfList} showNtf={showNtf}/>
+
       <div className="flippable-card-container">
         <CSSTransition in={showFront} timeout={500} classNames="flip">
           <div className="card">
@@ -28,7 +37,7 @@ export const AuthPage = ({ type }: { type: string }) => {
               <RegisterContent />
             </div>
             <div className={showFront ? "card-front": "card-front  notshow"}>
-              <LoginContent />
+              <LoginContent ntfList={ntfList} showNtf={showNtf}/>
             </div>
           </div>
         </CSSTransition>
