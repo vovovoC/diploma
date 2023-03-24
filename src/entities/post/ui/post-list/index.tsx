@@ -18,6 +18,7 @@ export const PostList = () => {
   useEffect(() => {
     // request by 2 times fix
     // ?limit=10&page=1
+    console.log("request post");
     dispatch(getPostList({ ...filterData, page, limit: 10 }));
   }, [dispatch, filterData, page]);
 
