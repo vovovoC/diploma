@@ -43,10 +43,10 @@ import {
     export const getCategoryList = () => {
       
       return async (dispatch: Dispatch) => {
-        dispatch(SET_CATEGORY_LOADING(true))
-        return getCategories().then((data) => {
-          dispatch(SET_CATEGORY_LOADING(false))
-          return dispatch(SET_CATEGORY(data as any))
+        // dispatch(SET_CATEGORY_LOADING(true))
+        await getCategories().then((data) => {
+         // dispatch(SET_CATEGORY_LOADING(false))
+          dispatch(SET_CATEGORY(data as any))
         });
       }
     }

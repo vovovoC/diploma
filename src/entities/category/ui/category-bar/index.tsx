@@ -5,7 +5,7 @@ import SelectInput from "../../../../app/components/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { setCategoryFilter, getCategoryList, useCategories } from "../../model";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "../../../../app/assets/style/filter-style";
 import "./index.scss";
 
@@ -42,7 +42,9 @@ const validate = (values: Value) => {
 export const CategoryBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch<any>();
-  const { isLoading, data } = useCategories();
+  const { isLoading, data } = useSelector((state: any) => {
+    return state.categories;
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -64,7 +66,9 @@ export const CategoryBar = () => {
 
   useEffect(() => {
     // request by 2 times fix
+    console.log("request");
     dispatch(getCategoryList());
+    console.log("request 1");
   }, [dispatch]);
 
   return (
