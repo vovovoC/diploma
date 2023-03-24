@@ -6,9 +6,11 @@ import "./index.scss";
 function Layout({ children, theme }: { children: any; theme: any }) {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <Container>{children}</Container>
-      <Footer />
+      <div style={{position:"relative"}}>
+        <Header />
+        <div>{children}</div>
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }

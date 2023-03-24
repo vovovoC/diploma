@@ -78,7 +78,7 @@ export const CategoryBar = () => {
           id="user-search"
         />
       </div>
-      <div className="row m-3">
+      <div className="mt-3 mb-3">
         <form
           className="filter"
           onSubmit={(e) => {

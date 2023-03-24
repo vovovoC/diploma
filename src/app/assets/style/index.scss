@@ -22,6 +22,12 @@
     format('truetype');
     font-weight:700;font-style:normal
 }
+@font-face {
+    font-family: 'poppins800';
+    src: url("../fonts/Poppins/Poppins-ExtraBold.ttf") 
+    format('truetype');
+    font-weight:800;font-style:normal
+}
 :root{
     --color-primary: #5D89FA;
     --color-white: #FFFFFF;
@@ -48,6 +54,9 @@ body{
 .center{
     display: flex;
     align-items: center;
+}
+.hide{
+    display: none;
 }
 @media screen and (max-width: 1125px){
     .wrapper{
