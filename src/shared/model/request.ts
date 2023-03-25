@@ -19,3 +19,4 @@ export const register = ( params: Register ) => axiosInstance.post(`${NEW_API_UR
 export const getPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/list`, params);
 export const getPostId = (id: number| string) => axiosInstance.get(`${NEW_API_URL}/posts/list${id}`);
 export const getCategories = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
+export const getUserProfile = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);

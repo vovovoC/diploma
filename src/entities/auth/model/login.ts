@@ -4,12 +4,10 @@ import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
   
   export const initialState: {
     data: {};
-    isLoading: boolean;
-    filterData: any
+    isLoading: boolean
   } = {
     data: {},
-    isLoading: false,
-    filterData: {}
+    isLoading: false
   };
   
   export const authModel = createSlice({
@@ -37,22 +35,19 @@ import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
         dispatch(SET_LOADING(true))
         return login(params).then((data) => {
           dispatch(SET_LOADING(false))
-          alert("User entered successfully")
           return dispatch(SET_TOKEN(data as any))
         });
       }
       export const fetchRegister = (params: any) => async (dispatch: Dispatch) => {
         dispatch(SET_LOADING(true))
         return register(params).then((data) => {
-          alert("User created successfully")
           dispatch(SET_LOADING(false))
           return dispatch(SET_TOKEN(data as any))
         });
       } 
       
-        
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    export const getToken = () => useSelector((state: any) =>  state.auth);
+
+    export const useToken = () => useSelector((state: any) =>  state.auth);
 
   
   export const reducer = authModel.reducer;

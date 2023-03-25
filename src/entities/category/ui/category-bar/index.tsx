@@ -1,13 +1,15 @@
 // @ts-nocheck
-import { useEffect } from "react";
 import { useFormik } from "formik";
+import { useQuery } from "react-query";
 import SelectInput from "../../../../app/components/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { setCategoryFilter, getCategoryList, useCategories } from "../../model";
-import { useDispatch, useSelector } from "react-redux";
+import { setCategoryFilter } from "../../model";
+import { getCategories } from "../../../../shared/model";
+import { useDispatch } from "react-redux";
 import { useStyles } from "../../../../app/assets/style/filter-style";
 import "./index.scss";
+import { Loader } from "../../../../app/components/Loader";
 
 interface Value {
   age: string;
@@ -42,9 +44,11 @@ const validate = (values: Value) => {
 export const CategoryBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch<any>();
-  const { isLoading, data } = useSelector((state: any) => {
-    return state.categories;
-  });
+
+  const { isLoading, isError, data } = useQuery(
+    "CATEGORIES",
+    async () => await getCategories()
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -64,12 +68,9 @@ export const CategoryBar = () => {
     },
   });
 
-  useEffect(() => {
-    // request by 2 times fix
-    console.log("request");
-    dispatch(getCategoryList());
-    console.log("request 1");
-  }, [dispatch]);
+  if (isError) {
+    return <div>error</div>;
+  }
 
   return (
     <div>
@@ -82,7 +83,7 @@ export const CategoryBar = () => {
           id="user-search"
         />
       </div>
-      <div className="mt-3 mb-3">
+      <div className="row m-3">
         <form
           className="filter"
           onSubmit={(e) => {
@@ -91,7 +92,7 @@ export const CategoryBar = () => {
           }}
         >
           {isLoading ? (
-            <div>loading</div>
+            <Loader />
           ) : (
             Array.isArray(data) && (
               <div>
