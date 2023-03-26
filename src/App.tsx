@@ -1,7 +1,14 @@
 import * as React from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { fakeAuthProvider } from "./shared/fakeAuthProvider";
-import { FilterPage, NotFoundPage, AuthPage, PostDetailPage } from "./pages";
+import {
+  FilterPage,
+  NotFoundPage,
+  AuthPage,
+  PostDetailPage,
+  UserPostsPage,
+  UserProfilePage,
+} from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
@@ -16,6 +23,8 @@ export default function App() {
             <Route path="/register" element={<AuthPage type="register" />} />
             <Route path="/login" element={<AuthPage type="login" />} />
             <Route path="/posts" element={<FilterPage />} />
+            <Route path="/posts/my" element={<UserPostsPage />} />
+            <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />

@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
   import { useSelector } from "react-redux";
-  import { getUserProfile } from "../../../shared/model/request";
+  import { getUserInfo } from "../../../shared/model/request";
   
   export const initialState: {
     data: {};
@@ -33,7 +33,7 @@ import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 
     export const fetchProfileInfo = (params: any) => async (dispatch: Dispatch) => {
         dispatch(SET_LOADING(true))
-        return getUserProfile(params).then((data) => {
+        return getUserInfo(params).then((data) => {
           dispatch(SET_LOADING(false))
           return dispatch(SET_PROFILE(data as any))
         });

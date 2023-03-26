@@ -20,3 +20,5 @@ export const getPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/
 export const getPostId = (id: number| string) => axiosInstance.get(`${NEW_API_URL}/posts/list${id}`);
 export const getCategories = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
 export const getUserProfile = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
+export const getUserInfo = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/user-info`, params);
+export const getAnketa = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/user-info`, params);

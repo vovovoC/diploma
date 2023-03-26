@@ -6,7 +6,7 @@ interface Props {
   data: any[];
   setPage: (p: number) => {};
 }
-export const PostList = ({ data, setPage }: Props) => {
+export const FavPostList = ({ data, setPage }: Props) => {
   return (
     <div className="wrapper">
       <div className="post-list">
