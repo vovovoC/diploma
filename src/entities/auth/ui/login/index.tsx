@@ -33,22 +33,22 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export const Login = (props:any) => {
+export const Login = (props: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
-
 
   const formik = useFormik({
     initialValues: {
       email: null,
       password: null,
     },
+    validate,
     onSubmit: (values) => {
-      validate(values);
       dispatch(fetchLogin(values));
 
       //notification msgs
-      const ntf = [...props.props.ntfList,
+      const ntf = [
+        ...props.props.ntfList,
         {
           id: props.props.ntfList.length,
           type: "success",
