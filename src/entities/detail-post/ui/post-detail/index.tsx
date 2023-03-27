@@ -2,7 +2,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ImageIcon from "@mui/icons-material/Image";
@@ -21,7 +20,7 @@ import room2 from "../../../../app/assets/images/room2.jpg";
 import room3 from "../../../../app/assets/images/room3.jpg";
 import profile from "../../../../app/assets/images/profile.jpg";
 import { SetStateAction, Dispatch } from "react";
-import { useNavigate } from "react-router-dom";
+import BackButton from "../../../../app/components/BackButton";
 
 interface Props {
   open: boolean;
@@ -29,7 +28,6 @@ interface Props {
 }
 
 export const PostDetail = ({ open, setOpen }: Props) => {
-  const navigate = useNavigate();
   const settings = {
     dots: true,
     infinite: true,
@@ -64,9 +62,7 @@ export const PostDetail = ({ open, setOpen }: Props) => {
     <div className="postDetailPage">
       <div className="postInfo">
         <div className="wrapper">
-          <button className="back-btn" onClick={() => navigate("/")}>
-            <ChevronLeftIcon sx={{ color: "#0032E4" }} /> Back to search
-          </button>
+          <BackButton/>
           <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
           <div className="post-header">
             <p className="post-location">Almaty, Medeu district</p>

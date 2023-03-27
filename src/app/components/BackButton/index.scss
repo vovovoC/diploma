@@ -1,0 +1,47 @@
+.header-avatar{
+    display: flex;
+    align-items: center;
+}
+.notification-btn{
+    padding: 7px;
+    height: 38px;
+    background: #F7F7FD;
+    border-radius: 9px;
+    margin-right: 18px;
+}
+.user-avatar{
+    padding-left: 18px;
+    border-left: 1px solid #ECECEC;
+}
+.avatar-btn{
+    display: flex;
+    align-items: center;
+    padding: 7px 16px;
+    background-color: #FFFFFF;
+    border: 1px solid #E0DEF7;
+    border-radius: 8px;
+}
+.user-name{
+    font-family: 'poppins400';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.115em;
+    color: black;
+    margin-left: 8px;
+}
+@media screen and (max-width: 700px){
+    .notification-btn{
+        margin-right: 10px;
+    }
+    .user-avatar{
+        padding-left: 10px;
+    }
+    .avatar-btn{
+        padding: 4px 13px;
+    }
+    .user-name{
+        font-size: 14px;
+        line-height: 20px;
+        margin-left: 5px;
+    }
+}

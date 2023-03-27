@@ -5,6 +5,7 @@ import logo from "../../assets/icons/logo-blue.svg";
 import reverse_icon from "../../assets/icons/reverse.svg";
 import home_pointer_icon from "../../assets/icons/home-pointer.svg";
 import user_pointer_icon from "../../assets/icons/user-pointer.svg";
+import HeaderAvatar from "../HeaderAvatar";
 
 function Header() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function Header() {
         <div>
           <button className="nav-button outlined" onClick={() => navigate("/login")}>Log in</button>
           <button className="nav-button contained" onClick={() => navigate("/register")}>Sign up</button>
+          {/* <HeaderAvatar/> */}
         </div>
      </header>
   );
