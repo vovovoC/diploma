@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -29,6 +30,7 @@ import profile from "../../app/assets/images/profile.jpg"
 
 export function Post() {
   const theme = createTheme();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const settings = {
     dots: true,
@@ -65,7 +67,7 @@ export function Post() {
       <div className="postDetailPage">
         <div className="postInfo">
           <div className="wrapper">
-            <button className="back-btn">
+            <button className="back-btn" onClick={() => navigate("/")}>
               <ChevronLeftIcon sx={{color: "#0032E4"}}/> Back to search
             </button>
             <p className="post-title">
@@ -81,9 +83,9 @@ export function Post() {
               </div>
             </div>
             <div className="post-imgs">
-              <div className="item1"><img src={room1} alt="" /></div>
-              <div><img src={room2} alt="" /></div>
-              <div><img src={room3} alt="" /></div>
+              <div onClick={() => { setOpen(true);}} className="item1"><img src={room1} alt="" /></div>
+              <div onClick={() => { setOpen(true);}}><img src={room2} alt="" /></div>
+              <div onClick={() => { setOpen(true);}}><img src={room3} alt="" /></div>
               <button onClick={() => { setOpen(true);}} className="img-btn"><ImageIcon sx={{color:"#5D89FA",mr:"5px"}}/>View all photos</button>
             </div>
             <div className={open ? "img-carusel" : "hide"}>
@@ -99,34 +101,63 @@ export function Post() {
             </div>
             <div className="post-body">
                 <div className="post-text">
-                  <div className="post-categorys">
-                      <div className="post-category">
-                        <p>{category.floor.name}</p>
-                        <div>{category.floor.icon}
-                              <p>3</p>
+                  <div className="slider__container">
+                    <div className="post-categorys">
+                        <div className="post-category">
+                          <p>{category.floor.name}</p>
+                          <div>{category.floor.icon}
+                                <p>3</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="post-category">
-                        <p>{category.area.name}</p>
-                        <div>{category.area.icon}
-                              <p>5*7 m</p>
+                        <div className="post-category">
+                          <p>{category.area.name}</p>
+                          <div>{category.area.icon}
+                                <p>5*7 m</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="post-category">
-                        <p>{category.wifi.name}</p>
-                        <div>{category.wifi.icon}
-                              <p>yes</p>
+                        <div className="post-category">
+                          <p>{category.wifi.name}</p>
+                          <div>{category.wifi.icon}
+                                <p>yes</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="post-category">
-                        <p>{category.layout.name}</p>
-                        <div>{category.layout.icon}
-                              <ul>
-                                <li>2 bedroom</li>
-                                <li>1 bath</li>
-                              </ul>
+                        <div className="post-category">
+                          <p>{category.layout.name}</p>
+                          <div>{category.layout.icon}
+                                <ul>
+                                  <li>2 bedroom</li>
+                                  <li>1 bath</li>
+                                </ul>
+                          </div>
                         </div>
-                      </div>
+                        <div className="post-category">
+                          <p>{category.layout.name}</p>
+                          <div>{category.layout.icon}
+                                <ul>
+                                  <li>2 bedroom</li>
+                                  <li>1 bath</li>
+                                </ul>
+                          </div>
+                        </div>
+                        <div className="post-category">
+                          <p>{category.layout.name}</p>
+                          <div>{category.layout.icon}
+                                <ul>
+                                  <li>2 bedroom</li>
+                                  <li>1 bath</li>
+                                </ul>
+                          </div>
+                        </div>
+                        <div className="post-category">
+                          <p>{category.layout.name}</p>
+                          <div>{category.layout.icon}
+                                <ul>
+                                  <li>2 bedroom</li>
+                                  <li>1 bath</li>
+                                </ul>
+                          </div>
+                        </div>
+                    </div>
                   </div>
                   <div className="post-about">
                       <p className="post-body-title">About</p>
@@ -148,19 +179,25 @@ export function Post() {
                       <p className="post-card-price">55,000tg<span>/month</span></p>
                     </div>
                     <hr />
-                    <div className="post-card-author">
-                      <p className="post-card-title">Author</p>
-                      <div className="post-author">
-                        <img src={profile} alt="" />
-                        <div className="post-author-info">
-                          <p className="post-author-name">Madina Alzhan</p>
-                          <p className="post-author-job">Landlord/comp/specialist</p>
-                          <p className="post-author-phone">+7 707 855 2200</p>
+                    <div  className="post-card-body">
+                        <div className="post-card-author">
+                          <p className="post-card-title">Author</p>
+                          <div className="post-author">
+                            <img src={profile} alt="" />
+                            <div className="post-author-info">
+                              <p className="post-author-name">Madina Alzhan</p>
+                              <p className="post-author-job">Landlord/comp/specialist</p>
+                              <p className="post-author-phone">+7 707 855 2200</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                        <div className="post-card-btns">
+                            <button className="post-author-chat"><CommentIcon sx={{color:"white",mr:"2px"}}/>Start a chat</button>
+                            <button className="post-author-more"><CommentIcon sx={{color:"#5681FB",mr:"2px"}}/>Get more info about author</button>
+                        </div>
+                       
                     </div>
-                    <button className="post-author-chat"><CommentIcon sx={{color:"white",mr:"2px"}}/>Start a chat</button>
-                    <button className="post-author-more"><CommentIcon sx={{color:"#5681FB",mr:"2px"}}/>Get more info about author</button>
+  
                 </div>
             </div>
           </div>
