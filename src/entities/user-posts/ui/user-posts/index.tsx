@@ -8,7 +8,7 @@ interface Props {
 }
 export const UserPostList = ({ data, setPage }: Props) => {
   return (
-    <div className="wrapper">
+    <div className="user-posts">
       <div className="post-list">
         {Array.isArray(data) && data.map((value: any) => <Post item={value} />)}
       </div>

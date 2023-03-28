@@ -8,7 +8,7 @@ function BackButton() {
   const navigate = useNavigate();
   return (
     <button className="back-btn" onClick={() => navigate("/")}>
-      <ChevronLeftIcon sx={{ color: "#0032E4" }} /> Back to search
+      <ChevronLeftIcon sx={{ color: "#0032E4",ml: "-5px"}} /> Back to search
     </button>
   );
 }

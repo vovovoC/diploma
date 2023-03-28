@@ -18,8 +18,6 @@ export const UserInfoContent = () => {
   }
 
   return (
-    <div className="wrapper">
-      <UserInfo data={data} />
-    </div>
+    <UserInfo data={data} />
   );
 };
