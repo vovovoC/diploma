@@ -10,7 +10,10 @@ export const PostList = ({ data, setPage }: Props) => {
   return (
     <div className="wrapper">
       <div className="post-list">
-        {Array.isArray(data) && data.map((value: any) => <Post item={value} />)}
+        {Array.isArray(data) &&
+          data.map((value: any, index: number) => (
+            <Post item={value} key={index} />
+          ))}
       </div>
       <Stack spacing={2}>
         <Pagination

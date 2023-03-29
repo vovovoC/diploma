@@ -1,4 +1,3 @@
-import { useFormik } from "formik";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { ErrorBoundary } from "../../app/components/ErrorBoundary";
@@ -18,25 +17,6 @@ interface Value {
   room: string;
 }
 
-const validate = (values: Value) => {
-  const errors: Value = {
-    age: "",
-    gender: "",
-    duration: "",
-    layout: "",
-    inthehome: "",
-    location: "",
-    price: "",
-    room: "",
-  };
-
-  if (!values.location) {
-    errors.location = "Required";
-  }
-
-  return errors;
-};
-
 export const CategoryContent = () => {
   const { isLoading, isError, data } = useQuery(
     "CATEGORIES",
@@ -45,23 +25,9 @@ export const CategoryContent = () => {
 
   const dispatch = useDispatch<any>();
 
-  const formik = useFormik({
-    initialValues: {
-      age: "",
-      gender: "",
-      duration: "",
-      layout: "",
-      inthehome: "",
-      location: "",
-      price: "",
-      room: "",
-    },
-    validate,
-    onSubmit: (values) => {
-      dispatch(setCategoryFilter(values));
-      console.log(values);
-    },
-  });
+  const handleSubmit = (values: Value) => {
+    dispatch(setCategoryFilter(values));
+  };
 
   if (isError) {
     return <ErrorBoundary />;
@@ -70,5 +36,5 @@ export const CategoryContent = () => {
     return <Loader />;
   }
 
-  return <CategoryBar data={data} formik={formik} />;
+  return <CategoryBar data={data} submit={handleSubmit} />;
 };
