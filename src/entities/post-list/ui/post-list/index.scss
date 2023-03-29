@@ -4,6 +4,9 @@
     gap: 32px;
     margin: 0 auto;
 }
+.post-list > div {
+    cursor: pointer;
+}
 @media screen and (max-width: 1050px){
     .post-list{
         width: 90%;

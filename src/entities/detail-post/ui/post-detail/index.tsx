@@ -21,51 +21,56 @@ import room3 from "../../../../app/assets/images/room3.jpg";
 import profile from "../../../../app/assets/images/profile.jpg";
 import { SetStateAction, Dispatch } from "react";
 import BackButton from "../../../../app/components/BackButton";
+import { PostDetailData } from "../../../../shared/types";
 
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  data: PostDetailData;
 }
 
-export const PostDetail = ({ open, setOpen }: Props) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: false,
-    useCSS: true,
-    variableWidth: false,
-    swipeToSlide: true,
-    edgeFriction: 0.15,
-  };
-  const category = {
-    floor: {
-      name: "Floor",
-      icon: <MenuIcon sx={{ color: " #808494", mr: "5px" }} />,
-    },
-    area: {
-      name: "MenuIcon",
-      icon: <CropIcon sx={{ color: " #808494", mr: "5px" }} />,
-    },
-    wifi: {
-      name: "Wi-Fi",
-      icon: <WifiIcon sx={{ color: " #808494", mr: "5px" }} />,
-    },
-    layout: {
-      name: "Layout",
-      icon: <ListAltIcon sx={{ color: " #808494", mr: "5px" }} />,
-    },
-  };
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  centerMode: false,
+  useCSS: true,
+  variableWidth: false,
+  swipeToSlide: true,
+  edgeFriction: 0.15,
+};
+const category = {
+  floor: {
+    name: "Floor",
+    icon: <MenuIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+  area: {
+    name: "MenuIcon",
+    icon: <CropIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+  wifi: {
+    name: "Wi-Fi",
+    icon: <WifiIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+  layout: {
+    name: "Layout",
+    icon: <ListAltIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+};
+
+export const PostDetail = ({ open, setOpen, data }: Props) => {
+  const { location, description, price } = data;
+
   return (
     <div className="postDetailPage">
       <div className="postInfo">
         <div className="wrapper">
-          <BackButton/>
+          <BackButton />
           <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
           <div className="post-header">
-            <p className="post-location">Almaty, Medeu district</p>
+            <p className="post-location">{location}</p>
             <div className="post-btns">
               <button>
                 <LinkIcon sx={{ color: "#5D89FA", mr: "5px" }} />
@@ -78,10 +83,37 @@ export const PostDetail = ({ open, setOpen }: Props) => {
             </div>
           </div>
           <div className="post-imgs">
-              <div onClick={() => { setOpen(true);}} className="item1"><img src={room1} alt="" /></div>
-              <div onClick={() => { setOpen(true);}}><img src={room2} alt="" /></div>
-              <div onClick={() => { setOpen(true);}}><img src={room3} alt="" /></div>
-              <button onClick={() => { setOpen(true);}} className="img-btn"><ImageIcon sx={{color:"#5D89FA",mr:"5px"}}/>View all photos</button>
+            <div
+              onClick={() => {
+                setOpen(true);
+              }}
+              className="item1"
+            >
+              <img src={room1} alt="" />
+            </div>
+            <div
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              <img src={room2} alt="" />
+            </div>
+            <div
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              <img src={room3} alt="" />
+            </div>
+            <button
+              onClick={() => {
+                setOpen(true);
+              }}
+              className="img-btn"
+            >
+              <ImageIcon sx={{ color: "#5D89FA", mr: "5px" }} />
+              View all photos
+            </button>
           </div>
           <div className={open ? "img-carusel" : "hide"}>
             <CloseIcon
@@ -147,15 +179,7 @@ export const PostDetail = ({ open, setOpen }: Props) => {
               </div>
               <div className="post-about">
                 <p className="post-body-title">About</p>
-                <p className="post-about-text">
-                  Clean, cozy, refrigerator, washing machine, cable TV, + rent,
-                  for the long term, TV, all appliances. Hostel with an ideal
-                  location for tourists, direct flights to Medeo, Shymbulak,
-                  walking distance to the cable car to Koktyube, Republic
-                  Square, in front of the hostel the Terrenekur River with
-                  cycling track, park area, also hotels Kazakhstan, Dostyk Ave.
-                  and Abay
-                </p>
+                <p className="post-about-text">{description}</p>
               </div>
               <hr />
               <div>
@@ -169,7 +193,7 @@ export const PostDetail = ({ open, setOpen }: Props) => {
               <div className="post-card-header">
                 <p className="post-card-title">Rent price</p>
                 <p className="post-card-price">
-                  55,000tg<span>/month</span>
+                  {price} tg<span>/month</span>
                 </p>
               </div>
               <hr />
@@ -180,23 +204,24 @@ export const PostDetail = ({ open, setOpen }: Props) => {
                     <img src={profile} alt="" />
                     <div className="post-author-info">
                       <p className="post-author-name">Madina Alzhan</p>
-                      <p className="post-author-job">Landlord/comp/specialist</p>
+                      <p className="post-author-job">
+                        Landlord/comp/specialist
+                      </p>
                       <p className="post-author-phone">+7 707 855 2200</p>
                     </div>
                   </div>
                 </div>
                 <div className="post-card-btns">
-                    <button className="post-author-chat">
-                      <CommentIcon sx={{ color: "white", mr: "2px" }} />
-                      Start a chat
-                    </button>
-                    <button className="post-author-more">
-                      <CommentIcon sx={{ color: "#5681FB", mr: "2px" }} />
-                      Get more info about author
-                    </button>
+                  <button className="post-author-chat">
+                    <CommentIcon sx={{ color: "white", mr: "2px" }} />
+                    Start a chat
+                  </button>
+                  <button className="post-author-more">
+                    <CommentIcon sx={{ color: "#5681FB", mr: "2px" }} />
+                    Get more info about author
+                  </button>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>

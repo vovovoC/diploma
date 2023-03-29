@@ -18,7 +18,7 @@ interface Value {
 }
 
 export const CategoryContent = () => {
-  const { isLoading, isError, data } = useQuery(
+  const { isLoading, isError, data, error } = useQuery(
     "CATEGORIES",
     async () => await getCategories()
   );
@@ -30,7 +30,7 @@ export const CategoryContent = () => {
   };
 
   if (isError) {
-    return <ErrorBoundary />;
+    return <ErrorBoundary error={error} />;
   }
   if (isLoading) {
     return <Loader />;

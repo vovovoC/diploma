@@ -8,7 +8,10 @@ const useStyles = makeStyles({
   },
 });
 
-export function ErrorBoundary() {
+interface Props {
+  error: any;
+}
+export function ErrorBoundary({ error }: Props) {
   const classes = useStyles();
-  return <div className={classes.error}>error</div>;
+  return <div className={classes.error}>{error}</div>;
 }

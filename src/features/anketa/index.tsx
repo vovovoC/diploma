@@ -7,24 +7,21 @@ import { Anketa } from "../../entities/anketa/ui";
 import { getAnketa } from "../../shared/model";
 
 export const AnketaContent = () => {
-  const [page, setPage] = useState(1);
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, error, refetch } = useQuery(
     "ANKETA",
-    async () => await getAnketa({ page, limit: 10 })
+    async () => await getAnketa()
   );
 
   useEffect(() => {
     refetch();
-  }, [page, refetch]);
+  }, [refetch]);
 
   if (isError) {
-    return <ErrorBoundary />;
+    return <ErrorBoundary error={error} />;
   }
   if (isLoading) {
     return <Loader />;
   }
 
-  return (
-      <Anketa />
-  );
+  return <Anketa data={data} />;
 };

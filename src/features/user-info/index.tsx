@@ -5,19 +5,17 @@ import { UserInfo } from "../../entities/user-info/ui";
 import { getUserInfo } from "../../shared/model";
 
 export const UserInfoContent = () => {
-  const { isLoading, isError, data } = useQuery(
+  const { isLoading, isError, data, error } = useQuery(
     "USER_INFO",
     async () => await getUserInfo()
   );
 
   if (isError) {
-    return <ErrorBoundary />;
+    return <ErrorBoundary error={error} />;
   }
   if (isLoading) {
     return <Loader />;
   }
 
-  return (
-    <UserInfo data={data} />
-  );
+  return <UserInfo data={data} />;
 };

@@ -11,7 +11,7 @@ export const PostListContent = () => {
   const { filterData } = useCategories();
 
   const [page, setPage] = useState(1);
-  const { isLoading, isError, data, refetch } = useQuery(
+  const { isLoading, isError, data, refetch, error } = useQuery(
     "POST_LIST",
     async () => await getPosts({ ...filterData, page, limit: 10 })
   );
@@ -21,7 +21,7 @@ export const PostListContent = () => {
   }, [filterData, refetch, page]);
 
   if (isError) {
-    return <ErrorBoundary />;
+    return <ErrorBoundary error={error} />;
   }
   if (isLoading) {
     return <Loader />;
