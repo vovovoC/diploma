@@ -44,6 +44,7 @@ export const deleteFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_
 
 export const getUserPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const createUserPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/create`, params);
+export const editUserPost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
 export const deleteUserPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
 
 export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categories`);

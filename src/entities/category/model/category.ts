@@ -31,7 +31,7 @@ import {
       },
     },
   });
-  const { SET_CATEGORY, SET_CATEGORY_LOADING, SET_CATEGORY_FILTER } = categoryModel.actions
+  const { SET_CATEGORY, SET_CATEGORY_FILTER } = categoryModel.actions
 
   export const useCategories = () =>
     useSelector(
