@@ -10,6 +10,7 @@ import {
   UserProfilePage,
 } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { PostChangePage } from "./pages/post-change";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,11 @@ export default function App() {
             <Route path="/posts/my" element={<UserPostsPage />} />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
+            <Route path="/posts/edit/:id" element={<PostChangePage isEdit />} />
+            <Route
+              path="/posts/create/new"
+              element={<PostChangePage isEdit={false} />}
+            />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
