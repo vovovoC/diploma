@@ -25,8 +25,6 @@ export const AnketaContent = () => {
   }
 
   return (
-    <div className="wrapper">
       <Anketa />
-    </div>
   );
 };

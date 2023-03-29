@@ -1,0 +1,68 @@
+.user-text{
+    margin: 50px 0 20px;
+    font-family: 'poppins400';
+    letter-spacing: 0.06em;
+    font-size: 16px;
+    line-height: 24px;
+}
+.user-text>p{
+    margin: 0;
+}
+.user-name{
+    font-size: 24px;
+    line-height: 36px;
+}
+.user-job{
+    color: #808494;
+}
+.user-phone{
+    font-family: 'poppins700';
+    letter-spacing: 0.01em;
+    color: #5681FB;
+}
+.user-data>button{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background: #FEFEFF;
+    border: 1px solid #C6C3C3;
+    border-radius: 6px;
+    font-family: 'poppins500';
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+}
+.user-img{
+    width: 300px;
+    background-color: #5681FB;
+    border-radius: 300px;
+}
+
+.user-update>label{
+    letter-spacing: 0.01em;
+    color: #000000;
+    margin-top: 15px;
+}
+.btns{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.hide{
+    display: none;
+}
+.btns>button{
+    width: 144px;
+    border-radius: 6px;
+    padding: 6px 0;
+    text-align: center;
+    font-family: 'poppins500';
+}
+.cancel{
+    background: #EDEDED;
+    border: 1px solid #C7C7C7;
+}
+.save{
+    color: white;
+    background: #5681FB;
+}

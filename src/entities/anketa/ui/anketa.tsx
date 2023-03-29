@@ -1,3 +1,5 @@
+import "./index.scss";
+
 export const Anketa = () => {
-  return <div></div>;
+  return <div className="anketa">Anketa</div>;
 };

@@ -25,8 +25,6 @@ export const UserPostListContent = () => {
   }
 
   return (
-    <div className="wrapper">
-      <UserPostList setPage={setPage} data={data} />
-    </div>
+    <UserPostList setPage={setPage} data={data} />
   );
 };

@@ -25,8 +25,6 @@ export const FavPostListContent = () => {
   }
 
   return (
-    <div className="wrapper">
-      <FavPostList setPage={setPage} data={data} />
-    </div>
+    <FavPostList setPage={setPage} data={data} />
   );
 };

@@ -1,0 +1,51 @@
+.profile{
+    padding: 3% 0;
+}
+.page-title{
+    font-family: 'poppins800';
+    font-size: 40px;
+    line-height: 60px;
+    letter-spacing: 0.06em;
+    margin: 20px 0;
+}
+.profile-nav{
+    width: 100%;
+    height: 54px;
+    background-color: white;
+    border-radius: 6px;
+    border-bottom: 1px solid #C6C3C3;
+    display: flex;
+    justify-content: flex-end;
+}
+.profile-nav>div{
+    width: 230px;
+    padding-top: 15px;
+    text-align: center;
+    font-family: 'poppins400';
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.115em;
+}
+.profile-nav>div:hover{
+    color: #5681FB;
+    border-bottom: 1px solid #5681FB;
+}
+.selected{
+    border-bottom: 1px solid #000000;
+}
+.not-selected{
+    border-bottom: 0px;
+}
+.profile-body{
+    display: grid;
+    grid-template-columns: auto 8fr;
+    gap: 100px;
+}
+.user-info{
+    width: 320px;
+    margin-top: -15px;
+}
+.profile-nav-content{
+    padding: 40px 0;
+    width: 100%;
+}
