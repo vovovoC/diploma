@@ -23,6 +23,7 @@ export default function App() {
             <Route path="/" element={<FilterPage />} />
             <Route path="/register" element={<AuthPage type="register" />} />
             <Route path="/login" element={<AuthPage type="login" />} />
+            <Route path="/resetPsw" element={<AuthPage type="resetPsw" />} />
             <Route path="/posts" element={<FilterPage />} />
             <Route path="/posts/my" element={<UserPostsPage />} />
             <Route path="/profile" element={<UserProfilePage />} />

@@ -58,7 +58,7 @@
     height: 100%;
     width: 100%;
     border-radius: 40px;
-    padding: 45px 44px;
+    padding: 40px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     position: absolute;
@@ -107,6 +107,11 @@
     margin: 0;
     padding: 0;
 }
+.card-title-reset{
+    font-family: "poppins500";
+    font-size: 50px;
+    line-height: 50px;
+}
 .card-title-question>p,.card-title-question>button{
     font-size: 16px;
     line-height: 24px;
@@ -118,6 +123,21 @@
     background-color: transparent;
     border: 0;
     color: #0032E4;
+}
+.forget-psw-btn{
+    color: #AD3113; 
+    text-decoration: none; 
+    text-transform: "capitalize";
+    background-color: transparent;
+}
+.forget-psw-btn:hover{
+    color: #0a58ca;
+}
+.cancel{
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    border: 0px;
 }
 @media screen and (max-width: 1250px){
     .img1{

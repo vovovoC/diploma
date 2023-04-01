@@ -3,23 +3,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import IconButton from '@mui/material/IconButton';
+import { fetchLogin } from "../../model";
+import { useDispatch } from "react-redux";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
-
-import Grid from "@mui/material/Grid";
-import { fetchLogin } from "../../model";
-import { useDispatch } from "react-redux";
-import { Notification } from "../../../../app/components/Notification";
+import IconButton from '@mui/material/IconButton';
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
+
 interface Value {
   email: string | null;
   password: string | null;
+  cnfpassword: string | null;
 }
 
 const validate = (values: Value) => {
@@ -41,10 +38,19 @@ const validate = (values: Value) => {
       "Password should be 8-20 characters and include at least 1 letter, 1 number!";
     return errors;
   }
+
+  if (!values.cnfpassword) {
+    errors.cnfpassword = "Confirm password is required";
+    return errors;
+  }else if (values.cnfpassword !== values.password) {
+    errors.cnfpassword =
+      "The password confirmation does not match!";
+    return errors;
+  }
   return errors;
 };
 
-export const Login = (props: any) => {
+export const ResetPassword = (props: any) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -58,6 +64,7 @@ export const Login = (props: any) => {
     initialValues: {
       email: null,
       password: null,
+      cnfpassword: null,
     },
     validate,
     onSubmit: (values) => {
@@ -69,21 +76,9 @@ export const Login = (props: any) => {
         {
           id: props.props.ntfList.length,
           type: "success",
-          title: "Success",
-          msg: "Success Login",
+          title: "Password Changed!",
+          msg: "Your password has been changed successfully.",
         },
-        // {
-        //   id: props.props.ntfList.length+1,
-        //   type: "warning",
-        //   title: "Warning",
-        //   msg: "Just warning",
-        // },
-        // {
-        //   id: props.props.ntfList.length+2,
-        //   type: "danger",
-        //   title: "Danger",
-        //   msg: "Can not connect to server",
-        // },
       ];
 
       props.props.showNtf(ntf);
@@ -93,12 +88,7 @@ export const Login = (props: any) => {
     <div className="sign-in">
       <div className="card-title">
         <div className="card-title-welcome">
-          <p>Welcome to Qonys</p>
-          <h5>Sign in</h5>
-        </div>
-        <div className="card-title-question">
-          <p>No Account ?</p>
-          <button onClick={() => navigate("/register")}>Sign up</button>
+          <h4 className="card-title-reset">Reset your password</h4>
         </div>
       </div>
       <form
@@ -122,12 +112,12 @@ export const Login = (props: any) => {
           onBlur={formik.handleBlur}
           value={formik.values.email}
         />
-        <TextField
+         <TextField
           margin="normal"
           required
           fullWidth
           name="password"
-          label="Password"
+          label="New password"
           type={showPassword ? 'text' : 'password'}
           id="password"
           error={!!formik.errors.password}
@@ -151,24 +141,24 @@ export const Login = (props: any) => {
             ),
           }}
         />
-        <Grid
-          container
-          sx={{ justifyContent: "space-between", alignItems: "center" }}
-        >
-          <Grid item>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-          </Grid>
-          <Grid item>
-            <button className="forget-psw-btn" onClick={() => navigate("/resetPsw")}>Forgot password</button>
-          </Grid>
-        </Grid>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="cnfpassword"
+          label="Confirm password"
+          type="password"
+          id="cnfpassword"
+          error={!!formik.errors.cnfpassword}
+          helperText={formik.errors.cnfpassword}
+          autoComplete="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cnfpassword}
+        />
         <Button
           type="submit"
           fullWidth
-          onClick={() => navigate("/")}
           variant="contained"
           sx={{
             mt: 3,
@@ -182,8 +172,9 @@ export const Login = (props: any) => {
             textTransform: "none",
           }}
         >
-          Sign In
+          Confirm
         </Button>
+        <div className="forget-psw-btn cancel" onClick={() => navigate("/login")}>Cancel reset password</div>
       </form>
     </div>
   );
