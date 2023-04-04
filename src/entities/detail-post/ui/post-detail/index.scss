@@ -160,6 +160,47 @@
     line-height: 24px;
     color: #565656;
 }
+.post-about-home{
+    list-style: none;
+    font-family: 'poppins300';
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.06em;
+    padding: 15px 0;
+}
+.post-about-home>li{
+    display: flex;
+    margin: 7px 0;
+}
+.post-about-home>li>div{
+
+}
+.post-about-home>li>span{
+    color: #777676;
+    display: inline-block;
+    width: 150px;
+}
+.post-amenities-tags{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.post-amenities-tag{
+    background: #E0E5FC;
+    border: 0.5px solid #69A3F9;
+    border-radius: 29px;
+    padding: 5px 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.post-amenities-tag>p{
+    font-family: 'poppins400';
+    font-size: 16px;  
+    margin: 0;  
+}   
 hr{
     margin: 0;
     border: 1px solid #D8D4D4;
@@ -352,6 +393,14 @@ hr{
     .post-card{
         padding: 5% 6%;
     }
+    .post-about-home{
+        font-size: 16px;
+        line-height: 20px;
+        padding: 10px 0;
+    }
+    .post-about-home>li>span{
+        width: 120px;
+    }
 }
 @media screen and (max-width: 360px){
     .post-category{
@@ -367,5 +416,13 @@ hr{
     }
     .post-author-job{
         font-size: 4vw;
+    }
+    .post-about-home{
+        font-size: 14px;
+        line-height: 20px;
+        padding: 10px 0;
+    }
+    .post-about-home>li>span{
+        width: 85px;
     }
 }

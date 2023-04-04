@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState } from "react";
 import { PostDetail } from "../../entities/detail-post/ui";
 import { useQuery } from "react-query";
@@ -22,6 +23,7 @@ export const PostDetailContent = () => {
     return <Loader />;
   }
   return (
-    <>{data && <PostDetail open={open} setOpen={setOpen} data={data[0]} />} </>
+    //<>{data && <PostDetail open={open} setOpen={setOpen} data={data[0]} />} </>
+   <PostDetail open={open} setOpen={setOpen} data={data} />
   );
 };

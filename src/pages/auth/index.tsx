@@ -1,6 +1,7 @@
 import logo from "../../app/assets/icons/logo-green.svg";
 import img1 from "../../app/assets/images/registration2.svg";
 import img2 from "../../app/assets/images/registration1.svg";
+import img3 from "../../app/assets/images/registration3.svg";
 import "./index.scss";
 
 import { CSSTransition } from "react-transition-group";
@@ -27,6 +28,9 @@ export const AuthPage = ({ type }: { type: string }) => {
       <div className="background-img">
         <img src={img1} alt="" className="img1" />
         <img src={img2} alt="" className="img2" />
+      </div>
+      <div className="bachground-img-mpobile">
+        <img src={img3} alt="" className="img3" />
       </div>
       <Notification list={ntfList} showNtf={showNtf}/>
       <div className="flippable-card-container">

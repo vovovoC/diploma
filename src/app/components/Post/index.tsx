@@ -96,19 +96,23 @@ export const Post = (props: Props) => {
               Alatau district
             </Typography>
           </Grid>
-          <Grid xs={12}>
-            <Typography
-              gutterBottom
-              sx={{
+          <Grid xs={12} sx={{
                 fontFamily: "poppins400",
                 fontSize: "18px",
                 lineHeight: "27px",
                 letterSpacing: "0.01em",
                 color: "#777676",
-              }}
-            >
+                display: "flex",
+                justifyContent: "space-between"
+              }}>
+            <Typography
+              gutterBottom>
               {item.city}, {item.location}
             </Typography>
+            <Typography>
+              Apr 1
+            </Typography>
+
           </Grid>
           <Grid
             xs={12}
