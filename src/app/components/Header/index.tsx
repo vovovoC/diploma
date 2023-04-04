@@ -14,15 +14,16 @@ function Header() {
   const animate = () => {
     setState({rotate: true, change: !state.change});
     setTimeout(() => setState({rotate: false, change: !state.change}), 1000);
-    
+    let path = state.change ? "/posts/landlord": "/posts/renter";
+    navigate(path);
   }
   return (
     <header className="center">
         <img src={logo} alt="logo" className="app-logo"/>
         <div className="reverse">
-          <button className="outlined reverse-butt" disabled><img src={state.change ? home_pointer_icon : user_pointer_icon} alt="" /></button>
+          <button className="outlined reverse-butt" disabled><img src={state.change ? user_pointer_icon : home_pointer_icon} alt="" /></button>
           <img src={reverse_icon} className={state.rotate ? "rotate" : ""} alt="" />
-          <button className="reverse-butt not-active center"  onClick = {animate}><img src={state.change ?user_pointer_icon : home_pointer_icon} alt="" /><span>{state.change ? "find a renter...": "find a room..."}</span></button>
+          <button className="reverse-butt not-active center"  onClick = {animate}><img src={state.change ? home_pointer_icon : user_pointer_icon} alt="" /><span>{state.change ? "find a room...": "find a renter..."}</span></button>
         </div>
         <div>
           {/* <button className="nav-button outlined" onClick={() => navigate("/login")}>Log in</button>

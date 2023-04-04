@@ -8,7 +8,7 @@ interface Props {
   data: any[];
   setPage: (p: number) => {};
 }
-export const PostList = ({ data, setPage }: Props) => {
+export const RoomPostList = ({ data, setPage }: Props) => {
   const navigate = useNavigate();
 
   return (

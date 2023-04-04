@@ -20,11 +20,13 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route>
-            <Route path="/" element={<FilterPage />} />
+            <Route path="/" element={<FilterPage type="landlord"/>} />
             <Route path="/register" element={<AuthPage type="register" />} />
             <Route path="/login" element={<AuthPage type="login" />} />
             <Route path="/resetPsw" element={<AuthPage type="resetPsw" />} />
-            <Route path="/posts" element={<FilterPage />} />
+            <Route path="/posts" element={<FilterPage type="landlord"/>} />
+            <Route path="/posts/landlord" element={<FilterPage type="landlord"/>} />
+            <Route path="/posts/renter" element={<FilterPage type="renter"/>} />
             <Route path="/posts/my" element={<UserPostsPage />} />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />

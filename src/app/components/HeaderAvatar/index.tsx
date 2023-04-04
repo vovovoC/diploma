@@ -1,9 +1,9 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import AddIcon from '@mui/icons-material/Add';
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -23,6 +23,7 @@ const posts = [{icon: <HomeOutlinedIcon sx={{color: "#5D89FA"}}/>, name: "as a L
                {icon: <PeopleAltIcon sx={{color: "#5D89FA"}}/>, name: "as Renter looking for a room"}];
 
 function HeaderAvatar() {
+  const navigate = useNavigate();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
