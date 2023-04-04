@@ -174,13 +174,6 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                     </div>
                   </div>
                   <div className="post-category">
-                    <p>{category.wifi.name}</p>
-                    <div>
-                      {category.wifi.icon}
-                      <p>yes</p>
-                    </div>
-                  </div>
-                  <div className="post-category">
                     <p>{category.layout.name}</p>
                     <div>
                       {category.layout.icon}
@@ -245,7 +238,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div className="post-card-header">
                 <p className="post-card-title">Rent price</p>
                 <p className="post-card-price">
-                  price tg<span>/month</span>
+                  50 0000 tg<span>/month</span>
                 </p>
               </div>
               <hr />
