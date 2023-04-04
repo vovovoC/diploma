@@ -39,11 +39,18 @@ header{
     border-radius: 5px;
     margin: 0 9px;
 }
+.not-show{
+    display: none;
+}
 .reverse-butt.not-active{
     background: #E0E5FC;
+    width: 190px;
 }
 .reverse-butt.not-active img{
     margin-right: 5px;
+}
+.reverse-butt.not-active span{
+    display: inline;
 }
 .rotate {
     animation: rotate-keyframes 1s;
@@ -58,7 +65,7 @@ header{
      transform: rotate(180deg);
     }
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 750px){
     header{
         height: 50px;
         padding: 0 5%;
@@ -81,11 +88,18 @@ header{
     .reverse-butt img{
         width: 20px;
     }
+    .reverse-butt.not-active{
+        width: auto;
+    }
     .reverse-butt.not-active img{
         margin-right: 3px;
     }
+    .reverse-butt.not-active>span{
+        display: none;
+    }
 }
-@media screen and (max-width: 600px){
+
+@media screen and (max-width: 500px){
     .reverse{
         display: none;
     }

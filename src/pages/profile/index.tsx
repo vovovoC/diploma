@@ -17,7 +17,7 @@ export const UserProfilePage = () => {
   return (
     <Layout theme={theme}>
       <div className="wrapper profile">
-        <BackButton/>
+        <BackButton name="home"/>
         <p className="page-title">My profile</p>
         <div className="profile-nav">
             <div onClick={() => setPage(0)} className={ page === 0 ? "selected" : "not-selected"}>My posts</div>

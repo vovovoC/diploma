@@ -82,7 +82,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
     <div className="postDetailPage">
       <div className="postInfo">
         <div className="wrapper">
-          <BackButton />
+          <BackButton name={"search"}/>
           <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
           <div className="post-header">
             <p className="post-location">location</p>
