@@ -10,6 +10,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CropIcon from "@mui/icons-material/Crop";
 import WifiIcon from "@mui/icons-material/Wifi";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import HomeIcon from "@mui/icons-material/Home";
+import MapIcon from "@mui/icons-material/Map";
+import SecurityIcon from "@mui/icons-material/Security";
+import ElevatorIcon from "@mui/icons-material/Elevator";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import "./index.scss";
@@ -58,19 +62,31 @@ const category = {
     name: "Layout",
     icon: <ListAltIcon sx={{ color: " #808494", mr: "5px" }} />,
   },
+  home: {
+    name: "Entire Place",
+    icon: <HomeIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+  security: {
+    name: "Security",
+    icon: <SecurityIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
+  elevator: {
+    name: "Elevator",
+    icon: <ElevatorIcon sx={{ color: " #808494", mr: "5px" }} />,
+  },
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
-  const { location, description, price } = data;
+  // const { location, description, price } = data;
 
   return (
     <div className="postDetailPage">
       <div className="postInfo">
         <div className="wrapper">
-          <BackButton />
+          <BackButton name={"search"} />
           <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
           <div className="post-header">
-            <p className="post-location">{location}</p>
+            <p className="post-location">location</p>
             <div className="post-btns">
               <button>
                 <LinkIcon sx={{ color: "#5D89FA", mr: "5px" }} />
@@ -159,13 +175,6 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                     </div>
                   </div>
                   <div className="post-category">
-                    <p>{category.wifi.name}</p>
-                    <div>
-                      {category.wifi.icon}
-                      <p>yes</p>
-                    </div>
-                  </div>
-                  <div className="post-category">
                     <p>{category.layout.name}</p>
                     <div>
                       {category.layout.icon}
@@ -177,9 +186,62 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                   </div>
                 </div>
               </div>
+              <ul className="post-about-home">
+                <li>
+                  <span>Available</span>
+                  <div>Mar 27, 2023 - 12 month</div>
+                </li>
+                <li>
+                  <span>Type</span>
+                  <div>Entire Place</div>
+                </li>
+                <li>
+                  <span>Published</span>
+                  <div>Apr 24</div>
+                </li>
+              </ul>
               <div className="post-about">
                 <p className="post-body-title">About</p>
-                <p className="post-about-text">{description}</p>
+                <p className="post-about-text">description</p>
+              </div>
+              <hr />
+              <div className="post-about">
+                <p className="post-body-title">About roommates</p>
+                <p className="post-about-text">
+                  your roommates 2 girls, students from sdu,
+                  nfjneoafnfefefgegfegrrrrrrrg. Clean, cozy, refrigerator,
+                  washing machine, cable TV, + rent, for the long term, TV, all
+                  appliances.{" "}
+                </p>
+              </div>
+              <hr />
+              <div className="post-about">
+                <p className="post-body-title">About renters</p>
+                <p className="post-about-text">
+                  I want people - students (only girls) bla bla bla
+                </p>
+              </div>
+              <hr />
+              <div className="post-amenities">
+                <p className="post-body-title">About renters</p>
+                <div className="post-amenities-tags">
+                  <div className="post-amenities-tag">
+                    {category.home.icon}
+                    <p> {category.home.name}</p>
+                  </div>
+                  <div className="post-amenities-tag">
+                    {category.wifi.icon}
+                    <p> {category.wifi.name}</p>
+                  </div>
+                  <div className="post-amenities-tag">
+                    {category.security.icon}
+                    <p> {category.security.name}</p>
+                  </div>
+                  <div className="post-amenities-tag">
+                    {category.elevator.icon}
+                    <p> {category.elevator.name}</p>
+                  </div>
+                </div>
               </div>
               <hr />
               <div>
@@ -193,7 +255,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div className="post-card-header">
                 <p className="post-card-title">Rent price</p>
                 <p className="post-card-price">
-                  {price} tg<span>/month</span>
+                  50 0000 tg<span>/month</span>
                 </p>
               </div>
               <hr />

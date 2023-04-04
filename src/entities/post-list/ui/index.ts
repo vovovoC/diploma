@@ -1,1 +1,2 @@
-export * from './post-list';
+export * from './room-post-list';
+export * from './roommate-post-list';

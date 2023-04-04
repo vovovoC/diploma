@@ -1,6 +1,7 @@
 import logo from "../../app/assets/icons/logo-green.svg";
 import img1 from "../../app/assets/images/registration2.svg";
 import img2 from "../../app/assets/images/registration1.svg";
+import img3 from "../../app/assets/images/registration3.svg";
 import "./index.scss";
 
 import { CSSTransition } from "react-transition-group";

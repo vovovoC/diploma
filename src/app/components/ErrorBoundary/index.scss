@@ -1,0 +1,105 @@
+.not-found{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.logo{
+    position: absolute;
+    width: 45px;
+    left: 5%;
+    top: 3%;
+}
+.error-img{
+    position: relative;
+}
+.error-img>p{
+    font-family: 'poppins500';
+    font-size: 40px;
+    line-height: 94%;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    top: 30%;
+    left: 53%;
+    rotate: -16deg;
+}
+.error-img>img{
+    width: 80%;
+}
+.body{
+    position: relative;
+}
+.error-text{
+    width: 40%;
+    font-family: 'poppins400';
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 0.3px;
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+}
+.error-msg{
+    color: #2A464F;
+}
+.back-link{
+    color: #C2C6CF;
+}
+.back-link>button{
+    color: #5D8EFB;
+    border: 0;
+    background-color: transparent;
+    text-decoration: underline;
+}
+@media screen and (max-width: 980px){
+    .logo{
+        width: 40px;
+    }  
+}
+@media screen and (max-width: 670px){ 
+    .show{
+        display: flex;
+    }
+}
+@media screen and (max-width: 610px){ 
+    .error-img>p{
+        top: 28%;
+    }
+    .error-text{
+        font-size: 23px;
+        line-height: 30px;
+    }
+}
+@media screen and (max-width: 500px){ 
+    .error-img>p{
+        top: 30%;
+        font-size: 30px;
+    }
+    .error-text{
+        font-size: 20px;
+        bottom: 0%;
+    }
+}
+@media screen and (max-width: 400px){ 
+    .error-img>p{
+        top: 28%;
+        font-size: 27px;
+    }
+    .error-text{
+        width: 50%;
+        font-size: 18px;
+        line-height: 25px;
+        bottom: -5%;
+        right: 10%;
+    }
+}
+@media screen and (max-width: 340px){ 
+    .error-img>p{
+        font-size: 22px;
+    }
+    .error-text{
+        bottom: -10%;
+    }
+}

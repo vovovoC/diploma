@@ -9,15 +9,18 @@ import {
   UserPostListContent,
 } from "../../features";
 import BackButton from "../../app/components/BackButton";
+import { CnfDelete } from "../../app/components/CnfDelete";
 
-const contents = [<UserPostListContent />, <FavPostListContent />, <AnketaContent />]
+const contents = [<UserPostListContent/>, <FavPostListContent />, <AnketaContent/>]
 export const UserProfilePage = () => {
   const [page, setPage] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+
   const theme = createTheme();
   return (
     <Layout theme={theme}>
       <div className="wrapper profile">
-        <BackButton/>
+        <BackButton name="home"/>
         <p className="page-title">My profile</p>
         <div className="profile-nav">
             <div onClick={() => setPage(0)} className={ page === 0 ? "selected" : "not-selected"}>My posts</div>
@@ -33,6 +36,9 @@ export const UserProfilePage = () => {
             </div>
         </div>
       </div>
+
+      {/* when user click delete profile */}
+      {/* <CnfDelete/> */}
     </Layout>
   );
 };

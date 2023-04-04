@@ -1,16 +1,27 @@
 import { createTheme } from "@mui/material";
 import Layout from "../../app/components/Layout";
-import { PostListContent, CategoryContent } from "../../features";
-
-export const FilterPage = () => {
+import { RoomPostListContent, RoommatePostListContent} from "../../features";
+import { RoomCategoryContent, RoommateCategoryContent } from "../../features";
+interface Props {
+  type: string;
+}
+export const FilterPage = ({ type }: Props) => {
   const theme = createTheme();
-
+  //condition if click acc show acc posts, if click room show room
   return (
     <Layout theme={theme}>
-      <div className="wrapper">
-        <CategoryContent />
-        <PostListContent />
-      </div>
+        {type != "renter" 
+            ?
+            (<div className="wrapper">
+              <RoomCategoryContent />
+              <RoomPostListContent />
+            </div>)
+            :          
+            (<div className="wrapper">
+              <RoommateCategoryContent />
+              <RoommatePostListContent />
+            </div>)
+          }
     </Layout>
   );
 };
