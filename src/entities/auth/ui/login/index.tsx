@@ -5,13 +5,13 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
 
 import Grid from "@mui/material/Grid";
-import { fetchLogin } from "../../model";
+import { fetchLogin, useUserInfo } from "../../model";
 import { useDispatch } from "react-redux";
 import { Notification } from "../../../../app/components/Notification";
 
@@ -36,7 +36,7 @@ const validate = (values: Value) => {
   if (!values.password) {
     errors.password = "Password is required";
     return errors;
-  }else if (!PWD_REGEX.test(values.password)) {
+  } else if (!PWD_REGEX.test(values.password)) {
     errors.password =
       "Password should be 8-20 characters and include at least 1 letter, 1 number!";
     return errors;
@@ -47,8 +47,11 @@ const validate = (values: Value) => {
 export const Login = (props: any) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const userInfo = useUserInfo();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -87,6 +90,11 @@ export const Login = (props: any) => {
       ];
 
       props.props.showNtf(ntf);
+      setTimeout(() => {
+        if (userInfo.token) {
+          navigate("/");
+        }
+      }, 100);
     },
   });
   return (
@@ -128,7 +136,7 @@ export const Login = (props: any) => {
           fullWidth
           name="password"
           label="Password"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           id="password"
           error={!!formik.errors.password}
           helperText={formik.errors.password}
@@ -162,7 +170,12 @@ export const Login = (props: any) => {
             />
           </Grid>
           <Grid item>
-            <button className="forget-psw-btn" onClick={() => navigate("/resetPsw")}>Forgot password</button>
+            <button
+              className="forget-psw-btn"
+              onClick={() => navigate("/resetPsw")}
+            >
+              Forgot password
+            </button>
           </Grid>
         </Grid>
         <Button

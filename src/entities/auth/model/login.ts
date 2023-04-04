@@ -24,7 +24,7 @@ import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
   });
   const { SET_LOADING, SET_TOKEN } = authModel.actions
 
-  export const useCategories = () =>
+  export const useUserInfo = () =>
     useSelector(
       (state: any) => {
         return state.auth;

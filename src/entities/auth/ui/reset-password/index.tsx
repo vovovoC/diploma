@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { fetchLogin } from "../../model";
+import { fetchLogin, useUserInfo } from "../../model";
 import { useDispatch } from "react-redux";
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
@@ -33,7 +33,7 @@ const validate = (values: Value) => {
   if (!values.password) {
     errors.password = "Password is required";
     return errors;
-  }else if (!PWD_REGEX.test(values.password)) {
+  } else if (!PWD_REGEX.test(values.password)) {
     errors.password =
       "Password should be 8-20 characters and include at least 1 letter, 1 number!";
     return errors;
@@ -42,9 +42,8 @@ const validate = (values: Value) => {
   if (!values.cnfpassword) {
     errors.cnfpassword = "Confirm password is required";
     return errors;
-  }else if (values.cnfpassword !== values.password) {
-    errors.cnfpassword =
-      "The password confirmation does not match!";
+  } else if (values.cnfpassword !== values.password) {
+    errors.cnfpassword = "The password confirmation does not match!";
     return errors;
   }
   return errors;
@@ -54,7 +53,10 @@ export const ResetPassword = (props: any) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const userInfo = useUserInfo();
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -82,6 +84,11 @@ export const ResetPassword = (props: any) => {
       ];
 
       props.props.showNtf(ntf);
+      setTimeout(() => {
+        if (userInfo.token) {
+          navigate("/");
+        }
+      }, 100);
     },
   });
   return (
@@ -112,13 +119,13 @@ export const ResetPassword = (props: any) => {
           onBlur={formik.handleBlur}
           value={formik.values.email}
         />
-         <TextField
+        <TextField
           margin="normal"
           required
           fullWidth
           name="password"
           label="New password"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           id="password"
           error={!!formik.errors.password}
           helperText={formik.errors.password}
@@ -174,7 +181,12 @@ export const ResetPassword = (props: any) => {
         >
           Confirm
         </Button>
-        <div className="forget-psw-btn cancel" onClick={() => navigate("/login")}>Cancel reset password</div>
+        <div
+          className="forget-psw-btn cancel"
+          onClick={() => navigate("/login")}
+        >
+          Cancel reset password
+        </div>
       </form>
     </div>
   );

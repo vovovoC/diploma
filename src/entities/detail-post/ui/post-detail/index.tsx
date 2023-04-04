@@ -10,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CropIcon from "@mui/icons-material/Crop";
 import WifiIcon from "@mui/icons-material/Wifi";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import MapIcon from "@mui/icons-material/Map";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import "./index.scss";
@@ -22,6 +21,7 @@ import profile from "../../../../app/assets/images/profile.jpg";
 import { SetStateAction, Dispatch } from "react";
 import BackButton from "../../../../app/components/BackButton";
 import { PostDetailData } from "../../../../shared/types";
+import { MapContent } from "../../../../app/components/Map";
 
 interface Props {
   open: boolean;
@@ -185,7 +185,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div>
                 <p className="post-body-title">Map</p>
                 <div className="post-map">
-                  <MapIcon />
+                  <MapContent />
                 </div>
               </div>
             </div>

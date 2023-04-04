@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { fetchRegister } from "../../model";
+import { fetchRegister, useUserInfo } from "../../model";
 import { useDispatch } from "react-redux";
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const USERNAME_REGEX = /^[A-Za-z]{3,}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -50,15 +50,17 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export const Register = () => {
+export const Register = (props: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
+  const userInfo = useUserInfo();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
-
 
   const formik = useFormik({
     initialValues: {
@@ -69,6 +71,22 @@ export const Register = () => {
     validate,
     onSubmit: (values) => {
       dispatch(fetchRegister(values));
+
+      const ntf = [
+        ...props.props.ntfList,
+        {
+          id: props.props.ntfList.length,
+          type: "success",
+          title: "Registered!",
+          msg: "You has been registered successfully.",
+        },
+      ];
+      props.props.showNtf(ntf);
+      setTimeout(() => {
+        if (userInfo.token) {
+          navigate("/");
+        }
+      }, 100);
     },
   });
 
@@ -156,7 +174,7 @@ export const Register = () => {
           fullWidth
           name="password"
           label="Password"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           id="password"
           error={!!formik.errors.password}
           helperText={formik.errors.password}
@@ -182,7 +200,6 @@ export const Register = () => {
         <Button
           type="submit"
           fullWidth
-          onClick={() => navigate("/")}
           variant="contained"
           sx={{
             mt: 3,

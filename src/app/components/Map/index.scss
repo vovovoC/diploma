@@ -1,0 +1,9 @@
+.map > div {
+    position: relative;
+    display: flex;
+}
+.map {
+    div > * {
+        position: absolute;
+    }
+}
