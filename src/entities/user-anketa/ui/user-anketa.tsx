@@ -17,7 +17,7 @@ export const UserAnketa = () => {
           <div className="anketa-header-title">Hi, I’m Madina Alzhan</div>
           <div className="anketa-header-age">24 <div>.</div> Female</div>
         </div>
-        <div className="anketa-body">
+        <div className="anketa-body user-anketa-body">
         <table>
           <tr>
             <th>About</th>

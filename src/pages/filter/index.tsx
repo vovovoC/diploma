@@ -18,8 +18,8 @@ export const FilterPage = ({ type }: Props) => {
             </div>)
             :          
             (<div className="wrapper">
-              <RoomCategoryContent />
-              <RoomPostListContent />
+                <RoomCategoryContent />
+                <RoomPostListContent />
             </div>)
           }
     </Layout>

@@ -1,7 +1,14 @@
+import * as React from "react";
 import { RoommatePost } from "../../../../app/components/RoommatePost";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from "@mui/material/Button";
+import { EditAnketa } from "../../../../app/components/EditAnketa";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { UserAnketa } from "../../../../entities/user-anketa";
 
 import "./index.scss";
 interface Data {
@@ -21,7 +28,10 @@ interface Props {
 }
 export const RoommatePostList = ({ data, setPage }: Props) => {
   const navigate = useNavigate();
-
+  const [openEditAnketa, setOpenEditAnketa] = React.useState(false);
+  const handleToggleEditAnketa = () => {
+    setOpenEditAnketa(!openEditAnketa);
+  };
   return (
     <div className="wrapper">
       <div className="post-list">
@@ -29,10 +39,17 @@ export const RoommatePostList = ({ data, setPage }: Props) => {
           data?.data?.map((value: any, index: number) => (
             <div
               key={index}
-              onClick={() => {
-                navigate(`/posts/${value.id}`);
-              }}
+              onClick={handleToggleEditAnketa}
             >
+
+                <Backdrop 
+                  sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "rgba(217, 217, 217, 0.1);", width: "100vw", height: "100vh"}}
+                  open={openEditAnketa}
+                >
+                  <div>
+                    <UserAnketa/>
+                  </div>
+              </Backdrop>
               <RoommatePost item={value} />
             </div>
           ))}
