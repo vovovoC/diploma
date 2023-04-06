@@ -16,11 +16,13 @@ export const PostDetailContent = () => {
     { enabled: !!params.id }
   );
 
+  console.log(data);
+
   if (isError) {
     return <ErrorBoundary error={error} />;
   }
   if (isLoading) {
     return <Loader />;
   }
-  return <PostDetail open={open} setOpen={setOpen} data={data} />;
+  return <PostDetail open={open} setOpen={setOpen} data={data[0]} />;
 };

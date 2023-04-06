@@ -5,7 +5,7 @@ export interface PostDetailData {
     price: number;
     location: string;
     user_id: number;
-    image: string;
+    image: string[];
     subcategory_id: number;
   }
 
