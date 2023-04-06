@@ -86,6 +86,7 @@ export const RoommateAddPost = () => {
       <BackButton name="home"/>
       <p className="page-title">Add my post</p>
       <form
+        className="add-post"
         onSubmit={(e) => {
           e.preventDefault();
           formik.handleSubmit();

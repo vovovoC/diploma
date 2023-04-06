@@ -58,6 +58,7 @@ export const RoomAddPost = () => {
       <BackButton name="home"/>
       <p className="page-title">Add post</p>
       <form
+        className="add-post"
         onSubmit={(e) => {
           e.preventDefault();
           formik.handleSubmit();
