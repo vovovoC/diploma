@@ -14,13 +14,14 @@
     "@mui/material": "^5.11.11",
     "@mui/styled-engine-sc": "^5.11.11",
     "@mui/styles": "^5.6.2",
+    "@mui/x-date-pickers": "^6.0.4",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^17.0.45",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "axios": "0.19.2",
     "formik": "^2.2.9",
@@ -80,6 +81,6 @@
     "ansi-html-community": "0.0.8",
     "react-hook-geolocation": "^1.1.0",
     "react-query": "^3.39.3",
-    "react-yandex-maps": "^3.1.0"
+    "react-yandex-maps": "^4.6.0"
   }
 }

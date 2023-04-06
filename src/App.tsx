@@ -7,10 +7,13 @@ import {
   AuthPage,
   PostDetailPage,
   UserPostsPage,
+  ProfilePage,
   UserProfilePage,
+  RoomAddPostPage,
+  RoommateAddPostPage,
+  PostChangePage,
 } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { PostChangePage } from "./pages/post-change";
 
 const queryClient = new QueryClient();
 
@@ -28,9 +31,12 @@ export default function App() {
             <Route path="/posts/landlord" element={<FilterPage type="landlord"/>} />
             <Route path="/posts/renter" element={<FilterPage type="renter"/>} />
             <Route path="/posts/my" element={<UserPostsPage />} />
-            <Route path="/profile" element={<UserProfilePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/userProfile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
             <Route path="/posts/edit/:id" element={<PostChangePage isEdit />} />
+            <Route path="/posts/addRoom" element={<RoomAddPostPage />} />
+            <Route path="/posts/addRoommate" element={<RoommateAddPostPage />} />
             <Route
               path="/posts/create/new"
               element={<PostChangePage isEdit={false} />}

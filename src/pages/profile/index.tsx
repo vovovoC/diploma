@@ -9,10 +9,9 @@ import {
   UserPostListContent,
 } from "../../features";
 import BackButton from "../../app/components/BackButton";
-import { CnfDelete } from "../../app/components/CnfDelete";
 
-const contents = [<UserPostListContent/>, <FavPostListContent />, <AnketaContent/>]
-export const UserProfilePage = () => {
+const contents = [<AnketaContent/>, <UserPostListContent/>, <FavPostListContent />]
+export const ProfilePage = () => {
   const [page, setPage] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);
 
@@ -23,9 +22,9 @@ export const UserProfilePage = () => {
         <BackButton name="home"/>
         <p className="page-title">My profile</p>
         <div className="profile-nav">
-            <div onClick={() => setPage(0)} className={ page === 0 ? "selected" : "not-selected"}>My posts</div>
-            <div onClick={() => setPage(1)} className={ page === 1 ? "selected" : "not-selected"}>Saved posts</div>
-            <div onClick={() => setPage(2)} className={ page === 2 ? "selected" : "not-selected"}>Profile details</div>
+            <div onClick={() => setPage(0)} className={ page === 0 ? "selected" : "not-selected"}>Profile details</div>
+            <div onClick={() => setPage(1)} className={ page === 1 ? "selected" : "not-selected"}>My posts</div>
+            <div onClick={() => setPage(2)} className={ page === 2 ? "selected" : "not-selected"}>Saved posts</div>
         </div>
         <div className="profile-body">
             <div className="user-info">
@@ -36,9 +35,6 @@ export const UserProfilePage = () => {
             </div>
         </div>
       </div>
-
-      {/* when user click delete profile */}
-      {/* <CnfDelete/> */}
     </Layout>
   );
 };

@@ -1,0 +1,19 @@
+.add-user-anketa{
+    width: 100%;
+    background: #E2EDFF;
+    border: 1px solid #BABBFF;
+    border-radius: 9px;
+    margin: -20px 0;
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+}
+.roommate-anketa-body{
+    background-color: #E2EDFF !important;
+}
+.user-anketa-left-card>input{
+    margin-top: 10px;
+}
+.add-user-anketa-left{
+    align-items: start;
+    justify-content: start;
+}

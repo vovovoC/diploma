@@ -10,16 +10,16 @@ export const FilterPage = ({ type }: Props) => {
   //condition if click acc show acc posts, if click room show room
   return (
     <Layout theme={theme}>
-        {type != "renter" 
+        {type == "renter" 
             ?
             (<div className="wrapper">
-              <RoomCategoryContent />
-              <RoomPostListContent />
+                <RoommateCategoryContent />
+                <RoommatePostListContent />
             </div>)
             :          
             (<div className="wrapper">
-              <RoommateCategoryContent />
-              <RoommatePostListContent />
+              <RoomCategoryContent />
+              <RoomPostListContent />
             </div>)
           }
     </Layout>

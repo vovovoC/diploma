@@ -1,3 +1,4 @@
+import * as React from "react";
 import "./index.scss";
 import { useState } from "react";
 import user from "../../../app/assets/images/user.png";
@@ -5,14 +6,46 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { CnfDelete } from "../../../app/components/CnfDelete";
+import { EditSettings } from "../../../app/components/EditSettings";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from "@mui/material/Button";
+import { EditAnketa } from "../../../app/components/EditAnketa";
 
 export const Anketa = () => {
+  const [open, setOpen] = React.useState(false);
+  const [openEditAnketa, setOpenEditAnketa] = React.useState(false);
+  const [openEditSettings, setOpenEditSettings] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleCloseEditAnketa = () => {
+    setOpenEditAnketa(false);
+  };
+  const handleCloseEditSettings = () => {
+    setOpenEditSettings(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+  const handleToggleEditAnketa = () => {
+    setOpenEditAnketa(!openEditAnketa);
+  };
+  const handleToggleEditSettings = () => {
+    setOpenEditSettings(!openEditSettings);
+  };
   return (
     <div className="profile">
       <div className="anketa">
         <div className="anketa-header">
           <div>Profile details</div>
-          <button title="Edit anketa" className="edit-btn"><BorderColorIcon/></button>
+          <Button sx={{color: "white", backgroundColor: "transparent", p: "0"}} onClick={handleToggleEditAnketa} title="Edit anketa"><BorderColorIcon/></Button>
+            <Backdrop
+              sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={openEditAnketa}
+            >
+            <EditAnketa fn={handleCloseEditAnketa}/>
+          </Backdrop>
         </div>
         <div className="anketa-body">
         <table>
@@ -77,7 +110,13 @@ export const Anketa = () => {
       <div className="settings">
         <div className="settings-header">
             <div>Settings</div>
-            <button title="Edit settings" className="edit-btn"><BorderColorIcon/></button>
+            <Button sx={{color: "white", backgroundColor: "transparent", p: "0"}} onClick={handleToggleEditSettings} title="Edit anketa"><BorderColorIcon/></Button>
+            <Backdrop
+              sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={openEditSettings}
+            >
+            <EditSettings fn={handleCloseEditSettings}/>
+          </Backdrop>
         </div>
         <div className="settings-body">
             <table>
@@ -90,7 +129,17 @@ export const Anketa = () => {
                   <td>********</td>
                 </tr>
                 <tr className="delete-acc">
-                  <th><button title="Delete account">Delete account</button></th>
+                  <th>
+                  <Button sx={{color: "#D50000", textDecoration: "underline",
+                          backgroundColor: "transparent", p: "0"}} onClick={handleToggle}>Delete account</Button>
+                  <Backdrop
+                    sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
+                    open={open}
+                    onClick={handleClose}
+                  >
+                    <CnfDelete/>
+                  </Backdrop>
+                  </th>
                 </tr>
             </table>
         </div>

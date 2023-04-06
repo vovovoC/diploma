@@ -28,10 +28,12 @@ const ntf = [
 ];
 const posts = [
   {
+    id: 0,
     icon: <HomeOutlinedIcon sx={{ color: "#5D89FA" }} />,
     name: "as a Landlord looking for a renters",
   },
   {
+    id: 1,
     icon: <PeopleAltIcon sx={{ color: "#5D89FA" }} />,
     name: "as Renter looking for a room",
   },
@@ -58,8 +60,16 @@ function HeaderAvatar() {
     setAnchorElNtf(event.currentTarget);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (e:string) => {
     setAnchorElUser(null);
+    let path = "";
+     switch(e){
+      case "Home": path = "/"; break;
+      case "Profile": path = "/profile"; break;
+      case "Logout": path = "/login"; break;
+      default:  path = ""; 
+     }
+     navigate(path);
   };
   const handleClosePostMenu = () => {
     setAnchorElPost(null);
@@ -67,6 +77,9 @@ function HeaderAvatar() {
   const handleCloseNtfMenu = () => {
     setAnchorElNtf(null);
   };
+  const changePage = (e:string) => {
+    
+  }
   return (
     <div className="header-avatar">
       <div className="add-post">
@@ -95,7 +108,7 @@ function HeaderAvatar() {
               <p>Add post</p>
             </div>
             <MenuItem
-              onClick={handleClosePostMenu}
+              onClick={() => navigate("/posts/addRoom")}
               sx={{
                 width: "330px",
                 m: "0 14px",
@@ -113,7 +126,7 @@ function HeaderAvatar() {
               <p className="post-name">{posts[0].name}</p>
             </MenuItem>
             <MenuItem
-              onClick={handleClosePostMenu}
+              onClick={() => navigate("/posts/addRoommate")}
               sx={{
                 width: "330px",
                 m: "0 14px",
@@ -215,12 +228,12 @@ function HeaderAvatar() {
               horizontal: "right",
             }}
             open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
+            onClose={() => {setAnchorElUser(null)}}
           >
             {settings.map((setting) => (
               <MenuItem
                 key={setting}
-                onClick={handleCloseUserMenu}
+                onClick={() => handleCloseUserMenu(setting)}
                 sx={{
                   width: "202px",
                   margin: "14px 26px",

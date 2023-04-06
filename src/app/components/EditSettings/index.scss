@@ -1,20 +1,34 @@
-.anketa,.settings{
-    background: #FEFEFF;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.09);
+.edit-anketa{
+    width: 50%;
+    height: 90vh;
+    overflow: auto;
+    background-color: transparent;
+}
+.edit-anketa::-webkit-scrollbar{
+    width: 0;
+}
+.edit-anketa>div{
+    margin: 0;
+
+}
+.save-btn{
+    float: right;
+    margin: 10px 0;
+    background-color: #5681FB;
+    color: white;
     border-radius: 6px;
-   
+    padding: 5px 30px;
 }
-.anketa>div, .settings>div{
-    padding: 10px 20px 10px 30px;
-    margin-bottom: 20px;
-}
-.anketa-header,.settings-header{
+.anketa-header{
     background-color: #5681FB;
     color: white;
     border-radius: 6px 6px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.anketa-body{
+    background-color: white;
 }
 .edit-btn{
     background-color: transparent;
@@ -28,6 +42,7 @@
 }
 th,td{
     font-family: 'poppins400';
+    color: black;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.01em;
@@ -64,9 +79,4 @@ li{
     padding: 4px 10px;
     margin-right: 7px;
 }
-.hide{
-    display: none;
-}
-.settings-header{
-    background-color: #8B8B8B;
-}
+
