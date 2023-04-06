@@ -36,7 +36,9 @@ export const resetPassword = ( params: ResetPassword ) => axiosInstance.post(`${
 export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`${NEW_API_URL}/users/delete_user`, params);
 
 export const getPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/list?${paramsToString(params)}`);
-export const getPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/list/${id}`);
+export const getPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/get/${id}`);
+export const getImageItem = (item: string): Promise<any> => axiosInstance.get(`${NEW_API_URL}/images/${item}`);
+
 
 export const getFavPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const addFavPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/add_to_favorite`, params);

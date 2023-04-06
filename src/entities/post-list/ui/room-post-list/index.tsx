@@ -40,8 +40,7 @@ export const RoomPostList = ({ data, setPage }: Props) => {
       </div>
       <Stack spacing={2}>
         <Pagination
-         // count={data.lastPage}
-          count={5}
+          count={data?.lastPage || 1}
           color="primary"
           sx={{ m: "2rem auto 3rem" }}
           onChange={(_e, p) => {

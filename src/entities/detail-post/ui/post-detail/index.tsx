@@ -22,10 +22,11 @@ import room1 from "../../../../app/assets/images/room1.jpg";
 import room2 from "../../../../app/assets/images/room2.jpg";
 import room3 from "../../../../app/assets/images/room3.jpg";
 import profile from "../../../../app/assets/images/profile.jpg";
-import { SetStateAction, Dispatch } from "react";
+import { SetStateAction, Dispatch, useEffect, useState } from "react";
 import BackButton from "../../../../app/components/BackButton";
 import { PostDetailData } from "../../../../shared/types";
 import { MapContent } from "../../../../app/components/Map";
+import { getImageItem } from "../../../../shared/model";
 
 interface Props {
   open: boolean;
@@ -77,8 +78,25 @@ const category = {
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
-  // const { location, description, price } = data;
+  const { location, description, price, image } = data;
 
+  const [images, setImages] = useState<any>([]);
+  useEffect(() => {
+    const promises: any[] = [];
+    const imageList: string[] = [];
+    image?.forEach((i) => {
+      promises.push(
+        getImageItem(i).then((res) => {
+          imageList.push(res);
+        })
+      );
+    });
+
+    Promise.all(promises).then(() => {
+      setImages(imageList);
+    });
+  }, [image]);
+  console.log(images);
   return (
     <div className="postDetailPage">
       <div className="postInfo">
@@ -145,11 +163,11 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               }}
             />
             <Slider {...settings} className="slider">
-              {[room1, room2, room3].map((image, i) => (
+              {images?.map((item: any, i: number) => (
                 <img
                   key={i}
-                  id={image}
-                  src={image}
+                  id={item}
+                  src={item}
                   alt="image"
                   className="slider-img"
                 />

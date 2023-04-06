@@ -4,8 +4,19 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
+interface Data {
+  created_date: string;
+  description: string;
+  image: string[];
+  location: string;
+  price: number;
+  title: string;
+}
 interface Props {
-  data: any[];
+  data: {
+    lastPage: number;
+    data: Data[];
+  };
   setPage: (p: number) => {};
 }
 export const RoommatePostList = ({ data, setPage }: Props) => {
@@ -14,8 +25,8 @@ export const RoommatePostList = ({ data, setPage }: Props) => {
   return (
     <div className="wrapper">
       <div className="post-list">
-        {Array.isArray(data) &&
-          data.map((value: any, index: number) => (
+        {Array.isArray(data?.data) &&
+          data?.data?.map((value: any, index: number) => (
             <div
               key={index}
               onClick={() => {
@@ -28,7 +39,7 @@ export const RoommatePostList = ({ data, setPage }: Props) => {
       </div>
       <Stack spacing={2}>
         <Pagination
-          count={10}
+          count={data?.lastPage || 1}
           color="primary"
           sx={{ m: "2rem auto 3rem" }}
           onChange={(_e, p) => {
