@@ -3,14 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { fetchRegister, useUserInfo } from "../../model";
-import { useDispatch } from "react-redux";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
+import { Loader } from "../../../../app/components/Loader";
 
-const USERNAME_REGEX = /^[A-Za-z]{3,}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
 interface Value {
@@ -52,8 +50,6 @@ const validate = (values: Value) => {
 
 export const Register = (props: any) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<any>();
-  const userInfo = useUserInfo();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -69,25 +65,7 @@ export const Register = (props: any) => {
       password: "",
     },
     validate,
-    onSubmit: (values) => {
-      dispatch(fetchRegister(values));
-
-      const ntf = [
-        ...props.props.ntfList,
-        {
-          id: props.props.ntfList.length,
-          type: "success",
-          title: "Registered!",
-          msg: "You has been registered successfully.",
-        },
-      ];
-      props.props.showNtf(ntf);
-      setTimeout(() => {
-        if (userInfo.token) {
-          navigate("/");
-        }
-      }, 100);
-    },
+    onSubmit: (values) => {},
   });
 
   return (
@@ -102,12 +80,7 @@ export const Register = (props: any) => {
           <button onClick={() => navigate("/login")}>Sign in</button>
         </div>
       </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          formik.handleSubmit();
-        }}
-      >
+      <form>
         <TextField
           margin="normal"
           required
@@ -201,6 +174,10 @@ export const Register = (props: any) => {
           type="submit"
           fullWidth
           variant="contained"
+          onClick={(e) => {
+            e.preventDefault();
+            props.handleSubmit(formik.values);
+          }}
           sx={{
             mt: 3,
             mb: 2,
@@ -213,7 +190,7 @@ export const Register = (props: any) => {
             textTransform: "none",
           }}
         >
-          Sign Up
+          {props.isLoading ? <Loader /> : "Sign Up"}
         </Button>
       </form>
     </div>

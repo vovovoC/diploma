@@ -2,11 +2,15 @@ import { createTheme } from "@mui/material";
 import Layout from "../../../app/components/Layout";
 import { RoomAddPostContent } from "../../../features";
 
-export function RoomAddPostPage() {
+interface Props {
+  isEdit: boolean;
+}
+
+export function RoomAddPostPage({ isEdit }: Props) {
   const theme = createTheme();
   return (
     <Layout theme={theme}>
-      <RoomAddPostContent/>
+      <RoomAddPostContent isEdit={isEdit} />
     </Layout>
   );
 }

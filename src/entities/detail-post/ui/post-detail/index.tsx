@@ -11,22 +11,16 @@ import CropIcon from "@mui/icons-material/Crop";
 import WifiIcon from "@mui/icons-material/Wifi";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import HomeIcon from "@mui/icons-material/Home";
-import MapIcon from "@mui/icons-material/Map";
 import SecurityIcon from "@mui/icons-material/Security";
 import ElevatorIcon from "@mui/icons-material/Elevator";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import "./index.scss";
-
-import room1 from "../../../../app/assets/images/room1.jpg";
-import room2 from "../../../../app/assets/images/room2.jpg";
-import room3 from "../../../../app/assets/images/room3.jpg";
 import profile from "../../../../app/assets/images/profile.jpg";
-import { SetStateAction, Dispatch, useEffect, useState } from "react";
+import { SetStateAction, Dispatch } from "react";
 import BackButton from "../../../../app/components/BackButton";
 import { PostDetailData } from "../../../../shared/types";
 import { MapContent } from "../../../../app/components/Map";
-import { getImageItem } from "../../../../shared/model";
 
 interface Props {
   open: boolean;
@@ -80,23 +74,12 @@ const category = {
 export const PostDetail = ({ open, setOpen, data }: Props) => {
   const { location, description, price, image } = data;
 
-  const [images, setImages] = useState<any>([]);
-  useEffect(() => {
-    const promises: any[] = [];
-    const imageList: string[] = [];
-    image?.forEach((i) => {
-      promises.push(
-        getImageItem(i).then((res) => {
-          imageList.push(res);
-        })
-      );
-    });
+  const getImage = (item: string) => {
+    return `http://89.218.32.7:8080/images/${item}`;
+  };
+  const defaultImage =
+    "https://img.ksl.com/mx/mplace-rent.ksl.com/no-image-default.png?width=940&height=529&operation=fit";
 
-    Promise.all(promises).then(() => {
-      setImages(imageList);
-    });
-  }, [image]);
-  console.log(images);
   return (
     <div className="postDetailPage">
       <div className="postInfo">
@@ -104,7 +87,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
           <BackButton name={"search"} />
           <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
           <div className="post-header">
-            <p className="post-location">location</p>
+            <p className="post-location">{location}</p>
             <div className="post-btns">
               <button>
                 <LinkIcon sx={{ color: "#5D89FA", mr: "5px" }} />
@@ -123,21 +106,30 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               }}
               className="item1"
             >
-              <img src={room1} alt="" />
+              <img
+                src={image?.length > 0 ? getImage(image[0]) : defaultImage}
+                alt="Qonys room"
+              />
             </div>
             <div
               onClick={() => {
                 setOpen(true);
               }}
             >
-              <img src={room2} alt="" />
+              <img
+                src={image?.length > 1 ? getImage(image[1]) : defaultImage}
+                alt="Qonys room"
+              />
             </div>
             <div
               onClick={() => {
                 setOpen(true);
               }}
             >
-              <img src={room3} alt="" />
+              <img
+                src={image?.length > 2 ? getImage(image[2]) : defaultImage}
+                alt="Qonys room"
+              />
             </div>
             <button
               onClick={() => {
@@ -163,11 +155,11 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               }}
             />
             <Slider {...settings} className="slider">
-              {images?.map((item: any, i: number) => (
+              {image?.map((item: any, i: number) => (
                 <img
                   key={i}
                   id={item}
-                  src={item}
+                  src={`http://89.218.32.7:8080/images/${item}`}
                   alt="image"
                   className="slider-img"
                 />
@@ -220,7 +212,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               </ul>
               <div className="post-about">
                 <p className="post-body-title">About</p>
-                <p className="post-about-text">description</p>
+                <p className="post-about-text">{description}</p>
               </div>
               <hr />
               <div className="post-about">
@@ -273,7 +265,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div className="post-card-header">
                 <p className="post-card-title">Rent price</p>
                 <p className="post-card-price">
-                  50 0000 tg<span>/month</span>
+                  {price} tg<span>/month</span>
                 </p>
               </div>
               <hr />

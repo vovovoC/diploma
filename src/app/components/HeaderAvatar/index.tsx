@@ -60,16 +60,23 @@ function HeaderAvatar() {
     setAnchorElNtf(event.currentTarget);
   };
 
-  const handleCloseUserMenu = (e:string) => {
+  const handleCloseUserMenu = (e: string) => {
     setAnchorElUser(null);
     let path = "";
-     switch(e){
-      case "Home": path = "/"; break;
-      case "Profile": path = "/profile"; break;
-      case "Logout": path = "/login"; break;
-      default:  path = ""; 
-     }
-     navigate(path);
+    switch (e) {
+      case "Home":
+        path = "/";
+        break;
+      case "Profile":
+        path = "/profile";
+        break;
+      case "Logout":
+        path = "/login";
+        break;
+      default:
+        path = "";
+    }
+    navigate(path);
   };
   const handleClosePostMenu = () => {
     setAnchorElPost(null);
@@ -77,9 +84,7 @@ function HeaderAvatar() {
   const handleCloseNtfMenu = () => {
     setAnchorElNtf(null);
   };
-  const changePage = (e:string) => {
-    
-  }
+  const changePage = (e: string) => {};
   return (
     <div className="header-avatar">
       <div className="add-post">
@@ -108,7 +113,7 @@ function HeaderAvatar() {
               <p>Add post</p>
             </div>
             <MenuItem
-              onClick={() => navigate("/posts/addRoom")}
+              onClick={() => navigate("/post/create/new")}
               sx={{
                 width: "330px",
                 m: "0 14px",
@@ -126,7 +131,7 @@ function HeaderAvatar() {
               <p className="post-name">{posts[0].name}</p>
             </MenuItem>
             <MenuItem
-              onClick={() => navigate("/posts/addRoommate")}
+              onClick={() => navigate("/room/create/new")}
               sx={{
                 width: "330px",
                 m: "0 14px",
@@ -228,7 +233,9 @@ function HeaderAvatar() {
               horizontal: "right",
             }}
             open={Boolean(anchorElUser)}
-            onClose={() => {setAnchorElUser(null)}}
+            onClose={() => {
+              setAnchorElUser(null);
+            }}
           >
             {settings.map((setting) => (
               <MenuItem

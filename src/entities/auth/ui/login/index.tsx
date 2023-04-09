@@ -11,9 +11,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 
 import Grid from "@mui/material/Grid";
-import { fetchLogin, useUserInfo } from "../../model";
-import { useDispatch } from "react-redux";
-import { Notification } from "../../../../app/components/Notification";
+import { Loader } from "../../../../app/components/Loader";
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
@@ -47,7 +45,6 @@ const validate = (values: Value) => {
 export const Login = (props: any) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const userInfo = useUserInfo();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -55,47 +52,13 @@ export const Login = (props: any) => {
     event.preventDefault();
   };
 
-  const dispatch = useDispatch<any>();
-
   const formik = useFormik({
     initialValues: {
       email: null,
       password: null,
     },
     validate,
-    onSubmit: (values) => {
-      dispatch(fetchLogin(values));
-
-      //notification msgs
-      const ntf = [
-        ...props.props.ntfList,
-        {
-          id: props.props.ntfList.length,
-          type: "success",
-          title: "Success",
-          msg: "Success Login",
-        },
-        // {
-        //   id: props.props.ntfList.length+1,
-        //   type: "warning",
-        //   title: "Warning",
-        //   msg: "Just warning",
-        // },
-        // {
-        //   id: props.props.ntfList.length+2,
-        //   type: "danger",
-        //   title: "Danger",
-        //   msg: "Can not connect to server",
-        // },
-      ];
-
-      props.props.showNtf(ntf);
-      setTimeout(() => {
-        if (userInfo.token) {
-          navigate("/");
-        }
-      }, 100);
-    },
+    onSubmit: (values) => {},
   });
   return (
     <div className="sign-in">
@@ -109,12 +72,7 @@ export const Login = (props: any) => {
           <button onClick={() => navigate("/register")}>Sign up</button>
         </div>
       </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          formik.handleSubmit();
-        }}
-      >
+      <form>
         <TextField
           margin="normal"
           required
@@ -181,7 +139,10 @@ export const Login = (props: any) => {
         <Button
           type="submit"
           fullWidth
-          onClick={() => navigate("/")}
+          onClick={(e) => {
+            e.preventDefault();
+            props.handleSubmit(formik.values);
+          }}
           variant="contained"
           sx={{
             mt: 3,
@@ -195,7 +156,7 @@ export const Login = (props: any) => {
             textTransform: "none",
           }}
         >
-          Sign In
+          {props.isLoading ? <Loader /> : "Sign In"}
         </Button>
       </form>
     </div>

@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { fetchLogin, useUserInfo } from "../../model";
-import { useDispatch } from "react-redux";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -53,14 +51,11 @@ export const ResetPassword = (props: any) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const userInfo = useUserInfo();
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
   };
-
-  const dispatch = useDispatch<any>();
 
   const formik = useFormik({
     initialValues: {
@@ -69,27 +64,7 @@ export const ResetPassword = (props: any) => {
       cnfpassword: null,
     },
     validate,
-    onSubmit: (values) => {
-      dispatch(fetchLogin(values));
-
-      //notification msgs
-      const ntf = [
-        ...props.props.ntfList,
-        {
-          id: props.props.ntfList.length,
-          type: "success",
-          title: "Password Changed!",
-          msg: "Your password has been changed successfully.",
-        },
-      ];
-
-      props.props.showNtf(ntf);
-      setTimeout(() => {
-        if (userInfo.token) {
-          navigate("/");
-        }
-      }, 100);
-    },
+    onSubmit: (values) => {},
   });
   return (
     <div className="sign-in">
@@ -167,6 +142,10 @@ export const ResetPassword = (props: any) => {
           type="submit"
           fullWidth
           variant="contained"
+          onClick={(e) => {
+            e.preventDefault();
+            props.handleSubmit(formik.values);
+          }}
           sx={{
             mt: 3,
             mb: 2,

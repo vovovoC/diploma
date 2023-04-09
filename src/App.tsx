@@ -23,23 +23,38 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route>
-            <Route path="/" element={<FilterPage type="landlord"/>} />
+            <Route path="/" element={<FilterPage type="landlord" />} />
             <Route path="/register" element={<AuthPage type="register" />} />
             <Route path="/login" element={<AuthPage type="login" />} />
             <Route path="/resetPsw" element={<AuthPage type="resetPsw" />} />
-            <Route path="/posts" element={<FilterPage type="landlord"/>} />
-            <Route path="/posts/landlord" element={<FilterPage type="landlord"/>} />
-            <Route path="/posts/renter" element={<FilterPage type="renter"/>} />
+            <Route path="/posts" element={<FilterPage type="landlord" />} />
+            <Route
+              path="/posts/landlord"
+              element={<FilterPage type="landlord" />}
+            />
+            <Route
+              path="/posts/renter"
+              element={<FilterPage type="renter" />}
+            />
             <Route path="/posts/my" element={<UserPostsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/userProfile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
-            <Route path="/posts/edit/:id" element={<PostChangePage isEdit />} />
-            <Route path="/posts/addRoom" element={<RoomAddPostPage />} />
-            <Route path="/posts/addRoommate" element={<RoommateAddPostPage />} />
             <Route
-              path="/posts/create/new"
-              element={<PostChangePage isEdit={false} />}
+              path="/post/edit/:id"
+              element={<RoomAddPostPage isEdit={true} />}
+            />
+            <Route
+              path="/post/create/new"
+              element={<RoomAddPostPage isEdit={false} />}
+            />
+            <Route
+              path="/room/create/new"
+              element={<RoommateAddPostPage isEdit={false} />}
+            />
+            <Route
+              path="/room/edit/:id"
+              element={<RoommateAddPostPage isEdit={true} />}
             />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
