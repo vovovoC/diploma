@@ -10,23 +10,24 @@ export const RegisterContent = (props: any) => {
     useMutation(register);
 
   const handleSubmit = (values: any) => {
-    mutate(values);
+    mutate(values, {
+      onSuccess(res) {
+        const ntf = [
+          ...props.ntfList,
+          {
+            id: props.ntfList.length,
+            type: "success",
+            title: "Registered!",
+            msg: "You has been registered successfully.",
+          },
+        ];
+        console.log(res, "RSULt");
 
-    const ntf = [
-      ...props.ntfList,
-      {
-        id: props.ntfList.length,
-        type: "success",
-        title: "Registered!",
-        msg: "You has been registered successfully.",
-      },
-    ];
-    props.showNtf(ntf);
-    setTimeout(() => {
-      if (isSuccess) {
+        props.showNtf(ntf);
         navigate("/");
-      }
-    }, 100);
+      },
+      onError() {},
+    });
   };
   if (isError) {
     return <ErrorBoundary error={error} />;

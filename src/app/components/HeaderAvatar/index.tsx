@@ -187,9 +187,10 @@ function HeaderAvatar() {
                 Mark all as read <div className="ntf-mark"></div>
               </button>
             </div>
-            {ntf.map((i) => (
+            {ntf.map((i, key) => (
               <MenuItem
                 onClick={handleCloseNtfMenu}
+                key={key}
                 sx={{ width: "auto", p: "0" }}
               >
                 <Notification />
@@ -237,9 +238,9 @@ function HeaderAvatar() {
               setAnchorElUser(null);
             }}
           >
-            {settings.map((setting) => (
+            {settings.map((setting, key) => (
               <MenuItem
-                key={setting}
+                key={key}
                 onClick={() => handleCloseUserMenu(setting)}
                 sx={{
                   width: "202px",

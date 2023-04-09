@@ -28,7 +28,9 @@ export const RoomAddPost = ({
   const formik = useFormik({
     initialValues,
     validate,
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      console.log(values, "VAL");
+    },
   });
 
   const addImages = (e: any) => {
@@ -225,8 +227,8 @@ export const RoomAddPost = ({
 
         <div>
           <p className="form-title">Show off your place</p>
-          {formik.values.image?.map((item: string) => {
-            return <img src={item} alt="Rooms" />;
+          {formik.values.image?.map((item: string, key: any) => {
+            return <img src={item} key={key} alt="Rooms" />;
           })}
           <input
             type="file"
