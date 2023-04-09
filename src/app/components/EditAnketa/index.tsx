@@ -46,8 +46,8 @@ export const EditAnketa = ({fn } : Props) => {
         <div>Profile details</div>
         <button className="cnf-card-close" title="Close" onClick={() => fn()}><CloseIcon sx={{color: "white"}}/></button>
         </div>
-        <div className="anketa-body">
-        <table>
+        <div className="anketa-body edit-anketa-body">
+        <table className="edit-anketa-table">
               <tr>
                 <th>Firstname</th>
                 <td>

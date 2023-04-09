@@ -3,6 +3,9 @@
 }
 .addPost form{
     margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 .select{
     display: flex;
@@ -17,7 +20,7 @@
     margin-top: 30px;
 }
 .form-map{
-    width: 100%;
+    width: 90vw;
     height: 400px;
     background-color: #d9d9d985;
 }
@@ -25,8 +28,8 @@
     background: #FFFFFF;
     border: 0.5px solid #D9D9D9;
     border-radius: 6px;
-    padding: 20px 30px;
-    width: 500px;
+    padding: 20px;
+    width: 70vw;
 }
 .form-radio>div{
     display: flex;
@@ -61,11 +64,7 @@ label{
     letter-spacing: 0.115em;
     margin-bottom: 8px;
 }
-.add-post form{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
+
 .add-post-container{
     width: 500px;
     display: grid;
@@ -83,10 +82,10 @@ textarea{
     background: #FFFFFF;
     border: 1px solid #D9D9D9;
     border-radius: 6px;
-    width: 70%;
+    width: 70vw;
 }
 .form-layout{
-    width: 70%;
+    width: 70vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -104,4 +103,34 @@ input[type='checkbox']{
     width: 19px;
     height: 19px;
     margin-right: 10px;
+}
+@media screen and (max-width: 700px){
+    .add-post-container{
+        width: 90vw;
+        grid-template-columns: 1fr;
+    }
+    textarea{
+        width: 90vw;
+    }
+    .form-radio{
+        width: 90vw;
+        padding: 20px 15px;
+    }
+    .form-layout{
+       flex-direction: column;
+       align-items: start;
+    }
+    .form-amenities{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width: 480px){
+    .form-amenities label{
+       font-size: 12px;
+    }
+}
+@media screen and (max-width: 400px){
+    .form-amenities{
+        grid-template-columns: 1fr;
+    }
 }

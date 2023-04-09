@@ -13,7 +13,7 @@ export const RoomPostListContent = () => {
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, refetch, error } = useQuery(
     "POST_LIST",
-    async () => await getPosts({ ...filterData, page, limit: 10 })
+    async () => await getPosts({ ...filterData, page, limit: 9 })
   );
 
   useEffect(() => {

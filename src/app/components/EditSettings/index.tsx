@@ -29,7 +29,7 @@ export const EditSettings = ({fn } : Props) => {
   };
 
   return (
-    <div className="settings">
+    <div className="settings edit-settings">
     <div className="settings-header">
         <div>Settings</div>
         <button className="cnf-card-close" title="Close" onClick={() => fn()}><CloseIcon sx={{color: "white"}}/></button>
@@ -72,7 +72,7 @@ export const EditSettings = ({fn } : Props) => {
             ),
           }}
         />
-        <button title="Edit anketa" className="save-btn">Save</button>
+        <button title="Save settings" className="save-btn">Save</button>
         </table>
         </div>
     </div>

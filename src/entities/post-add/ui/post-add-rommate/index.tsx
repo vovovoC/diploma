@@ -80,12 +80,12 @@ export const RoommateAddPost = ({
       <p className="page-title">Add my post</p>
       <form className="add-post">
         <div className="user-anketa add-user-anketa">
-          <div className="user-anketa-right">
+          <div className="user-anketa-right add-roommate-post-right">
             <div className="right-anketa-header">
               <div className="anketa-header-title">Add post</div>
             </div>
             <div className="anketa-body roommate-anketa-body">
-              <table>
+              <table className="add-roommate-post">
                 <tr>
                   <th>Firstname</th>
                   <td>
@@ -104,6 +104,7 @@ export const RoommateAddPost = ({
                         border: "0px solid transparent",
                         borderRadius: "6px",
                         height: 30,
+                        width: "100%",
                       }}
                     />
                   </td>
@@ -120,6 +121,7 @@ export const RoommateAddPost = ({
                         border: "0px solid transparent",
                         borderRadius: "6px",
                         height: 30,
+                        width: "100%",
                       }}
                     />
                   </td>
@@ -213,7 +215,7 @@ export const RoommateAddPost = ({
                 </tr>
               </table>
               <p className="form-title">I'm looking for a room</p>
-              <table>
+              <table className="add-roommate-post">
                 <tr>
                   <th>Target date</th>
                   <td>

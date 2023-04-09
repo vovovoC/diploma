@@ -2,7 +2,7 @@
     background: #FEFEFF;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.09);
     border-radius: 6px;
-   
+    width: 100%;
 }
 .anketa>div, .settings>div{
     padding: 10px 20px 10px 30px;
@@ -42,6 +42,7 @@ table th{
 }
 table td{
     width: 80%;
+    padding-left: 5px;
 }
 ul{
     padding: 0;
@@ -69,4 +70,7 @@ li{
 }
 .settings-header{
     background-color: #8B8B8B;
+}
+
+@media screen and (max-width: 700px){
 }

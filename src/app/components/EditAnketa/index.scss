@@ -1,5 +1,5 @@
 .edit-anketa{
-    width: 50%;
+    width: 70%;
     height: 90vh;
     overflow: auto;
     background-color: transparent;
@@ -9,7 +9,6 @@
 }
 .edit-anketa>div{
     margin: 0;
-
 }
 .save-btn{
     float: right;
@@ -79,4 +78,33 @@ li{
     padding: 4px 10px;
     margin-right: 7px;
 }
-
+@media screen and (max-width: 1040px){
+    .edit-anketa{
+        width: 85%;
+    }
+}
+@media screen and (max-width: 600px){
+    .edit-anketa{
+        width: 95%;
+    }
+}
+@media screen and (max-width: 480px){
+    .edit-anketa{
+        width: 95%;
+    }
+    .edit-anketa-table {
+        overflow: hidden;
+    }
+    .edit-anketa-table tr{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+    }
+    .edit-anketa-body{
+        padding: 10px !important;
+    }
+    .edit-anketa-table td{
+        width: 100%;
+    }
+}

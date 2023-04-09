@@ -7,15 +7,14 @@
 .post-list > div {
     cursor: pointer;
 }
-@media screen and (max-width: 1050px){
+@media screen and (max-width: 900px){
     .post-list{
-        width: 90%;
+        width: 100%;
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 740px){
     .post-list{
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;

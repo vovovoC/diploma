@@ -95,7 +95,7 @@ function HeaderAvatar() {
             </button>
           </Tooltip>
           <Menu
-            sx={{ mt: "55px", width: "auto" }}
+            sx={{ mt: "55px", width: "auto"}}
             anchorEl={anchorElPost}
             anchorOrigin={{
               vertical: "top",
@@ -115,10 +115,9 @@ function HeaderAvatar() {
             <MenuItem
               onClick={() => navigate("/post/create/new")}
               sx={{
-                width: "330px",
+                width: "100%",
                 m: "0 14px",
                 p: "6px 0",
-                fontFamily: "poppins400",
                 fontSize: "12px",
                 lineHeight: "18px",
                 letterSpacing: "0.05em",
@@ -133,10 +132,8 @@ function HeaderAvatar() {
             <MenuItem
               onClick={() => navigate("/room/create/new")}
               sx={{
-                width: "330px",
                 m: "0 14px",
                 p: "6px 0",
-                fontFamily: "poppins400",
                 fontSize: "12px",
                 lineHeight: "18px",
                 letterSpacing: "0.05em",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./index.scss";
-import { useState } from "react";
 import user from "../../../app/assets/images/user.png";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -11,6 +10,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from "@mui/material/Button";
 import { EditAnketa } from "../../../app/components/EditAnketa";
+import { Typography } from "@mui/material";
 
 export const Anketa = () => {
   const [open, setOpen] = React.useState(false);
@@ -129,9 +129,9 @@ export const Anketa = () => {
                   <td>********</td>
                 </tr>
                 <tr className="delete-acc">
-                  <th>
-                  <Button sx={{color: "#D50000", textDecoration: "underline",
-                          backgroundColor: "transparent", p: "0"}} onClick={handleToggle}>Delete account</Button>
+                
+                  <Typography sx={{color: "#D50000", textDecoration: "underline",
+                          backgroundColor: "transparent", p: "0", textTransform: "uppercase", fontSize: {xs: "10px",s: "10px", md: "14px"}}} onClick={handleToggle}>Delete account</Typography>
                   <Backdrop
                     sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}
                     open={open}
@@ -139,7 +139,7 @@ export const Anketa = () => {
                   >
                     <CnfDelete/>
                   </Backdrop>
-                  </th>
+                 
                 </tr>
             </table>
         </div>

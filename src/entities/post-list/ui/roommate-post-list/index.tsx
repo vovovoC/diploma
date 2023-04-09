@@ -2,13 +2,8 @@ import * as React from "react";
 import { RoommatePost } from "../../../../app/components/RoommatePost";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router-dom";
 import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import Button from "@mui/material/Button";
-import { EditAnketa } from "../../../../app/components/EditAnketa";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { UserAnketa } from "../../../../entities/user-anketa";
+import {  RoommatePostDetail } from "../../../../entities/detail-post/ui/post-detail-roommate";
 
 import "./index.scss";
 interface Data {
@@ -27,30 +22,28 @@ interface Props {
   setPage: (p: number) => {};
 }
 export const RoommatePostList = ({ data, setPage }: Props) => {
-  const navigate = useNavigate();
-  const [openEditAnketa, setOpenEditAnketa] = React.useState(false);
-  const handleToggleEditAnketa = () => {
-    setOpenEditAnketa(!openEditAnketa);
+  const [openRoommateDetail, setOpenRoommateDetail] = React.useState(false);
+  const handleToggleOpenRoommateDetail = () => {
+    setOpenRoommateDetail(!openRoommateDetail);
+  };
+  const handleCloseRoommateDetail = () => {
+    setOpenRoommateDetail(false);
   };
   return (
     <div className="wrapper">
       <div className="post-list">
         {Array.isArray(data?.data) &&
           data?.data?.map((value: any, index: number) => (
-            <div
-              key={index}
-              onClick={handleToggleEditAnketa}
-            >
-
+            <div key={index}>
                 <Backdrop 
                   sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "rgba(217, 217, 217, 0.1);", width: "100vw", height: "100vh"}}
-                  open={openEditAnketa}
+                  open={openRoommateDetail}
                 >
                   <div>
-                    <UserAnketa/>
+                    <RoommatePostDetail fn={handleCloseRoommateDetail}/>
                   </div>
               </Backdrop>
-              <RoommatePost item={value} />
+              <RoommatePost item={value} fn={handleToggleOpenRoommateDetail}/>
             </div>
           ))}
       </div>

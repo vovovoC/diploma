@@ -21,22 +21,29 @@ interface Props {
     id: string;
     category: number;
     price: number;
-    img: string;
+    image: string;
     amenities: string[];
     duraction: string;
     rooms: number;
     gender: number;
     verified: boolean;
-  };
+  },
+  fn: () => void;
 }
 
 export const RoommatePost = (props: Props) => {
-  const { item } = props;
+  const { item, fn } = props;
+  const getImage = (item: string) => {
+    return `http://89.218.32.7:8080/images/${item}`;
+  };
+  const defaultImage =
+    "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
   return (
-    <Card sx={{ maxWidth: 345}} className="card">
+    <Card sx={{ maxWidth: 345, height: 350}} className="card" onClick={() => fn()}>
     <CardMedia
       sx={{ height: 200, borderRadius: "6px" }}
-      title="location"
+      title="User Image"
+      image={item.image?.length > 1 ? getImage(item.image) : defaultImage}
     />
     <CardContent sx={{ m: "5px 10px 0px 30px" }}>
       <Grid container spacing={2}>

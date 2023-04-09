@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 export const PostDetailContent = () => {
   const [open, setOpen] = useState(false);
   const params = useParams();
+  console.log(params);
   const { isLoading, isError, data, error } = useQuery(
     "POST_DETAIL",
     async () => await getPostId(params.id!),

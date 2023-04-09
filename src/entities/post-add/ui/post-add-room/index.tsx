@@ -45,7 +45,7 @@ export const RoomAddPost = ({
       <BackButton name="home" />
       <p className="page-title">Add post</p>
       <form className="add-post">
-        <FormControl sx={{ width: 500 }} size="small">
+        <FormControl sx={{ width: {md: 500, s: 500,xs: "95%"}}} size="small">
           <label>City</label>
           <Select
             placeholder="Add city"
@@ -173,6 +173,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%"                
                 }}
               />
             </FormControl>
@@ -187,6 +188,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%"  
                 }}
               />
             </FormControl>
@@ -203,6 +205,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%"  
                 }}
               />
             </FormControl>
@@ -217,6 +220,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%"  
                 }}
               />
             </FormControl>
@@ -365,6 +369,7 @@ export const RoomAddPost = ({
             fontSize: "16px",
             lineHeight: "24px",
             textTransform: "none",
+            width: "150px"  
           }}
         >
           {isLoading ? <Loader /> : "Submit"}
