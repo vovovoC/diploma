@@ -66,7 +66,7 @@ export const RoommateAddPost = ({
   });
 
   const addImages = (e: any) => {
-    const selectedFIles: string[] = [];
+    //const selectedFIles: string[] = [];
     const targetFiles = e.target.files;
     // targetFiles.forEach((file: string) => {
     //   selectedFIles.push(URL.createObjectURL(file));
@@ -86,273 +86,279 @@ export const RoommateAddPost = ({
             </div>
             <div className="anketa-body roommate-anketa-body">
               <table className="add-roommate-post">
-                <tr>
-                  <th>Firstname</th>
-                  <td>
-                    <OutlinedInput
-                      id="firstname"
-                      placeholder="First Name"
-                      fullWidth
-                      name="email"
-                      error={!!formik.errors.firstname} // @ts-ignore
-                      helperText={formik.errors.firstname}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.firstname}
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Lastname</th>
-                  <td>
-                    <OutlinedInput
-                      id="last-name"
-                      placeholder="Last Name"
-                      fullWidth
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Age</th>
-                  <td>
-                    <OutlinedInput
-                      id="age"
-                      placeholder="Age"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Gender</th>
-                  <td>
-                    <Select
-                      id="gender"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    >
-                      <MenuItem value={0}>Female</MenuItem>
-                      <MenuItem value={1}>Male</MenuItem>
-                      <MenuItem value={2}>Prefer not to say</MenuItem>
-                    </Select>
-                  </td>
-                </tr>
-                <tr>
-                  <th>About</th>
-                  <td>
-                    <TextField
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        width: "100%",
-                      }}
-                      id="outlined-multiline-static"
-                      placeholder="...text"
-                      multiline
-                      rows={4}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Work</th>
-                  <td>
-                    <OutlinedInput
-                      id="job"
-                      placeholder="Work"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Lifestyle</th>
-                  <td>
-                    <Autocomplete
-                      multiple
-                      id="tags-standard"
-                      options={lifestyle}
-                      getOptionLabel={(option) => option.name}
-                      defaultValue={[lifestyle[0]]}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          variant="standard"
-                          placeholder="Your lifestyle"
-                        />
-                      )}
-                    />
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th>Firstname</th>
+                    <td>
+                      <OutlinedInput
+                        id="firstname"
+                        placeholder="First Name"
+                        fullWidth
+                        name="email"
+                        error={!!formik.errors.firstname} // @ts-ignore
+                        helpertext={formik.errors.firstname}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.firstname}
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          height: 30,
+                          width: "100%",
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Lastname</th>
+                    <td>
+                      <OutlinedInput
+                        id="last-name"
+                        placeholder="Last Name"
+                        fullWidth
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          height: 30,
+                          width: "100%",
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Age</th>
+                    <td>
+                      <OutlinedInput
+                        id="age"
+                        placeholder="Age"
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          height: 30,
+                          width: "100%",
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Gender</th>
+                    <td>
+                      <Select
+                        id="gender"
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          height: 30,
+                          width: "100%",
+                        }}
+                      >
+                        <MenuItem value={0}>Female</MenuItem>
+                        <MenuItem value={1}>Male</MenuItem>
+                        <MenuItem value={2}>Prefer not to say</MenuItem>
+                      </Select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>About</th>
+                    <td>
+                      <TextField
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          width: "100%",
+                        }}
+                        id="outlined-multiline-static"
+                        placeholder="...text"
+                        multiline
+                        rows={4}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Work</th>
+                    <td>
+                      <OutlinedInput
+                        id="job"
+                        placeholder="Work"
+                        sx={{
+                          background: "#FFFFFF",
+                          border: "0px solid transparent",
+                          borderRadius: "6px",
+                          height: 30,
+                          width: "100%",
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                        <th>Instagram</th>
+                        <td>
+                          <OutlinedInput
+                            id="instagran"
+                            placeholder="Instagram link"
+                            sx={{
+                              background: "#FFFFFF",
+                              border: "0px solid transparent",
+                              borderRadius: "6px",
+                              height: 30,
+                              width: "100%",
+                            }}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Telegram</th>
+                        <td>
+                          <OutlinedInput
+                            id="telegram"
+                            placeholder="Telegram link"
+                            sx={{
+                              background: "#FFFFFF",
+                              border: "0px solid transparent",
+                              borderRadius: "6px",
+                              height: 30,
+                              width: "100%",
+                            }}
+                          />
+                        </td>
+                      </tr>
+                  <tr>
+                    <th>Lifestyle</th>
+                    <td>
+                      <Autocomplete
+                        multiple
+                        id="tags-standard"
+                        options={lifestyle}
+                        getOptionLabel={(option) => option.name}
+                        defaultValue={[lifestyle[0]]}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            key={params.id}
+                            variant="standard"
+                            placeholder="Your lifestyle"
+                          />
+                        )}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <p className="form-title">I'm looking for a room</p>
               <table className="add-roommate-post">
-                <tr>
-                  <th>Target date</th>
-                  <td>
-                    <OutlinedInput
-                      id="date"
-                      placeholder="Date"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Duration</th>
-                  <td>
-                    <Select
-                      id="duration"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    >
-                      <MenuItem value={0}>Flexible</MenuItem>
-                      <MenuItem value={1}>Fixed</MenuItem>
-                      <MenuItem value={2}>12 months</MenuItem>
-                    </Select>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Max budget</th>
-                  <td>
-                    <OutlinedInput
-                      id="price"
-                      placeholder="Max budget"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Location</th>
-                  <td>
-                    <OutlinedInput
-                      id="city"
-                      placeholder="city"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Layout</th>
-                  <td>
-                    <Select
-                      id="layout"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    >
-                      <MenuItem value={0}>Entire Place</MenuItem>
-                      <MenuItem value={1}>Private Room</MenuItem>
-                      <MenuItem value={2}>Shared Room</MenuItem>
-                    </Select>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Instagram</th>
-                  <td>
-                    <OutlinedInput
-                      id="instagran"
-                      placeholder="Instagram link"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Telegram</th>
-                  <td>
-                    <OutlinedInput
-                      id="telegram"
-                      placeholder="Telegram link"
-                      sx={{
-                        background: "#FFFFFF",
-                        border: "0px solid transparent",
-                        borderRadius: "6px",
-                        height: 30,
-                        width: "100%",
-                      }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th>Amenities</th>
-                  <td>
-                    <Autocomplete
-                      multiple
-                      id="amenities"
-                      options={amenities}
-                      getOptionLabel={(option) => option.name}
-                      defaultValue={[amenities[0]]}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          variant="standard"
-                          placeholder="Amenities"
+                 <tbody>
+                    <tr>
+                      <th>Target date</th>
+                      <td>
+                        <OutlinedInput
+                          id="date"
+                          placeholder="Date"
+                          sx={{
+                            background: "#FFFFFF",
+                            border: "0px solid transparent",
+                            borderRadius: "6px",
+                            height: 30,
+                            width: "100%",
+                          }}
                         />
-                      )}
-                    />
-                  </td>
-                </tr>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Duration</th>
+                      <td>
+                        <Select
+                          id="duration"
+                          sx={{
+                            background: "#FFFFFF",
+                            border: "0px solid transparent",
+                            borderRadius: "6px",
+                            height: 30,
+                            width: "100%",
+                          }}
+                        >
+                          <MenuItem value={0}>Flexible</MenuItem>
+                          <MenuItem value={1}>Fixed</MenuItem>
+                          <MenuItem value={2}>12 months</MenuItem>
+                        </Select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Max budget</th>
+                      <td>
+                        <OutlinedInput
+                          id="price"
+                          placeholder="Max budget"
+                          sx={{
+                            background: "#FFFFFF",
+                            border: "0px solid transparent",
+                            borderRadius: "6px",
+                            height: 30,
+                            width: "100%",
+                          }}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Location</th>
+                      <td>
+                        <OutlinedInput
+                          id="city"
+                          placeholder="city"
+                          sx={{
+                            background: "#FFFFFF",
+                            border: "0px solid transparent",
+                            borderRadius: "6px",
+                            height: 30,
+                            width: "100%",
+                          }}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Layout</th>
+                      <td>
+                        <Select
+                          id="layout"
+                          sx={{
+                            background: "#FFFFFF",
+                            border: "0px solid transparent",
+                            borderRadius: "6px",
+                            height: 30,
+                            width: "100%",
+                          }}
+                        >
+                          <MenuItem value={0}>Entire Place</MenuItem>
+                          <MenuItem value={1}>Private Room</MenuItem>
+                          <MenuItem value={2}>Shared Room</MenuItem>
+                        </Select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Amenities</th>
+                      <td>
+                        <Autocomplete
+                          multiple
+                          id="amenities"
+                          options={amenities}
+                          getOptionLabel={(option) => option.name}
+                          defaultValue={[amenities[0]]}
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              key={params.id}
+                              variant="standard"
+                              placeholder="Amenities"
+                            />
+                          )}
+                        />
+                      </td>
+                    </tr>
+                 </tbody>
               </table>
             </div>
           </div>

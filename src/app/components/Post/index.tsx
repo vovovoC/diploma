@@ -7,7 +7,6 @@ import BedroomChildIcon from '@mui/icons-material/BedroomChild';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
@@ -47,11 +46,11 @@ export const Post = (props: Props) => {
       <CardContent sx={{ m: "5px 10px 0px 30px" }}>
         <Grid container spacing={2}>
           <Grid
-            xs={12}
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              width: "100%",
             }}
           >
             <Typography sx={{ display: "flex", alignItems: "center" }}>
@@ -63,6 +62,7 @@ export const Post = (props: Props) => {
                   letterSpacing: "0.01em",
                   color: "#5681FB",
                 }}
+                component={'span'}
               >
                 {item.price}tg
               </Typography>
@@ -74,6 +74,7 @@ export const Post = (props: Props) => {
                   letterSpacing: "0.01em",
                   color: "#C7C7C7",
                 }}
+                component={'span'}
               >
                 /month
               </Typography>
@@ -87,7 +88,7 @@ export const Post = (props: Props) => {
               </IconButton>
             </CardActions>
           </Grid>
-          <Grid xs={12}>
+          <Grid>
             <Typography
               gutterBottom
               sx={{
@@ -101,14 +102,16 @@ export const Post = (props: Props) => {
               Location {item.location}
             </Typography>
           </Grid>
-          <Grid xs={12} sx={{
+          <Grid 
+              sx={{
                 fontFamily: "poppins400",
                 fontSize: "18px",
                 lineHeight: "27px",
                 letterSpacing: "0.01em",
                 color: "#777676",
                 display: "flex",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                width: "100%",
               }}>
             <Typography
               gutterBottom>
@@ -120,7 +123,6 @@ export const Post = (props: Props) => {
 
           </Grid>
           <Grid
-            xs={12}
             sx={{
               borderTop: "1px solid #C1C1C1",
               mt: "1rem",
@@ -128,6 +130,7 @@ export const Post = (props: Props) => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              width: "100%",
             }}
           >
             <Typography

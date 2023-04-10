@@ -2,12 +2,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import HomeIcon from "@mui/icons-material/Home";
-import WifiIcon from "@mui/icons-material/Wifi";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
@@ -48,15 +44,14 @@ export const RoommatePost = (props: Props) => {
     <CardContent sx={{ m: "5px 10px 0px 30px" }}>
       <Grid container spacing={2}>
         <Grid
-          xs={12}
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            width: "100%",
           }}
         >
-          <Typography sx={{ display: "flex", alignItems: "center" }}>
-            <Typography
+          <Typography
               sx={{
                 fontFamily: "poppins700",
                 fontSize: "24px",
@@ -66,7 +61,6 @@ export const RoommatePost = (props: Props) => {
               }}
             >
               Jasmina, 19
-            </Typography>
           </Typography>
           <CardActions>
             <IconButton
@@ -77,14 +71,15 @@ export const RoommatePost = (props: Props) => {
             </IconButton>
           </CardActions>
         </Grid>
-        <Grid xs={12} sx={{
+        <Grid sx={{
               fontFamily: "poppins400",
               fontSize: "16px",
               lineHeight: "24px",
               letterSpacing: "0.01em",
               color: "#777676",
               display: "flex",
-              flexDirection: "column"
+              flexDirection: "column",
+              width: "100%",
             }}>
           <Typography
             gutterBottom>
@@ -99,12 +94,12 @@ export const RoommatePost = (props: Props) => {
           </Typography>
         </Grid>
         <Grid
-          xs={12}
           sx={{
             pt: "1rem",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
+            width: "100%",
           }}
         >
           <Typography

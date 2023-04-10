@@ -37,7 +37,7 @@ table th{
     width: 150px;
     color: #777676;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     font-weight: 400;
 }
 table td{
@@ -50,7 +50,7 @@ ul{
 li{
     list-style: none;
 }
-.anketa-lifestyle>ul{
+.anketa-lifestyle ul{
     display: flex;
     flex-wrap: wrap;
 }
@@ -70,7 +70,4 @@ li{
 }
 .settings-header{
     background-color: #8B8B8B;
-}
-
-@media screen and (max-width: 700px){
 }

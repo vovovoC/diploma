@@ -20,3 +20,11 @@
     z-index: 25;
     background-color: transparent;
 }
+.roommate-post-action>*{
+    margin: 5px 0 !important;
+}
+@media screen and (max-width: 320px){
+.roomate-anketa-header-title{
+    font-size: 16px !important;
+}
+}
