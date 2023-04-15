@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const NEW_API_URL = 'http://89.218.32.7:8080';
+const NEW_API_URL = 'http://159.223.21.6';
 const localStorage = global.window.localStorage;
 
 const { CancelToken } = axios;

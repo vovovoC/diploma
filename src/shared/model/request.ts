@@ -1,7 +1,7 @@
 import { PostDetailData } from '../types';
 import { axiosInstance } from './instance';
 
-const NEW_API_URL = 'http://89.218.32.7:8080';
+const NEW_API_URL = 'http://159.223.21.6';
 
 
 interface Login {
@@ -46,14 +46,14 @@ export const deleteFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_
 
 export const getUserPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const getUserPost = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const createUserPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/create`, params);
+export const createUserPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/create`, params);
 export const editUserPost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
 export const deleteUserPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
 
 
 export const getRommatePost = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const getRommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const createRommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/create`, params);
+export const createRommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
 export const editRommatePost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
 export const deleteRommatePost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
 

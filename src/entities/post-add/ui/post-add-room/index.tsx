@@ -28,11 +28,13 @@ export const RoomAddPost = ({
   const formik = useFormik({
     initialValues,
     validate,
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      console.log(values, "VAL");
+    },
   });
 
   const addImages = (e: any) => {
-   // const selectedFIles: string[] = [];
+    // const selectedFIles: string[] = [];
     const targetFiles = e.target.files;
     // targetFiles.forEach((file: ) => {
     //   selectedFIles.push(URL.createObjectURL(file));
@@ -45,7 +47,10 @@ export const RoomAddPost = ({
       <BackButton name="home" />
       <p className="page-title">Add post</p>
       <form className="add-post">
-        <FormControl sx={{ width: {md: 500, s: 500,xs: "95%"}}} size="small">
+        <FormControl
+          sx={{ width: { md: 500, s: 500, xs: "95%" } }}
+          size="small"
+        >
           <label>City</label>
           <Select
             placeholder="Add city"
@@ -172,7 +177,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
-                  width: "100%"                
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -187,7 +192,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
-                  width: "100%"  
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -204,7 +209,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
-                  width: "100%"  
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -219,7 +224,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
-                  width: "100%"  
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -229,7 +234,7 @@ export const RoomAddPost = ({
         <div>
           <p className="form-title">Show off your place</p>
           {formik.values.image?.map((item: string) => {
-            return <img key={item}src={item} alt="Rooms" />;
+            return <img key={item} src={item} alt="Rooms" />;
           })}
           <input
             type="file"
@@ -368,7 +373,7 @@ export const RoomAddPost = ({
             fontSize: "16px",
             lineHeight: "24px",
             textTransform: "none",
-            width: "150px"  
+            width: "150px",
           }}
         >
           {isLoading ? <Loader /> : "Submit"}

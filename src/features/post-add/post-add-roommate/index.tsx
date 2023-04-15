@@ -12,7 +12,20 @@ interface Props {
 
 export const RoommateAddPostContent = ({ isEdit }: Props) => {
   const [initialValues, setValues] = useState<any>({
-    username: null,
+    user_id: null,
+    firstname: null,
+    lastname: null,
+    age: null,
+    gender: null,
+    about: null,
+    work: null,
+    lifestyle: null,
+    target_date: null,
+    duration: null,
+    max_price: null,
+    location: null,
+    layout: null,
+    amentetiies: null,
   });
   const params = useParams();
   const {

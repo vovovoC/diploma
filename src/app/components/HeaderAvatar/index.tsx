@@ -15,13 +15,13 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Notification from "./Notification/index";
 import "./index.scss";
 
-const settings = [{name:"Profile"}, {name:"Home"}, {name:"Logout"}];
+const settings = [{ name: "Profile" }, { name: "Home" }, { name: "Logout" }];
 const ntf = [
-  { id: 0,user: "Zahniya Medeuova", date: "", img: "", msg: "" },
-  { id: 1,user: "", date: "", img: "", msg: "" },
-  { id: 2,user: "", date: "", img: "", msg: "" },
-  { id: 3,user: "", date: "", img: "", msg: "" },
-  { id: 4,user: "", date: "", img: "", msg: "" },
+  { id: 0, user: "Zahniya Medeuova", date: "", img: "", msg: "" },
+  { id: 1, user: "", date: "", img: "", msg: "" },
+  { id: 2, user: "", date: "", img: "", msg: "" },
+  { id: 3, user: "", date: "", img: "", msg: "" },
+  { id: 4, user: "", date: "", img: "", msg: "" },
 ];
 const posts = [
   {
@@ -91,7 +91,7 @@ function HeaderAvatar() {
             </button>
           </Tooltip>
           <Menu
-            sx={{ mt: "55px", width: "auto"}}
+            sx={{ mt: "55px", width: "auto" }}
             anchorEl={anchorElPost}
             anchorOrigin={{
               vertical: "top",
@@ -233,7 +233,7 @@ function HeaderAvatar() {
               setAnchorElUser(null);
             }}
           >
-            {settings.map((setting) => (
+            {settings.map((setting, key) => (
               <MenuItem
                 key={setting.name}
                 onClick={() => handleCloseUserMenu(setting.name)}
@@ -250,7 +250,7 @@ function HeaderAvatar() {
                     fontSize: "16px",
                     lineHeight: "24px",
                     letterSpacing: "0.115em",
-                    display: "block"
+                    display: "block",
                   }}
                 >
                   {setting.name}

@@ -13,7 +13,7 @@ const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
 interface Value {
   password: string;
-  fullname: string;
+  username: string;
   email: string;
 }
 
@@ -27,8 +27,8 @@ const validate = (values: Value) => {
     errors.email = "Invalid email address";
     return errors;
   }
-  if (!values.fullname) {
-    errors.fullname = "Enter your full name";
+  if (!values.username) {
+    errors.username = "Enter your full name";
     return errors;
   }
   //   else if (!USERNAME_REGEX.test(values.fullname)) {
@@ -61,7 +61,7 @@ export const Register = (props: any) => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      fullname: "",
+      username: "",
       password: "",
     },
     validate,
@@ -102,12 +102,12 @@ export const Register = (props: any) => {
           fullWidth
           id="fullname"
           label="User name"
-          name="fullname"
-          error={!!formik.errors.fullname}
-          helperText={formik.errors.fullname}
+          name="username"
+          error={!!formik.errors.username}
+          helperText={formik.errors.username}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.fullname}
+          value={formik.values.username}
         />
         {/* <Grid container spacing={2}>
           <Grid item xs={6}>
