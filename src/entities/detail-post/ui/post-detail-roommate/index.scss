@@ -1,0 +1,30 @@
+.roommate-post-right{
+    padding: 15px 40px;
+}
+.roommate-detail{
+    height: 95vh;
+    overflow: auto;
+}
+.post-detail-roommate-title{
+    margin: 0;
+    padding: 0;
+}
+.user-anketa-left{
+    position: relative;
+}
+.post-close{
+    float: right;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 25;
+    background-color: transparent;
+}
+.roommate-post-action>*{
+    margin: 5px 0 !important;
+}
+@media screen and (max-width: 320px){
+.roomate-anketa-header-title{
+    font-size: 16px !important;
+}
+}

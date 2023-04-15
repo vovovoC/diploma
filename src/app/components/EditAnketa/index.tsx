@@ -1,9 +1,5 @@
 import "./index.scss";
-import * as React from "react";
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from "react-router-dom";
-import user from "../../../app/assets/images/user.png";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
@@ -23,31 +19,20 @@ const lifestyle = [
     {name: "usually not at home "},
     {name: "loves a good party"},
   ]
-  const amenities = [
-    {name: "Wifi included"},
-    {name: "TV"},
-    {name: "Air Conditioning"},
-    {name: "Furnished"},
-    {name: "Pets welcome"},
-    {name: "Elevator"},
-    {name: "Parking"},
-    {name: "Security"},
-    {name: "Security camera"}
-  ]
 
 interface Props {
     fn: () => void;
  }
 export const EditAnketa = ({fn } : Props) => {
-  const navigate = useNavigate();
   return (
-        <div className="anketa edit-anketa">
+      <div className="anketa edit-anketa">
         <div className="anketa-header">
-        <div>Profile details</div>
-        <button className="cnf-card-close" title="Close" onClick={() => fn()}><CloseIcon sx={{color: "white"}}/></button>
+          <div>Profile details</div>
+          <button className="cnf-card-close" title="Close" onClick={() => fn()}><CloseIcon sx={{color: "white"}}/></button>
         </div>
-        <div className="anketa-body">
-        <table>
+        <div className="anketa-body edit-anketa-body">
+          <table className="edit-anketa-table">
+             <tbody>
               <tr>
                 <th>Firstname</th>
                 <td>
@@ -110,26 +95,26 @@ export const EditAnketa = ({fn } : Props) => {
                   <td>
                     <OutlinedInput id="phone" placeholder="Phone number" defaultValue="+7 707 855 2200"  sx={{background: "#FFFFFF",border: "0px solid transparent", borderRadius: "6px", height: 30, width: "100%"}} />
                   </td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                   <th>Instagram</th>
                   <td>
                     <OutlinedInput id="instagram" placeholder="Instagram link" defaultValue="@madinkalzh"  sx={{background: "#FFFFFF",border: "0px solid transparent", borderRadius: "6px", height: 30, width: "100%"}} />
                   </td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                   <th>Telegram</th>
                   <td>
                     <OutlinedInput id="telegram" placeholder="Telegram link"  defaultValue="@madinkalzh" sx={{background: "#FFFFFF",border: "0px solid transparent", borderRadius: "6px", height: 30, width: "100%"}} />
                   </td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                   <th>Upload image</th>
                   <td>
                     <input type="file" name="img" id="img" />
                   </td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 <th>Lifestyle</th>
                 <td>
                   <Autocomplete
@@ -152,8 +137,9 @@ export const EditAnketa = ({fn } : Props) => {
                 <th></th>
                 <td><button title="Edit anketa" className="save-btn">Save</button></td>
               </tr>
-            </table>
+             </tbody>
+          </table>
         </div>
-    </div>
+      </div>
     );
 };

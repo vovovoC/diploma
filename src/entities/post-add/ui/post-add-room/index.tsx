@@ -34,7 +34,7 @@ export const RoomAddPost = ({
   });
 
   const addImages = (e: any) => {
-    const selectedFIles: string[] = [];
+    // const selectedFIles: string[] = [];
     const targetFiles = e.target.files;
     // targetFiles.forEach((file: ) => {
     //   selectedFIles.push(URL.createObjectURL(file));
@@ -47,7 +47,10 @@ export const RoomAddPost = ({
       <BackButton name="home" />
       <p className="page-title">Add post</p>
       <form className="add-post">
-        <FormControl sx={{ width: 500 }} size="small">
+        <FormControl
+          sx={{ width: { md: 500, s: 500, xs: "95%" } }}
+          size="small"
+        >
           <label>City</label>
           <Select
             placeholder="Add city"
@@ -58,9 +61,8 @@ export const RoomAddPost = ({
               borderRadius: "6px",
             }}
             id="city"
-            name="city"
             error={!!formik.errors.city} // @ts-ignore
-            helperText={formik.errors.city}
+            helpertext={formik.errors.city}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.city}
@@ -83,7 +85,7 @@ export const RoomAddPost = ({
               id="street"
               name="street"
               error={!!formik.errors.street} // @ts-ignore
-              helperText={formik.errors.street}
+              helpertext={formik.errors.street}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.street}
@@ -103,7 +105,7 @@ export const RoomAddPost = ({
               id="home"
               name="home"
               error={!!formik.errors.home} // @ts-ignore
-              helperText={formik.errors.home}
+              helpertext={formik.errors.home}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="ex. 5"
@@ -166,7 +168,7 @@ export const RoomAddPost = ({
                 placeholder="ex. 1"
                 name="bedroom_nums"
                 error={!!formik.errors.bedroom_nums} // @ts-ignore
-                helperText={formik.errors.bedroom_nums}
+                helpertext={formik.errors.bedroom_nums}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 sx={{
@@ -175,6 +177,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -189,6 +192,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -205,6 +209,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -219,6 +224,7 @@ export const RoomAddPost = ({
                   color: "#808494",
                   borderRadius: "6px",
                   height: 40,
+                  width: "100%",
                 }}
               />
             </FormControl>
@@ -227,8 +233,8 @@ export const RoomAddPost = ({
 
         <div>
           <p className="form-title">Show off your place</p>
-          {formik.values.image?.map((item: string, key: any) => {
-            return <img src={item} key={key} alt="Rooms" />;
+          {formik.values.image?.map((item: string) => {
+            return <img key={item} src={item} alt="Rooms" />;
           })}
           <input
             type="file"
@@ -367,6 +373,7 @@ export const RoomAddPost = ({
             fontSize: "16px",
             lineHeight: "24px",
             textTransform: "none",
+            width: "150px",
           }}
         >
           {isLoading ? <Loader /> : "Submit"}

@@ -1,82 +1,13 @@
-.edit-anketa{
+.edit-settings{
     width: 50%;
-    height: 90vh;
-    overflow: auto;
-    background-color: transparent;
 }
-.edit-anketa::-webkit-scrollbar{
-    width: 0;
+@media screen and (max-width: 800px){
+    .edit-settings{
+        width: 70%;
+    }
 }
-.edit-anketa>div{
-    margin: 0;
-
+@media screen and (max-width: 480px){
+    .edit-settings{
+        width: 90%;
+    }
 }
-.save-btn{
-    float: right;
-    margin: 10px 0;
-    background-color: #5681FB;
-    color: white;
-    border-radius: 6px;
-    padding: 5px 30px;
-}
-.anketa-header{
-    background-color: #5681FB;
-    color: white;
-    border-radius: 6px 6px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.anketa-body{
-    background-color: white;
-}
-.edit-btn{
-    background-color: transparent;
-    color: white;
-    padding: 3px;
-    border-radius: 3px;
-}
-.edit-btn:hover{
-    background-color: rgba(211, 211, 211, 0.2);
-    color: rgba(0, 0, 0, 0.7);
-}
-th,td{
-    font-family: 'poppins400';
-    color: black;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.01em;
-    padding: 8px 0;
-}
-table th{
-    width: 150px;
-    color: #777676;
-    display: flex;
-    align-items: start;
-    font-weight: 400;
-}
-table td{
-    width: 80%;
-}
-ul{
-    padding: 0;
-}
-li{
-    list-style: none;
-}
-.anketa-lifestyle>ul{
-    display: flex;
-    flex-wrap: wrap;
-}
-.anketa-lifestyle li{
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0.01em;
-    color: #0C4BFF;
-    background: #E0E5FC;
-    border: 0.5px solid #69A3F9;
-    border-radius: 29px;
-    padding: 4px 10px;
-    margin-right: 7px;
-}
-

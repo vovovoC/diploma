@@ -1,0 +1,11 @@
+.change-posts-btns{
+    width: 100%;
+    display: none;
+    justify-content: center;
+    padding-top: 40px;
+}
+@media screen and (max-width: 500px){
+    .change-posts-btns{
+        display: flex;
+    }
+}

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 import ImageIcon from "@mui/icons-material/Image";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -72,7 +73,7 @@ const category = {
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
-  const { location, description, price, image } = data;
+  const { location, address, bedroom, square, description, price, image} = data;
 
   const getImage = (item: string) => {
     return `http://89.218.32.7:8080/images/${item}`;
@@ -85,7 +86,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
       <div className="postInfo">
         <div className="wrapper">
           <BackButton name={"search"} />
-          <p className="post-title">4 rooms, 230 m², Karmysova 82/2</p>
+          <p className="post-title">{bedroom} rooms, {square} m², {address}</p>
           <div className="post-header">
             <p className="post-location">{location}</p>
             <div className="post-btns">
@@ -160,7 +161,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                   key={i}
                   id={item}
                   src={`http://89.218.32.7:8080/images/${item}`}
-                  alt="image"
+                  alt="Room"
                   className="slider-img"
                 />
               ))}
@@ -211,8 +212,8 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                 </li>
               </ul>
               <div className="post-about">
-                <p className="post-body-title">About</p>
-                <p className="post-about-text">{description}</p>
+                <p className="post-body-title">About Home</p>
+                <p className="post-about-text">{description}Description</p>
               </div>
               <hr />
               <div className="post-about">
@@ -257,7 +258,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div>
                 <p className="post-body-title">Map</p>
                 <div className="post-map">
-                  <MapContent />
+                  <MapContent/>
                 </div>
               </div>
             </div>

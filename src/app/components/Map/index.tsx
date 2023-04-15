@@ -142,7 +142,7 @@ export const MapContent = () => {
     <div className="map">
       <YMaps>
         <Map
-          width={726}
+          width={725}
           height={150}
           onLoad={(ymaps) => setYmaps(ymaps)}
           defaultState={mapState}

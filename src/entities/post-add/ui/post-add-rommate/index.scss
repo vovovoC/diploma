@@ -17,3 +17,26 @@
     align-items: start;
     justify-content: start;
 }
+@media screen and (max-width: 480px){
+    .add-user-anketa{
+        width: 90vw !important;
+    }
+    .add-roommate-post-right{
+        padding: 20px !important;
+    }
+    .add-user-anketa-left-card img{
+        width: 60vw !important;
+    }
+    .add-roommate-post tr{
+        display: flex;
+        flex-direction: column;
+    }
+    .add-roommate-post th, .add-roommate-post td{
+        padding: 0;
+        width: 75vw !important;
+    }
+    .add-roommate-post td{
+        margin-bottom: 5px;
+    }
+}
+

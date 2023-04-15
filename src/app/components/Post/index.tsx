@@ -3,11 +3,10 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import HomeIcon from "@mui/icons-material/Home";
-import WifiIcon from "@mui/icons-material/Wifi";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import BedroomChildIcon from '@mui/icons-material/BedroomChild';
+import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
@@ -15,38 +14,43 @@ import "./index.scss";
 
 interface Props {
   item: {
-    city: string;
-    location: string;
-    description: string;
     id: string;
-    category: number;
+    location: string;
+    address: string;
+    square: string;
+    bedroom: string;
+    gender: string;
+    age: string;
+    layout: string;
+    created_data: string;
     price: number;
-    img: string;
-    amenities: string[];
-    duraction: string;
-    rooms: number;
-    gender: number;
-    verified: boolean;
+    image: string[];
   };
 }
 
 export const Post = (props: Props) => {
   const { item } = props;
+  const getImage = (item: string) => {
+    return `http://89.218.32.7:8080/images/${item}`;
+  };
+  const defaultImage =
+    "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
+
   return (
-    <Card sx={{ maxWidth: 345, height: 400 }} className="card">
+    <Card sx={{ minWidth: 300,maxWidth: 345, height: 400 }} className="card">
       <CardMedia
         sx={{ height: 200, borderRadius: "6px" }}
-        image={item.img}
+        image={item.image?.length > 1 ? getImage(item.image[1]) : defaultImage}
         title={item.location}
       />
       <CardContent sx={{ m: "5px 10px 0px 30px" }}>
         <Grid container spacing={2}>
           <Grid
-            xs={12}
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              width: "100%",
             }}
           >
             <Typography sx={{ display: "flex", alignItems: "center" }}>
@@ -58,6 +62,7 @@ export const Post = (props: Props) => {
                   letterSpacing: "0.01em",
                   color: "#5681FB",
                 }}
+                component={'span'}
               >
                 {item.price}tg
               </Typography>
@@ -69,6 +74,7 @@ export const Post = (props: Props) => {
                   letterSpacing: "0.01em",
                   color: "#C7C7C7",
                 }}
+                component={'span'}
               >
                 /month
               </Typography>
@@ -82,7 +88,7 @@ export const Post = (props: Props) => {
               </IconButton>
             </CardActions>
           </Grid>
-          <Grid xs={12}>
+          <Grid>
             <Typography
               gutterBottom
               sx={{
@@ -93,29 +99,30 @@ export const Post = (props: Props) => {
                 color: "#000000",
               }}
             >
-              Alatau district
+              Location {item.location}
             </Typography>
           </Grid>
-          <Grid xs={12} sx={{
+          <Grid 
+              sx={{
                 fontFamily: "poppins400",
                 fontSize: "18px",
                 lineHeight: "27px",
                 letterSpacing: "0.01em",
                 color: "#777676",
                 display: "flex",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                width: "100%",
               }}>
             <Typography
               gutterBottom>
-              {item.city}, {item.location}
+              {item.address} Address
             </Typography>
             <Typography>
-              Apr 1
+              Apr 1 {item.created_data}
             </Typography>
 
           </Grid>
           <Grid
-            xs={12}
             sx={{
               borderTop: "1px solid #C1C1C1",
               mt: "1rem",
@@ -123,6 +130,7 @@ export const Post = (props: Props) => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              width: "100%",
             }}
           >
             <Typography
@@ -137,7 +145,7 @@ export const Post = (props: Props) => {
                 alignItems: "end",
               }}
             >
-              <GroupAddIcon sx={{ color: "#5681FB", mr: "5px" }} />3 rooms
+              <PersonIcon sx={{ color: "#5681FB", mr: "5px" }} />Age {item.age}
             </Typography>
             <Typography
               gutterBottom
@@ -151,8 +159,8 @@ export const Post = (props: Props) => {
                 alignItems: "end",
               }}
             >
-              <WifiIcon sx={{ color: "#5681FB", mr: "5px" }} />
-              yes
+              <BedroomChildIcon sx={{ color: "#5681FB", mr: "5px" }} />
+             {item.bedroom}3
             </Typography>
             <Typography
               gutterBottom
@@ -167,7 +175,7 @@ export const Post = (props: Props) => {
               }}
             >
               <HomeIcon sx={{ color: "#5681FB", mr: "5px" }} />
-              5*7m
+              {item.layout}Private Room
             </Typography>
           </Grid>
         </Grid>

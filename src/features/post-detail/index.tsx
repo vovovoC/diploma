@@ -16,8 +16,6 @@ export const PostDetailContent = () => {
     { enabled: !!params.id }
   );
 
-  console.log(data);
-
   if (isError) {
     return <ErrorBoundary error={error} />;
   }

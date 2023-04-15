@@ -15,16 +15,13 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Notification from "./Notification/index";
 import "./index.scss";
 
-const settings = ["Profile", "Home", "Logout"];
+const settings = [{ name: "Profile" }, { name: "Home" }, { name: "Logout" }];
 const ntf = [
-  { user: "", date: "", img: "", msg: "" },
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
+  { id: 0, user: "Zahniya Medeuova", date: "", img: "", msg: "" },
+  { id: 1, user: "", date: "", img: "", msg: "" },
+  { id: 2, user: "", date: "", img: "", msg: "" },
+  { id: 3, user: "", date: "", img: "", msg: "" },
+  { id: 4, user: "", date: "", img: "", msg: "" },
 ];
 const posts = [
   {
@@ -84,7 +81,6 @@ function HeaderAvatar() {
   const handleCloseNtfMenu = () => {
     setAnchorElNtf(null);
   };
-  const changePage = (e: string) => {};
   return (
     <div className="header-avatar">
       <div className="add-post">
@@ -113,12 +109,12 @@ function HeaderAvatar() {
               <p>Add post</p>
             </div>
             <MenuItem
+              key={0}
               onClick={() => navigate("/post/create/new")}
               sx={{
-                width: "330px",
+                width: "100%",
                 m: "0 14px",
                 p: "6px 0",
-                fontFamily: "poppins400",
                 fontSize: "12px",
                 lineHeight: "18px",
                 letterSpacing: "0.05em",
@@ -131,12 +127,11 @@ function HeaderAvatar() {
               <p className="post-name">{posts[0].name}</p>
             </MenuItem>
             <MenuItem
+              key={1}
               onClick={() => navigate("/room/create/new")}
               sx={{
-                width: "330px",
                 m: "0 14px",
                 p: "6px 0",
-                fontFamily: "poppins400",
                 fontSize: "12px",
                 lineHeight: "18px",
                 letterSpacing: "0.05em",
@@ -187,10 +182,10 @@ function HeaderAvatar() {
                 Mark all as read <div className="ntf-mark"></div>
               </button>
             </div>
-            {ntf.map((i, key) => (
+            {ntf.map((i) => (
               <MenuItem
+                key={i.id}
                 onClick={handleCloseNtfMenu}
-                key={key}
                 sx={{ width: "auto", p: "0" }}
               >
                 <Notification />
@@ -240,8 +235,8 @@ function HeaderAvatar() {
           >
             {settings.map((setting, key) => (
               <MenuItem
-                key={key}
-                onClick={() => handleCloseUserMenu(setting)}
+                key={setting.name}
+                onClick={() => handleCloseUserMenu(setting.name)}
                 sx={{
                   width: "202px",
                   margin: "14px 26px",
@@ -255,16 +250,17 @@ function HeaderAvatar() {
                     fontSize: "16px",
                     lineHeight: "24px",
                     letterSpacing: "0.115em",
+                    display: "block",
                   }}
                 >
-                  {setting}
-                  {setting == "Logout" ? (
+                  {setting.name}
+                  {setting.name === "Logout" ? (
                     <LogoutIcon sx={{ ml: "3px", width: "15px" }} />
                   ) : (
                     ""
                   )}
-                  {setting == "Profile" ? (
-                    <div className="profile-status">Incomplete</div>
+                  {setting.name === "Profile" ? (
+                    <span className="profile-status">Incomplete</span>
                   ) : (
                     ""
                   )}

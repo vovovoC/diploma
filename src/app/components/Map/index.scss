@@ -2,6 +2,10 @@
     position: relative;
     display: flex;
 }
+.map{
+    width: 100%;
+    overflow: hidden;
+}
 .map {
     div > * {
         position: absolute;

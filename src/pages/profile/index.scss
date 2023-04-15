@@ -1,5 +1,6 @@
 .profile{
     padding: 3% 0;
+    position: relative;
 }
 .page-title{
     font-family: 'poppins800';
@@ -9,16 +10,17 @@
 }
 .profile-nav{
     width: 100%;
-    height: 54px;
     background-color: white;
     border-radius: 6px;
     border-bottom: 1px solid #C6C3C3;
     display: flex;
     justify-content: flex-end;
+    left: 0;
+    position: absolute;
 }
 .profile-nav>div{
     width: 230px;
-    padding-top: 15px;
+    padding: 15px 0 10px;
     text-align: center;
     font-family: 'poppins400';
     font-size: 16px;
@@ -43,9 +45,40 @@
 }
 .user-info{
     width: 320px;
-    margin-top: -15px;
+    z-index: 4;
+    padding-top: 10px;
 }
 .profile-nav-content{
-    padding: 10px 0;
+    padding: 64px 0;
     width: 100%;
+}
+@media screen and (max-width: 1040px){
+    .profile-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .profile-nav{
+        justify-content: center;
+        position: static;
+    }
+    .profile-nav-content{
+        padding: 10px 0;
+    }
+    .user-info{
+        width: 550px;
+    }
+}
+@media screen and (max-width: 800px){
+    .profile-nav>div{
+        width: 30vw;
+    }
+    .profile-nav{
+        font-size: 14px;
+        justify-content: space-around;
+    }
+    .user-info{
+        width: 100%;
+    }
 }
