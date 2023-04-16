@@ -7,9 +7,10 @@ import { Anketa } from "../../entities/anketa/ui";
 import { getAnketa } from "../../shared/model";
 
 export const AnketaContent = () => {
+  const id = 1;
   const { isLoading, isError, data, error, refetch } = useQuery(
     "ANKETA",
-    async () => await getAnketa()
+    async () => await getAnketa(id)
   );
 
   useEffect(() => {

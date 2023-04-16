@@ -42,9 +42,13 @@ export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_A
 export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get/${id}`);
 
 
-export const getFavPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const addFavPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/add_to_favorite`, params);
-export const deleteFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
+export const getFavRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get_favorites`, params);
+export const addFavRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/add_to_favorite`, params);
+export const deleteFavRoommatePost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete_favourite`, params);
+
+export const getFavRoomPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get_favorites`, params);
+export const addFavRoomPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/add_to_favorite`, params);
+export const deleteRoomFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete_favourite`, params);
 
 export const getUserPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const getUserPost = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
@@ -60,4 +64,4 @@ export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categ
 
 export const getUserProfile = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
 export const getUserInfo = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get/${id}`);
-export const getAnketa = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/user-info`, params);
+export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get_form/${id}`);

@@ -18,5 +18,6 @@ export const UserInfoContent = () => {
     return <Loader />;
   }
 
-  return <UserInfo data={data} />;
+  // @ts-ignore
+  return <UserInfo data={data[0]} />;
 };
