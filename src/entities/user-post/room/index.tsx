@@ -1,4 +1,4 @@
-import { Post } from "../../../../app/components/Post";
+import { Post } from "../../../app/components/Post";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./index.scss";
@@ -6,7 +6,7 @@ interface Props {
   data: any[];
   setPage: (p: number) => {};
 }
-export const UserPostList = ({ data, setPage }: Props) => {
+export const UserRoomPostList = ({ data, setPage }: Props) => {
   return (
     <div className="user-posts">
       <div className="post-list">

@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
 import { Loader } from "../../../app/components/Loader";
 import { RoomAddPost } from "../../../entities/post-add/ui";
-import { createUserPost, getUserPost } from "../../../shared/model";
+import {
+  createUserAccomodationPost,
+  getAccomodationPostId,
+} from "../../../shared/model";
 
 interface Props {
   isEdit: boolean;
@@ -28,9 +31,13 @@ export const RoomAddPostContent = ({ isEdit }: Props) => {
     isLoading: isLoadingPost,
     data,
     error: errorPost,
-  } = useQuery("POST_CHANGE", async () => await getUserPost(params.id!), {
-    enabled: !!params.id && isEdit,
-  });
+  } = useQuery(
+    "POST_ROOM_CHANGE",
+    async () => await getAccomodationPostId(params.id!),
+    {
+      enabled: !!params.id && isEdit,
+    }
+  );
 
   useEffect(() => {
     if (data) {
@@ -38,7 +45,9 @@ export const RoomAddPostContent = ({ isEdit }: Props) => {
     }
   }, [data]);
 
-  const { isLoading, isError, error, mutate } = useMutation(createUserPost);
+  const { isLoading, isError, error, mutate } = useMutation(
+    createUserAccomodationPost
+  );
 
   const create = (values: any) => {
     mutate(values);

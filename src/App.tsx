@@ -6,7 +6,6 @@ import {
   NotFoundPage,
   AuthPage,
   PostDetailPage,
-  UserPostsPage,
   ProfilePage,
   UserProfilePage,
   RoomAddPostPage,
@@ -36,7 +35,6 @@ export default function App() {
               path="/posts/renter"
               element={<FilterPage type="renter" />}
             />
-            <Route path="/posts/my" element={<UserPostsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/userProfile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />

@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
 import { Loader } from "../../../app/components/Loader";
 import { RoommateAddPost } from "../../../entities/post-add/ui";
-import { createRommatePost, getRoommatePostId } from "../../../shared/model";
+import {
+  createUserRoommatePost,
+  getRoommatePostId,
+} from "../../../shared/model";
 
 interface Props {
   isEdit: boolean;
@@ -47,7 +50,9 @@ export const RoommateAddPostContent = ({ isEdit }: Props) => {
     }
   }, [data]);
 
-  const { isLoading, isError, error, mutate } = useMutation(createRommatePost);
+  const { isLoading, isError, error, mutate } = useMutation(
+    createUserRoommatePost
+  );
 
   const create = (values: any) => {
     mutate(values);

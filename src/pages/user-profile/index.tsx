@@ -4,15 +4,27 @@ import Layout from "../../app/components/Layout";
 import "./index.scss";
 import {
   UserAnketaContent,
-  FavRoomListContent,
-  FavRoommateListContent,
-  UserInfoContent,
-  UserPostListContent,
+  UserRoomPostContent,
+  UserRoommatePostContent,
 } from "../../features";
 import BackButton from "../../app/components/BackButton";
-import { CnfDelete } from "../../app/components/CnfDelete";
 
-const contents = [<UserAnketaContent />, <UserPostListContent />];
+const UserPostsList = () => {
+  return (
+    <div className="">
+      <div>
+        <p> Rooms </p>
+        <UserRoomPostContent />
+      </div>
+      <div>
+        <p> Roommates</p>
+        <UserRoommatePostContent />
+      </div>
+    </div>
+  );
+};
+
+const contents = [<UserAnketaContent />, <UserPostsList />];
 export const UserProfilePage = () => {
   const [page, setPage] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);

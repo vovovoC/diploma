@@ -8,9 +8,25 @@ import {
   FavRoomListContent,
   FavRoommateListContent,
   UserInfoContent,
-  UserPostListContent,
+  UserRoomPostContent,
+  UserRoommatePostContent,
 } from "../../features";
 import BackButton from "../../app/components/BackButton";
+
+const UserPostsList = () => {
+  return (
+    <div className="">
+      <div>
+        <p> Rooms </p>
+        <UserRoomPostContent />
+      </div>
+      <div>
+        <p> Roommates</p>
+        <UserRoommatePostContent />
+      </div>
+    </div>
+  );
+};
 
 const FavPostsList = () => {
   return (
@@ -32,7 +48,7 @@ export const ProfilePage = () => {
 
   const theme = createTheme();
   const contents = React.useMemo(() => {
-    return [<AnketaContent />, <UserPostListContent />, <FavPostsList />];
+    return [<AnketaContent />, <UserPostsList />, <FavPostsList />];
   }, []);
 
   const labels = ["Profile details", "My posts", "Saved posts"];

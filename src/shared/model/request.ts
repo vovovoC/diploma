@@ -35,33 +35,35 @@ export const register = ( params: Register ) => axiosInstance.post(`${NEW_API_UR
 export const resetPassword = ( params: ResetPassword ) => axiosInstance.post(`${NEW_API_URL}/users/reset-pass`, params);
 export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`${NEW_API_URL}/users/delete_user`, params);
 
-export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/list?${paramsToString(params)}`);
+// accomodation
+export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/list?${paramsToString(params)}`); // user post id
 export const getAccomodationPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get/${id}`);
+// user acc posts
+export const getUserAccomodationPosts = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/accomodation/${id}`);
+export const createUserAccomodationPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/create`, params);
+export const editUserAccomodationPost = (id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/accomodation/update/${id}`, params);
+export const deleteUserAccomodationPost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete/${id}`);
 
+
+// roommate
 export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/list?${paramsToString(params)}`);
 export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get/${id}`);
+// user roommate posts
+export const getUserRoommatePosts = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/roommate/${id}`);
+export const createUserRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
+export const editUserRoommatePost = ( id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/roommate/update/${id}`, params);
+export const deleteUserRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete${id}`);
 
+// fav roommate posts
+export const getFavRoommatePosts = (user_id: number, params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get_favourites/${user_id}`, params);
+export const addFavRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/add_to_favourite`, params);
+export const deleteFavRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete_favourite/${id}`);
 
-export const getFavRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get_favorites`, params);
-export const addFavRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/add_to_favorite`, params);
-export const deleteFavRoommatePost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete_favourite`, params);
-
-export const getFavRoomPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get_favorites`, params);
-export const addFavRoomPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/add_to_favorite`, params);
+// fav acc posts
+export const getFavRoomPosts = (user_id: number,params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get_favourites/${user_id}`, params);
+export const addFavRoomPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/add_to_favourite`, params);
 export const deleteRoomFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete_favourite`, params);
 
-export const getUserPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const getUserPost = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const createUserPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/create`, params);
-export const editUserPost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
-export const deleteUserPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
-
-export const createRommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
-export const editRommatePost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
-export const deleteRommatePost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
-
 export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categories`);
-
-export const getUserProfile = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
 export const getUserInfo = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get/${id}`);
 export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get_form/${id}`);
