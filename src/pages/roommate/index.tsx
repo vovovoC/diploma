@@ -1,12 +1,12 @@
 import { createTheme } from "@mui/material";
 import Layout from "../../app/components/Layout";
-import { RoomDetailContent } from "../../features";
+import { RoommateDetailContent } from "../../features/post-detail";
 
-export function PostDetailPage() {
+export function RoommateDetailPage() {
   const theme = createTheme();
   return (
     <Layout theme={theme}>
-      <RoomDetailContent />
+      <RoommateDetailContent />
     </Layout>
   );
 }

@@ -35,9 +35,11 @@ export const register = ( params: Register ) => axiosInstance.post(`${NEW_API_UR
 export const resetPassword = ( params: ResetPassword ) => axiosInstance.post(`${NEW_API_URL}/users/reset-pass`, params);
 export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`${NEW_API_URL}/users/delete_user`, params);
 
-export const getPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/list?${paramsToString(params)}`);
-export const getPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/get/${id}`);
-export const getImageItem = (item: string): Promise<any> => axiosInstance.get(`${NEW_API_URL}/images/${item}`);
+export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/list?${paramsToString(params)}`);
+export const getAccomodationPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get/${id}`);
+
+export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/list?${paramsToString(params)}`);
+export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get/${id}`);
 
 
 export const getFavPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
@@ -50,9 +52,6 @@ export const createUserPost = ( params: any ) => axiosInstance.post(`${NEW_API_U
 export const editUserPost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
 export const deleteUserPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
 
-
-export const getRommatePost = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
-export const getRommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/get_favorites`, params);
 export const createRommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
 export const editRommatePost = ( params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/create`, params);
 export const deleteRommatePost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/delete_favourite`, params);
@@ -60,5 +59,5 @@ export const deleteRommatePost = ( params: any ) => axiosInstance.delete(`${NEW_
 export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categories`);
 
 export const getUserProfile = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/categories`, params);
-export const getUserInfo = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/user-info`, params);
+export const getUserInfo = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get/${id}`);
 export const getAnketa = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/user-info`, params);

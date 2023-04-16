@@ -11,7 +11,7 @@ import {
   UserProfilePage,
   RoomAddPostPage,
   RoommateAddPostPage,
-  PostChangePage,
+  RoommateDetailPage,
 } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -40,6 +40,7 @@ export default function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/userProfile" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
+            <Route path="/roommate/:id" element={<RoommateDetailPage />} />
             <Route
               path="/post/edit/:id"
               element={<RoomAddPostPage isEdit={true} />}

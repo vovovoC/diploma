@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
 import { Loader } from "../../../app/components/Loader";
 import { RoommateAddPost } from "../../../entities/post-add/ui";
-import { createRommatePost, getRommatePost } from "../../../shared/model";
+import { createRommatePost, getRoommatePostId } from "../../../shared/model";
 
 interface Props {
   isEdit: boolean;
@@ -35,7 +35,7 @@ export const RoommateAddPostContent = ({ isEdit }: Props) => {
     isError: isErrorPost,
   } = useQuery(
     "POST_ROOMMATE_GET",
-    async () => await getRommatePost(params.id!),
+    async () => await getRoommatePostId(params.id!),
     {
       enabled: !!params.id && isEdit,
     }

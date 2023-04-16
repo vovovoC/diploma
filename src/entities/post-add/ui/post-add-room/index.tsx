@@ -7,6 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import BackButton from "../../../../app/components/BackButton";
 import "./index.scss";
 import { Loader } from "../../../../app/components/Loader";
+import ImageAction from "../../../../app/components/ImageAction";
+import React from "react";
 
 export const RoomAddPost = ({
   create,
@@ -17,6 +19,9 @@ export const RoomAddPost = ({
   isLoading: boolean;
   initialValues: any;
 }) => {
+  const [files, setFiles] = React.useState<any>([]);
+  const filesRef = React.useRef<any>(null);
+
   const validate = (values: any) => {
     const errors: any = {
       ...initialValues,
@@ -34,12 +39,31 @@ export const RoomAddPost = ({
   });
 
   const addImages = (e: any) => {
-    // const selectedFIles: string[] = [];
+    //const selectedFIles: string[] = [];
     const targetFiles = e.target.files;
-    // targetFiles.forEach((file: ) => {
-    //   selectedFIles.push(URL.createObjectURL(file));
-    // });
-    formik.setFieldValue("image", [...targetFiles]);
+    const promise = new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        resolve(e.target.result);
+      };
+      reader.readAsDataURL(targetFiles[0]);
+    });
+    promise.then((res) => {
+      files.push(res);
+      setFiles([...files]);
+
+      formik.setFieldValue("image", [...files]);
+    });
+  };
+
+  const onUploadImage = () => {
+    filesRef.current.click();
+  };
+
+  const onRemove = (index: number) => {
+    files.splice(index, 1);
+    setFiles([...files]);
+    formik.setFieldValue("image", [...files]);
   };
 
   return (
@@ -230,19 +254,37 @@ export const RoomAddPost = ({
             </FormControl>
           </div>
         </div>
-
         <div>
-          <p className="form-title">Show off your place</p>
-          {formik.values.image?.map((item: string) => {
-            return <img key={item} src={item} alt="Rooms" />;
-          })}
-          <input
-            type="file"
-            name="image"
-            id="image"
-            multiple
-            onChange={addImages}
-          />
+          <p className="form-title">Upload Photos</p>
+          <div className="user-anketa-left add-user-anketa-left">
+            <div className="user-anketa-left-card add-user-anketa-left-card mx-auto">
+              {files.map((file: string, i: number) => (
+                <ImageAction
+                  src={file}
+                  key={i}
+                  className="w-100"
+                  onRemove={() => onRemove(i)}
+                />
+              ))}
+              <input
+                type="file"
+                name="image"
+                id="myImage"
+                className="d-none"
+                multiple
+                ref={filesRef}
+                onChange={addImages}
+              />
+              <Button
+                variant="contained"
+                className="text-none my-3 py-2"
+                onClick={onUploadImage}
+                style={{ textTransform: "none" }}
+              >
+                Upload photo
+              </Button>
+            </div>
+          </div>
         </div>
         <div>
           <p className="form-title">About home</p>
