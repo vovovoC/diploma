@@ -42,7 +42,12 @@ const validate = (values: Value) => {
   return errors;
 };
 
-export const Login = (props: any) => {
+interface Props {
+  isLoading: boolean;
+  handleSubmit: (values: any) => void;
+}
+
+export const Login = ({ isLoading, handleSubmit }: Props) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -141,7 +146,7 @@ export const Login = (props: any) => {
           fullWidth
           onClick={(e) => {
             e.preventDefault();
-            props.handleSubmit(formik.values);
+            handleSubmit(formik.values);
           }}
           variant="contained"
           sx={{
@@ -156,7 +161,7 @@ export const Login = (props: any) => {
             textTransform: "none",
           }}
         >
-          {props.isLoading ? <Loader /> : "Sign In"}
+          {isLoading ? <Loader /> : "Sign In"}
         </Button>
       </form>
     </div>

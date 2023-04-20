@@ -33,9 +33,7 @@ export const RoomAddPost = ({
   const formik = useFormik({
     initialValues,
     validate,
-    onSubmit: (values) => {
-      console.log(values, "VAL");
-    },
+    onSubmit: (values) => {},
   });
 
   const addImages = (e: any) => {
@@ -256,35 +254,28 @@ export const RoomAddPost = ({
         </div>
         <div>
           <p className="form-title">Upload Photos</p>
-          <div className="user-anketa-left add-user-anketa-left">
-            <div className="user-anketa-left-card add-user-anketa-left-card mx-auto">
-              {files.map((file: string, i: number) => (
-                <ImageAction
-                  src={file}
-                  key={i}
-                  className="w-100"
-                  onRemove={() => onRemove(i)}
-                />
-              ))}
-              <input
-                type="file"
-                name="image"
-                id="myImage"
-                className="d-none"
-                multiple
-                ref={filesRef}
-                onChange={addImages}
-              />
-              <Button
-                variant="contained"
-                className="text-none my-3 py-2"
-                onClick={onUploadImage}
-                style={{ textTransform: "none" }}
-              >
-                Upload photo
-              </Button>
-            </div>
+          <div className="addPost__image">
+            {files.map((file: string, i: number) => (
+              <ImageAction src={file} key={i} onRemove={() => onRemove(i)} />
+            ))}
+            <input
+              type="file"
+              name="image"
+              id="myImage"
+              className="d-none"
+              multiple
+              ref={filesRef}
+              onChange={addImages}
+            />
           </div>
+          <Button
+            variant="contained"
+            className="text-none my-3 py-2"
+            onClick={onUploadImage}
+            style={{ textTransform: "none" }}
+          >
+            Upload photo
+          </Button>
         </div>
         <div>
           <p className="form-title">About home</p>

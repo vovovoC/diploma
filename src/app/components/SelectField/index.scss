@@ -1,0 +1,47 @@
+.select-field {
+    border-radius: 6px;
+    &__title{
+        // margin-top: -8px;
+        height: 40px;
+        width: 100%;
+        background: #F1F1F1;
+        display: flex;
+        align-items: center;
+        padding: 12px 14px;
+        font-family: 'Poppins';
+        font-size: 14px;
+        line-height: 20px;
+        color: #8E8E8E;
+    }
+    &__content {
+        display: grid !important;
+        padding: 12px 14px;
+        grid-template-columns: repeat(3, auto);
+        gap: 10px;
+    }
+
+    &__content > * {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 4px 14px 4px 4px;
+        height: 30px;
+        span {
+            padding: 0px;
+        }
+    }
+    .active {
+        background: #F4F3F3;
+        border: 1px solid #DEDBDB;
+        border-radius: 40px;
+    }
+}
+
+.MuiMenu-list {
+        margin: 0;
+        padding: 0 !important;
+}
+
+.css-1ofcqab-MuiPaper-root-MuiMenu-paper-MuiPopover-paper:before {
+    background-color: transparent !important;
+}

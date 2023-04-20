@@ -6,15 +6,40 @@ import { store } from "./app/store/index";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./app/assets/style/index.scss";
+import "react-toastify/dist/ReactToastify.css";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      retry: 1,
+      staleTime: 5 * 1000,
+    },
+  },
+});
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </QueryClientProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

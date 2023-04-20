@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
 import "./index.scss";
+import { useDispatch } from "react-redux";
+import { addFavRoomPostList } from "../../../entities/fav-posts/model/fav-post";
 
 interface Props {
   item: {
@@ -31,6 +33,7 @@ interface Props {
 
 export const Post = (props: Props) => {
   const { item } = props;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const getImage = (item: string) => {
     return `http://89.218.32.7:8080/images/${item}`;
@@ -93,7 +96,9 @@ export const Post = (props: Props) => {
                 sx={{ border: "1px solid #C7C7C7", p: "6px 5px 4px" }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  alert("hello");
+                  dispatch(
+                    addFavRoomPostList({ post_id: Number(item.id) }) as any
+                  );
                 }}
               >
                 <FavoriteIcon sx={{ color: "#5681FB" }} />

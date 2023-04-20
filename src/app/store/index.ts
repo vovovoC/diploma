@@ -6,8 +6,9 @@ import { authModel } from "../../entities/auth/model";
 import { postListModel } from "../../entities/post-list/model";
 import { profileModel } from "../../entities/user-info/model/user-info";
 import { anketaModel } from "../../entities/anketa/model";
-import { favPostListModel } from "../../entities/fav-posts/model";
+import { favPostListModel } from "../../entities/fav-posts/model/fav-post";
 import { detailPostModel } from "../../entities/detail-post/model/detail-post";
+import { saveModel } from "../../entities/auth/model/save";
 
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
         profileInfo: profileModel.reducer,
         anketa: anketaModel.reducer,
         favPostList: favPostListModel.reducer,
-        detailPost: detailPostModel.reducer
+        detailPost: detailPostModel.reducer,
+        user: saveModel.reducer
     })
 });

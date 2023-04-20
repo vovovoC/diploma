@@ -1,5 +1,18 @@
 .addPost{
     padding: 20px 0 200px;
+    &__image{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 8px;
+        width: 350px;
+        height: auto;
+        .image-container div img {
+            width: 350px;
+            height: auto;
+        }
+    }
+
+
 }
 .addPost form{
     margin-top: 50px;
@@ -127,6 +140,14 @@ input[type='checkbox']{
 @media screen and (max-width: 480px){
     .form-amenities label{
        font-size: 12px;
+    }
+    .addPost__image{
+        grid-template-columns: 1fr;
+    }
+}
+@media screen and (max-width: 960px){
+    .addPost__image{
+        grid-template-columns: repeat(2, auto);
     }
 }
 @media screen and (max-width: 400px){

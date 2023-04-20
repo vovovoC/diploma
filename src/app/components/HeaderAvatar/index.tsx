@@ -15,6 +15,10 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import Notification from "./Notification/index";
 import "./index.scss";
 
+interface Props {
+  userName: string;
+}
+
 const settings = [{ name: "Profile" }, { name: "Home" }, { name: "Logout" }];
 const ntf = [
   { id: 0, user: "Zahniya Medeuova", date: "", img: "", msg: "" },
@@ -36,7 +40,7 @@ const posts = [
   },
 ];
 
-function HeaderAvatar() {
+function HeaderAvatar({ userName }: Props) {
   const navigate = useNavigate();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -105,9 +109,6 @@ function HeaderAvatar() {
             open={Boolean(anchorElPost)}
             onClose={handleClosePostMenu}
           >
-            <div className="menu-header add-post">
-              <p>Add post</p>
-            </div>
             <MenuItem
               key={0}
               onClick={() => navigate("/post/create/new")}
@@ -207,11 +208,11 @@ function HeaderAvatar() {
           <Tooltip title="Open settings">
             <button onClick={handleOpenUserMenu} className="avatar-btn">
               <Avatar
-                alt="Madina"
+                alt="user name info"
                 sx={{ width: "32px", height: "32px" }}
                 src="/static/images/avatar/2.jpg"
               />
-              <div className="avatar-name">Madina</div>
+              <div className="avatar-name">{userName}</div>
               <ExpandMoreIcon sx={{ color: "black" }} />
             </button>
           </Tooltip>

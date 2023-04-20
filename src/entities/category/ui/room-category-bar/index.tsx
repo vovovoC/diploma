@@ -4,10 +4,17 @@ import SelectInput from "../../../../app/components/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useStyles } from "../../../../app/assets/style/filter-style";
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
+import { useEffect, useState } from "react";
+import { DatePickerField } from "../../../../app/components/DatePicker";
+import BasicMenu from "../../../../app/components/Menu";
+import SelectField from "../../../../app/components/SelectField";
+import ListItemButton from "@mui/material/ListItemButton";
+import List from "@mui/material/List";
+import ListItemText from "@mui/material/ListItemText";
 
 interface Value {
   age: string;
@@ -23,41 +30,41 @@ interface Props {
   data: any;
   submit: (args: Value) => void;
 }
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: "white",
   border: "1px solid #E0E5FC",
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
       },
     },
   },
@@ -65,6 +72,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const RoomCategoryBar = ({ data, submit }: Props) => {
   const classes = useStyles();
+  const [selected, setSelected] = useState(1);
 
   const validate = (values: Value) => {
     const errors: Value = {
@@ -106,7 +114,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
           </SearchIconWrapper>
           <StyledInputBase
             placeholder="Search..."
-            inputProps={{ 'aria-label': 'search' }}
+            inputProps={{ "aria-label": "search" }}
           />
         </Search>
       </div>
@@ -120,53 +128,90 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
         >
           {({ handleChange, handleBlur, values, handleSubmit }) => (
             <form className="filter" onSubmit={handleSubmit}>
-              {Array.isArray(data) && (
-                <div>
-                  {data.map((item: any, i) => (
-                    <SelectInput
-                      options={item.subcategories}
-                      name={item.name}
-                      key={item.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                  ))}
+              <DatePickerField label="posted date" />
+              <BasicMenu label="profile details" count={2}>
+                <SelectField
+                  options={data[0].subcategories}
+                  title={"Gender"}
+                  value={data[0].subcategories[0]?.id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <SelectField
+                  options={data[1].subcategories}
+                  title={"Age"}
+                  value={data[1].subcategories[0]?.id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </BasicMenu>
+              <BasicMenu label="Price" count={2}>
+                <div className="filter__price">
                   <TextField
                     id="standard-basic"
                     size="small"
-                    label="Price"
-                    name="price"
+                    label="min price"
+                    name="min_price"
                     variant="outlined"
                     sx={{ width: "120px" }}
-                    className={classes.root}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <TextField
-                    id="outlined-number"
-                    label="Rooms"
-                    sx={{ width: "100px" }}
-                    type="number"
-                    className={classes.root}
+                    id="standard-basic"
                     size="small"
-                    name="room"
+                    label="max price"
+                    name="max_price"
+                    variant="outlined"
+                    sx={{ width: "120px" }}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <Button
-                    variant="contained"
-                    sx={{
-                      background: "#69A3F9",
-                      textTransform: "none",
-                      m: "0 10px",
-                    }}
-                    type="submit"
-                    onClick={() => submit(values)}
-                  >
-                    All
-                  </Button>
                 </div>
-              )}
+              </BasicMenu>
+              <BasicMenu label="duration" count={3}>
+                <SelectField
+                  options={data[2]?.subcategories || []}
+                  title={"duration"}
+                  value={data[2]?.subcategories[0]?.id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </BasicMenu>
+              <BasicMenu label="listing details" count={3}>
+                <SelectField
+                  options={data[3]?.subcategories || []}
+                  title={"LAYOUT"}
+                  value={data[3]?.subcategories[0]?.id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <SelectField
+                  options={data[4]?.subcategories || []}
+                  title={"AMENITIES"}
+                  value={data[4]?.subcategories[0]?.id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </BasicMenu>
+              <BasicMenu label="location" count={3}>
+                <List className="filter__location">
+                  {data[5]?.subcategories?.map((item) => {
+                    return (
+                      <ListItemButton
+                        key={item.id}
+                        className={
+                          item.id === selected ? "location_active" : ""
+                        }
+                        selected={item.id === selected}
+                        onClick={(event) => setSelected(item.id)}
+                      >
+                        <ListItemText primary={item.name} />
+                      </ListItemButton>
+                    );
+                  })}
+                </List>
+              </BasicMenu>
             </form>
           )}
         </Formik>

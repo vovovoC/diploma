@@ -6,8 +6,10 @@ import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { useDispatch } from "react-redux";
 
 import "./index.scss";
+import { addFavRoommatePostList } from "../../../entities/fav-posts/model/fav-post";
 
 interface Props {
   item: {
@@ -23,35 +25,40 @@ interface Props {
     rooms: number;
     gender: number;
     verified: boolean;
-  },
+  };
   fn: () => void;
 }
 
 export const RoommatePost = (props: Props) => {
   const { item, fn } = props;
+  const dispatch = useDispatch();
   const getImage = (item: string) => {
     return `http://89.218.32.7:8080/images/${item}`;
   };
   const defaultImage =
     "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
   return (
-    <Card sx={{ maxWidth: 345, height: 350}} className="card" onClick={() => fn()}>
-    <CardMedia
-      sx={{ height: 200, borderRadius: "6px" }}
-      title="User Image"
-      image={item.image?.length > 1 ? getImage(item.image) : defaultImage}
-    />
-    <CardContent sx={{ m: "5px 10px 0px 30px" }}>
-      <Grid container spacing={2}>
-        <Grid
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <Typography
+    <Card
+      sx={{ maxWidth: 345, height: 350 }}
+      className="card"
+      onClick={() => fn()}
+    >
+      <CardMedia
+        sx={{ height: 200, borderRadius: "6px" }}
+        title="User Image"
+        image={item.image?.length > 1 ? getImage(item.image) : defaultImage}
+      />
+      <CardContent sx={{ m: "5px 10px 0px 30px" }}>
+        <Grid container spacing={2}>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Typography
               sx={{
                 fontFamily: "poppins700",
                 fontSize: "24px",
@@ -61,17 +68,24 @@ export const RoommatePost = (props: Props) => {
               }}
             >
               Jasmina, 19
-          </Typography>
-          <CardActions>
-            <IconButton
-              aria-label="add to favorites"
-              sx={{ border: "1px solid #C7C7C7", p: "6px 5px 4px" }}
-            >
-              <FavoriteIcon sx={{ color: "#5681FB" }} />
-            </IconButton>
-          </CardActions>
-        </Grid>
-        <Grid sx={{
+            </Typography>
+            <CardActions>
+              <IconButton
+                aria-label="add to favorites"
+                sx={{ border: "1px solid #C7C7C7", p: "6px 5px 4px" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(
+                    addFavRoommatePostList({ post_id: Number(item.id) }) as any
+                  );
+                }}
+              >
+                <FavoriteIcon sx={{ color: "#5681FB" }} />
+              </IconButton>
+            </CardActions>
+          </Grid>
+          <Grid
+            sx={{
               fontFamily: "poppins400",
               fontSize: "16px",
               lineHeight: "24px",
@@ -80,79 +94,80 @@ export const RoommatePost = (props: Props) => {
               display: "flex",
               flexDirection: "column",
               width: "100%",
-            }}>
-          <Typography
-            gutterBottom>
-            Almaty
-          </Typography>
-          <Typography sx={{
-            fontSize: "11px",
-            lineHeight: "116%",
-            color: "#000000",
-          }}>
-            Hello! I am a 27-year-old actress and also work in hospitality as well as some remote...
-          </Typography>
+            }}
+          >
+            <Typography gutterBottom>Almaty</Typography>
+            <Typography
+              sx={{
+                fontSize: "11px",
+                lineHeight: "116%",
+                color: "#000000",
+              }}
+            >
+              Hello! I am a 27-year-old actress and also work in hospitality as
+              well as some remote...
+            </Typography>
+          </Grid>
+          <Grid
+            sx={{
+              pt: "1rem",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Typography
+              gutterBottom
+              sx={{
+                fontSize: "10px",
+                lineHeight: "15px",
+                letterSpacing: "0.01em",
+                color: "#0C4BFF",
+                padding: "2px 9px",
+                marginRight: "6px",
+                background: "#E0E5FC",
+                border: "0.5px solid #69A3F9",
+                borderRadius: "29px",
+              }}
+            >
+              extroverted
+            </Typography>
+            <Typography
+              gutterBottom
+              sx={{
+                fontSize: "10px",
+                lineHeight: "15px",
+                letterSpacing: "0.01em",
+                color: "#0C4BFF",
+                padding: "2px 9px",
+                marginRight: "6px",
+                background: "#E0E5FC",
+                border: "0.5px solid #69A3F9",
+                borderRadius: "29px",
+              }}
+            >
+              artist/creative
+            </Typography>
+            <Typography
+              gutterBottom
+              sx={{
+                fontSize: "10px",
+                lineHeight: "15px",
+                letterSpacing: "0.01em",
+                color: "#0C4BFF",
+                padding: "2px 9px",
+                marginRight: "6px",
+                background: "#E0E5FC",
+                border: "0.5px solid #69A3F9",
+                borderRadius: "29px",
+              }}
+            >
+              health/wealness
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid
-          sx={{
-            pt: "1rem",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <Typography
-            gutterBottom
-            sx={{
-              fontSize: "10px",
-              lineHeight: "15px",
-              letterSpacing: "0.01em",
-              color: "#0C4BFF",
-              padding: "2px 9px",
-              marginRight: "6px",
-              background: "#E0E5FC",
-              border: "0.5px solid #69A3F9",
-              borderRadius: "29px",
-            }}
-          >
-           extroverted
-          </Typography>
-          <Typography
-            gutterBottom
-            sx={{
-              fontSize: "10px",
-              lineHeight: "15px",
-              letterSpacing: "0.01em",
-              color: "#0C4BFF",
-              padding: "2px 9px",
-              marginRight: "6px",
-              background: "#E0E5FC",
-              border: "0.5px solid #69A3F9",
-              borderRadius: "29px",
-            }}
-          >
-           artist/creative
-          </Typography>
-          <Typography
-            gutterBottom
-            sx={{
-              fontSize: "10px",
-              lineHeight: "15px",
-              letterSpacing: "0.01em",
-              color: "#0C4BFF",
-              padding: "2px 9px",
-              marginRight: "6px",
-              background: "#E0E5FC",
-              border: "0.5px solid #69A3F9",
-              borderRadius: "29px",
-            }}
-          >
-           health/wealness
-          </Typography>
-        </Grid>
-      </Grid>
-    </CardContent>
-  </Card>
+      </CardContent>
+    </Card>
   );
 };

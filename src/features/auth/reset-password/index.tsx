@@ -1,38 +1,30 @@
 import { ResetPassword } from "../../../entities/auth/ui";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
 import { resetPassword } from "../../../shared/model";
+import { toast } from "react-toastify";
 
 export const ResetPasswordContent = (props: any) => {
   const navigate = useNavigate();
-  const { isLoading, isError, error, mutate, isSuccess } =
-    useMutation(resetPassword);
+  const queryClient = useQueryClient();
 
-  const handleSubmit = (values: any) => {
-    mutate(values);
-
-    //notification msgs
-    const ntf = [
-      ...props.ntfList,
-      {
-        id: props.ntfList.length,
-        type: "success",
-        title: "Password Changed!",
-        msg: "Your password has been changed successfully.",
+  const { mutate, isLoading } = useMutation(
+    (values: any) => resetPassword(values),
+    {
+      onSuccess(data) {
+        queryClient.invalidateQueries("reset password");
+        toast.success("Your password has been changed successfully.");
+        // localStorage.setItem("token", data.token);
+        // localStorage.setItem("user_id", `${data.id}`);
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       },
-    ];
+      onError(error: any) {
+        toast.error("Login not successfully");
+      },
+    }
+  );
 
-    props.showNtf(ntf);
-    setTimeout(() => {
-      if (isSuccess) {
-        navigate("/");
-      }
-    }, 100);
-  };
-  if (isError) {
-    return <ErrorBoundary error={error} />;
-  }
-
-  return <ResetPassword handleSubmit={handleSubmit} isLoading={isLoading} />;
+  return <ResetPassword handleSubmit={mutate} isLoading={isLoading} />;
 };

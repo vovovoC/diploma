@@ -42,7 +42,7 @@ export const AuthPage = ({ type }: { type: string }) => {
         <img src={img2} alt="" className="img2" />
       </div>
       <div className="bachground-img-mpobile">
-        <img src={img3} alt="" className="img3"/>
+        <img src={img3} alt="" className="img3" />
       </div>
       <Notification list={ntfList} showNtf={showNtf} />
       <div className="flippable-card-container">
