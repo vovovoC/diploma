@@ -7,10 +7,11 @@ import { FavPostList } from "../../../entities/fav-posts/ui";
 import { getFavRoommatePosts } from "../../../shared/model";
 
 export const FavRoommateListContent = () => {
+  const userId = localStorage.getItem("user_id");
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, refetch, error } = useQuery(
     "FAV_ROOMMATE_POST_LIST",
-    async () => await getFavRoommatePosts({ page, limit: 10 })
+    async () => await getFavRoommatePosts(userId, { page, limit: 10 })
   );
 
   useEffect(() => {

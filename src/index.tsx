@@ -9,6 +9,7 @@ import "./app/assets/style/index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
+import "./app/firebase/index";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

@@ -9,15 +9,13 @@ import { getUserAccomodationPosts } from "../../../shared/model";
 
 export const UserRoomPostContent = () => {
   const { filterData } = useCategories();
+  const userId = localStorage.getItem("user_id");
 
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, refetch, error } = useQuery(
-    "ROOM_ROOMMATE_LIST",
-    async () =>
-      await getUserAccomodationPosts({ ...filterData, page, limit: 9 })
+    "USER_ROOM_LIST",
+    async () => await getUserAccomodationPosts(userId, { page, limit: 9 })
   );
-
-  console.log("here");
 
   useEffect(() => {
     refetch();
@@ -30,5 +28,13 @@ export const UserRoomPostContent = () => {
     return <Loader />;
   }
 
-  return <RoomPostList data={data} setPage={setPage} />;
+  return (
+    <>
+      {data?.lastPage > 1 ? (
+        <RoomPostList data={data} setPage={setPage} />
+      ) : (
+        "no data"
+      )}
+    </>
+  );
 };

@@ -43,7 +43,7 @@ export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`
 export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/list?${paramsToString(params)}`); // user post id
 export const getAccomodationPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get/${id}`);
 // user acc posts
-export const getUserAccomodationPosts = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/accomodation/${id}`);
+export const getUserAccomodationPosts = (id: number, params: any) => axiosInstance.get(`${NEW_API_URL}/users/accomodation/${id}`, params);
 export const createUserAccomodationPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/create`, params);
 export const editUserAccomodationPost = (id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/accomodation/update/${id}`, params);
 export const deleteUserAccomodationPost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete/${id}`);
@@ -53,7 +53,7 @@ export const deleteUserAccomodationPost = ( id: number ) => axiosInstance.delete
 export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/list?${paramsToString(params)}`);
 export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get/${id}`);
 // user roommate posts
-export const getUserRoommatePosts = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/roommate/${id}`);
+export const getUserRoommatePosts = (id: number, params: any) => axiosInstance.get(`${NEW_API_URL}/users/roommate/${id}`, params);
 export const createUserRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
 export const editUserRoommatePost = ( id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/roommate/update/${id}`, params);
 export const deleteUserRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete${id}`);
@@ -70,4 +70,6 @@ export const deleteRoomFavPost = ( params: any ) => axiosInstance.delete(`${NEW_
 
 export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categories`);
 export const getUserInfo = (id: number | string):Promise<any> => axiosInstance.get(`${NEW_API_URL}/users/get/${id}`);
+export const editMyProfile = (params: any) => axiosInstance.post(`${NEW_API_URL}/edit_profile`, params);
 export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get_form/${id}`);
+export const editAnketa = (params: any) => axiosInstance.post(`${NEW_API_URL}/posts/categories`, params);

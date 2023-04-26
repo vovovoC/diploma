@@ -9,11 +9,18 @@ import { getAccomodationPosts } from "../../../shared/model";
 
 export const RoomPostListContent = () => {
   const { filterData } = useCategories();
+  const userId = localStorage.getItem("user_id");
 
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, refetch, error } = useQuery(
     "POST_LIST",
-    async () => await getAccomodationPosts({ ...filterData, page, limit: 9 })
+    async () =>
+      await getAccomodationPosts({
+        ...filterData,
+        page,
+        limit: 10,
+        user_id: Number(userId),
+      })
   );
 
   useEffect(() => {

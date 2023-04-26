@@ -7,9 +7,11 @@ import {
 import { addFavRoommatePost, addFavRoomPost, getFavRoommatePosts, getFavRoomPosts } from "../../../shared/model";
 
   export const initialState: {
-    data: any
+    rooms: any,
+    roommates: any
   } = {
-    data: []
+    rooms: [],
+    roommates: []
   };
   
   export const favPostListModel = createSlice({
@@ -17,10 +19,10 @@ import { addFavRoommatePost, addFavRoomPost, getFavRoommatePosts, getFavRoomPost
     initialState,
     reducers: {
       SET_FAV_ROOM: (state = initialState, {payload}: PayloadAction<any[]>) => {     
-        state.data = [...payload];                                       
+        state.rooms = [...payload];                                       
       },
       SET_FAV_ROOMMATE: (state = initialState, {payload}: PayloadAction<any[]>) => {     
-        state.data = [...payload];                                       
+        state.roommates = [...payload];                                       
       }
     },
   });

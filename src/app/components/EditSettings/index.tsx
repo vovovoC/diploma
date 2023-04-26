@@ -1,7 +1,7 @@
 import "./index.scss";
 import * as React from "react";
 import { useState } from "react";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
@@ -9,9 +9,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 
 interface Props {
-    fn: () => void;
- }
-export const EditSettings = ({fn } : Props) => {
+  fn: () => void;
+  edit: any;
+}
+export const EditSettings = ({ fn, edit }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -22,11 +23,13 @@ export const EditSettings = ({fn } : Props) => {
 
   return (
     <div className="settings edit-settings">
-    <div className="settings-header">
+      <div className="settings-header">
         <div>Settings</div>
-        <button className="cnf-card-close" title="Close" onClick={() => fn()}><CloseIcon sx={{color: "white"}}/></button>
-        </div>
-        <div className="anketa-body">
+        <button className="cnf-card-close" title="Close" onClick={() => fn()}>
+          <CloseIcon sx={{ color: "white" }} />
+        </button>
+      </div>
+      <div className="anketa-body">
         <TextField
           margin="normal"
           required
@@ -63,8 +66,17 @@ export const EditSettings = ({fn } : Props) => {
             ),
           }}
         />
-        <button title="Save settings" className="save-btn">Save</button>
-        </div>
+        <button
+          title="Save settings"
+          className="save-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            edit();
+          }}
+        >
+          Save
+        </button>
+      </div>
     </div>
-    );
+  );
 };

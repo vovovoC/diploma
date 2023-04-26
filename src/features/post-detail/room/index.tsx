@@ -24,5 +24,11 @@ export const RoomDetailContent = () => {
   if (isLoading) {
     return <Loader />;
   }
-  return <PostDetail open={open} setOpen={setOpen} data={{}} />;
+  return (
+    <PostDetail
+      open={open}
+      setOpen={setOpen}
+      data={data?.length > 0 ? data[0] : {}}
+    />
+  );
 };

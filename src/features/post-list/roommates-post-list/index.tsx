@@ -9,11 +9,18 @@ import { getRoommatePosts } from "../../../shared/model";
 
 export const RoommatePostListContent = () => {
   const { filterData } = useCategories();
+  const userId = localStorage.getItem("user_id");
 
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, refetch, error } = useQuery(
     "ROOMMATE_LIST",
-    async () => await getRoommatePosts({ ...filterData, page, limit: 9 })
+    async () =>
+      await getRoommatePosts({
+        ...filterData,
+        page,
+        limit: 9,
+        user_id: Number(userId),
+      })
   );
 
   console.log("here");

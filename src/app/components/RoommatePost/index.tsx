@@ -2,7 +2,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -10,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import "./index.scss";
 import { addFavRoommatePostList } from "../../../entities/fav-posts/model/fav-post";
+import { useState } from "react";
 
 interface Props {
   item: {
@@ -31,9 +33,10 @@ interface Props {
 
 export const RoommatePost = (props: Props) => {
   const { item, fn } = props;
+  const [saved, setSaved] = useState(false);
   const dispatch = useDispatch();
-  const getImage = (item: string) => {
-    return `http://89.218.32.7:8080/images/${item}`;
+  const getImage = (img: string) => {
+    return `http://159.223.21.6/images/${img}`;
   };
   const defaultImage =
     "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
@@ -46,7 +49,7 @@ export const RoommatePost = (props: Props) => {
       <CardMedia
         sx={{ height: 200, borderRadius: "6px" }}
         title="User Image"
-        image={item.image?.length > 1 ? getImage(item.image) : defaultImage}
+        image={item.image?.length > 0 ? getImage(item.image[0]) : defaultImage}
       />
       <CardContent sx={{ m: "5px 10px 0px 30px" }}>
         <Grid container spacing={2}>
@@ -75,12 +78,17 @@ export const RoommatePost = (props: Props) => {
                 sx={{ border: "1px solid #C7C7C7", p: "6px 5px 4px" }}
                 onClick={(e) => {
                   e.stopPropagation();
+                  setSaved(!saved);
                   dispatch(
                     addFavRoommatePostList({ post_id: Number(item.id) }) as any
                   );
                 }}
               >
-                <FavoriteIcon sx={{ color: "#5681FB" }} />
+                {saved ? (
+                  <FavoriteIcon sx={{ color: "#5681FB" }} />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
               </IconButton>
             </CardActions>
           </Grid>

@@ -83,6 +83,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
       inthehome: "",
       location: "",
       price: "",
+      date: "",
       room: "",
     };
 
@@ -100,7 +101,8 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
     layout: "",
     inthehome: "",
     location: "",
-    price: "",
+    min_price: 0,
+    max_price: 0,
     room: "",
   };
 
@@ -114,6 +116,10 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
           </SearchIconWrapper>
           <StyledInputBase
             placeholder="Search..."
+            onChange={(e) => {
+              e.preventDefault(); // back end search - keyword
+              console.log("here", e.target.value);
+            }}
             inputProps={{ "aria-label": "search" }}
           />
         </Search>
@@ -126,22 +132,36 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
             submit(values);
           }}
         >
-          {({ handleChange, handleBlur, values, handleSubmit }) => (
+          {({
+            handleChange,
+            handleBlur,
+            values,
+            handleSubmit,
+            setFieldValue,
+          }) => (
             <form className="filter" onSubmit={handleSubmit}>
-              <DatePickerField label="posted date" />
+              <DatePickerField
+                label="posted date"
+                // value={values.date}
+                // onChange={(e) => {
+                //   setFieldValue("date", e.target.value);
+                // }}
+              />
               <BasicMenu label="profile details" count={2}>
                 <SelectField
                   options={data[0].subcategories}
                   title={"Gender"}
-                  value={data[0].subcategories[0]?.id}
-                  onChange={handleChange}
+                  name="gender"
+                  value={values.gender}
+                  onChange={setFieldValue}
                   onBlur={handleBlur}
                 />
                 <SelectField
                   options={data[1].subcategories}
                   title={"Age"}
-                  value={data[1].subcategories[0]?.id}
-                  onChange={handleChange}
+                  name="age"
+                  value={values.age}
+                  onChange={setFieldValue}
                   onBlur={handleBlur}
                 />
               </BasicMenu>
@@ -150,6 +170,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                   <TextField
                     id="standard-basic"
                     size="small"
+                    value={values.min_price}
                     label="min price"
                     name="min_price"
                     variant="outlined"
@@ -161,6 +182,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                     id="standard-basic"
                     size="small"
                     label="max price"
+                    value={values.max_price}
                     name="max_price"
                     variant="outlined"
                     sx={{ width: "120px" }}
@@ -173,8 +195,9 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                 <SelectField
                   options={data[2]?.subcategories || []}
                   title={"duration"}
-                  value={data[2]?.subcategories[0]?.id}
-                  onChange={handleChange}
+                  name="duration"
+                  value={values.duration}
+                  onChange={setFieldValue}
                   onBlur={handleBlur}
                 />
               </BasicMenu>
@@ -182,15 +205,17 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                 <SelectField
                   options={data[3]?.subcategories || []}
                   title={"LAYOUT"}
-                  value={data[3]?.subcategories[0]?.id}
-                  onChange={handleChange}
+                  name="layout"
+                  value={values.layout}
+                  onChange={setFieldValue}
                   onBlur={handleBlur}
                 />
                 <SelectField
                   options={data[4]?.subcategories || []}
                   title={"AMENITIES"}
+                  name="amenities"
                   value={data[4]?.subcategories[0]?.id}
-                  onChange={handleChange}
+                  onChange={setFieldValue}
                   onBlur={handleBlur}
                 />
               </BasicMenu>
@@ -212,6 +237,15 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                   })}
                 </List>
               </BasicMenu>
+              <Button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  submit(values);
+                }}
+              >
+                Submit
+              </Button>
             </form>
           )}
         </Formik>

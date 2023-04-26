@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../app/components/Layout";
 import "./index.scss";
 import {
@@ -24,7 +24,6 @@ const UserPostsList = () => {
   );
 };
 
-const contents = [<UserAnketaContent />, <UserPostsList />];
 export const UserProfilePage = () => {
   const [page, setPage] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);
@@ -48,7 +47,9 @@ export const UserProfilePage = () => {
             Listings
           </div>
         </div>
-        <div className="userprofile-body">{contents[page]}</div>
+        <div className="userprofile-body">
+          {page === 1 ? <UserAnketaContent /> : <UserPostsList />}
+        </div>
       </div>
     </Layout>
   );

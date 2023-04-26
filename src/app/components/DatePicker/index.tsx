@@ -1,13 +1,8 @@
 import PropTypes from "prop-types";
-import moment from "moment";
 import { makeStyles } from "@material-ui/core/styles";
 import { LicenseInfo } from "@mui/x-license-pro";
 import { DateRangePicker } from "rsuite";
 import "rsuite/dist/rsuite.css";
-
-const styles = {
-  display: "block",
-};
 
 LicenseInfo.setLicenseKey("YOUR_LICENSE_KEY");
 
@@ -19,24 +14,9 @@ const useStyles = makeStyles(() => ({
     cursor: "pointer",
     width: "240px",
   },
-  app: {
-    position: "absolute",
-    width: "100%",
-    height: "40px",
-    background: "#fff",
-    zIndex: 4,
-  },
 }));
 
-export function DatePickerField({
-  fullWidth,
-  label,
-  className,
-  onChange,
-  onlyValid,
-  readOnly,
-  InputProps,
-}: any) {
+export function DatePickerField({ onChange, readOnly, initialValue }: any) {
   const classes = useStyles();
 
   return (
@@ -45,27 +25,21 @@ export function DatePickerField({
         appearance="subtle"
         size="md"
         placeholder="date"
+        disabled={readOnly}
+        value={initialValue}
         className={classes.styles}
+        onChange={onChange}
       />
-      {/* <div className={classes.app} /> */}
     </div>
   );
 }
 DatePickerField.defaultProps = {
-  fullWidth: false,
-  label: null,
-  className: "",
-  onlyValid: false,
+  initialValue: new Date(),
   readOnly: false,
-  InputProps: null,
   onChange: () => {},
 };
 DatePickerField.propTypes = {
-  fullWidth: PropTypes.bool,
-  label: PropTypes.node,
-  className: PropTypes.string,
-  onlyValid: PropTypes.bool,
+  initialValue: PropTypes.string,
   readOnly: PropTypes.bool,
-  InputProps: PropTypes.object,
   onChange: PropTypes.func,
 };

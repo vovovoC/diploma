@@ -30,13 +30,13 @@ const UserPostsList = () => {
 
 const FavPostsList = () => {
   return (
-    <div className="">
+    <div>
       <div>
-        <p> Rooms </p>
+        <p>Rooms</p>
         <FavRoomListContent />
       </div>
       <div>
-        <p> Roommates</p>
+        <p>Roommates</p>
         <FavRoommateListContent />
       </div>
     </div>

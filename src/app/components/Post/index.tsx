@@ -28,6 +28,7 @@ interface Props {
     created_data: string;
     price: number;
     image: string[];
+    saved: number;
   };
 }
 
@@ -36,7 +37,7 @@ export const Post = (props: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getImage = (item: string) => {
-    return `http://89.218.32.7:8080/images/${item}`;
+    return `http://159.223.21.6/images/${item}`;
   };
   const defaultImage =
     "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
@@ -51,7 +52,7 @@ export const Post = (props: Props) => {
     >
       <CardMedia
         sx={{ height: 200, borderRadius: "6px" }}
-        image={item.image?.length > 1 ? getImage(item.image[1]) : defaultImage}
+        image={item.image?.length > 0 ? getImage(item.image[0]) : defaultImage}
         title={item.location}
       />
       <CardContent sx={{ m: "5px 10px 0px 30px" }}>
@@ -101,7 +102,9 @@ export const Post = (props: Props) => {
                   );
                 }}
               >
-                <FavoriteIcon sx={{ color: "#5681FB" }} />
+                <FavoriteIcon
+                  sx={{ color: item?.saved ? "#FF6969" : "#5681FB" }}
+                />
               </IconButton>
             </CardActions>
           </Grid>

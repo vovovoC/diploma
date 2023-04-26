@@ -7,10 +7,11 @@ import { UserAnketa } from "../../entities/user-anketa";
 import { getAnketa } from "../../shared/model";
 
 export const UserAnketaContent = () => {
-  const id = 1;
+  const id = localStorage.getItem("user_id");
   const { isLoading, isError, data, error, refetch } = useQuery(
     "ANKETA",
-    async () => await getAnketa(id)
+    async () => await getAnketa(Number(id)),
+    { enabled: !!id }
   );
 
   useEffect(() => {

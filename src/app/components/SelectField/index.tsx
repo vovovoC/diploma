@@ -1,4 +1,4 @@
-import { FocusEventHandler, useEffect, useState } from "react";
+import { FocusEventHandler } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -9,7 +9,7 @@ interface Option {
   name: string;
 }
 interface Props {
-  handleChange: (...args: any) => void;
+  onChange: (...args: any) => void;
   handleBlur: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   name: string;
   options: Option[];
@@ -17,15 +17,12 @@ interface Props {
   value: string;
 }
 export default function SelectField({
-  handleChange,
+  onChange,
   title,
+  name,
   options,
   value,
 }: Props) {
-  const [check, setCheck] = useState<string | number>();
-  useEffect(() => {
-    setCheck(value);
-  }, [value]);
   return (
     <div className="select-field">
       <div className="select-field__title">{title}</div>
@@ -40,12 +37,11 @@ export default function SelectField({
                   checkedIcon={<CheckCircleIcon color="primary" />}
                 />
               }
-              className={check === option.id ? "active" : ""}
+              className={value === option.id ? "active" : ""}
               key={option.id}
-              checked={check === option.id}
+              checked={value === option.id}
               onClick={() => {
-                // handleChange(option);
-                setCheck(option.id);
+                onChange(name, option.id);
               }}
               label={option.name}
             />

@@ -35,7 +35,9 @@ import { getUserInfo } from "../../../shared/model";
       if(!userId) return;
       return async (dispatch: Dispatch) => {
         await getUserInfo(userId).then((data) => {
-          localStorage.setItem('userName', `${data?.firstName} ${data?.lastName}`)
+          if(Array.isArray(data)) {
+            localStorage.setItem('userName', data[0]?.username)
+          }
           dispatch(SET_USER(data as any))
         });
       }

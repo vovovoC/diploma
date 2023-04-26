@@ -73,11 +73,14 @@ const category = {
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
-  const { location, address, bedroom, square, description, price, image} = data;
+  const { location, address, bedroom, square, description, price, image } =
+    data;
 
   const getImage = (item: string) => {
-    return `http://89.218.32.7:8080/images/${item}`;
+    return `http://159.223.21.6/images/${item}`;
   };
+
+  console.log("here", data);
   const defaultImage =
     "https://img.ksl.com/mx/mplace-rent.ksl.com/no-image-default.png?width=940&height=529&operation=fit";
 
@@ -86,7 +89,9 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
       <div className="postInfo">
         <div className="wrapper">
           <BackButton name={"search"} />
-          <p className="post-title">{bedroom} rooms, {square} m², {address}</p>
+          <p className="post-title">
+            {bedroom} rooms, {square} m², {address}
+          </p>
           <div className="post-header">
             <p className="post-location">{location}</p>
             <div className="post-btns">
@@ -160,7 +165,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                 <img
                   key={i}
                   id={item}
-                  src={`http://89.218.32.7:8080/images/${item}`}
+                  src={`http://159.223.21.6/images/${item}`}
                   alt="Room"
                   className="slider-img"
                 />
@@ -258,7 +263,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div>
                 <p className="post-body-title">Map</p>
                 <div className="post-map">
-                  <MapContent/>
+                  <MapContent />
                 </div>
               </div>
             </div>

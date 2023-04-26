@@ -1,5 +1,5 @@
 {
-  "name": "Qonystaiq",
+  "name": "Qonys",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
     "@types/react-dom": "^18.0.11",
     "axios": "0.19.2",
     "dayjs": "^1.11.7",
+    "firebase": "^9.20.0",
     "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
     "invariant": "^2.2.4",
