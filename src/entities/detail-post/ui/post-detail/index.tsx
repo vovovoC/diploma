@@ -80,7 +80,6 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
     return `http://159.223.21.6/images/${item}`;
   };
 
-  console.log("here", data);
   const defaultImage =
     "https://img.ksl.com/mx/mplace-rent.ksl.com/no-image-default.png?width=940&height=529&operation=fit";
 
