@@ -1,16 +1,8 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
-import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import "./index.scss";
+import { IconButton, Box, Menu, Tooltip } from "@mui/material";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import "src/app/components/Menu/index.scss";
 
 export default function BasicMenu({ children, count, label }: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -28,14 +20,37 @@ export default function BasicMenu({ children, count, label }: any) {
         <Tooltip title="Account settings">
           <div
             className="basic-menu"
-            onClick={handleClick}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <div className="basic-menu__count"> {count} </div>
+            {count > 0 ? (
+              <div className="basic-menu__count"> {count} </div>
+            ) : null}
             <span className="basic-menu__label"> {label} </span>
-            <ExpandCircleDownIcon className="basic-menu__arrow" />
+            <IconButton onClick={handleClick}>
+              {open ? (
+                <div className="basic-menu__arrow">
+                  <ExpandLessIcon
+                    style={{
+                      color: "#0E0E0E",
+                      fontWeight: "lighter",
+                      fontSize: "14px",
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="basic-menu__arrow">
+                  <ExpandMoreIcon
+                    style={{
+                      color: "#0E0E0E",
+                      fontWeight: "lighter",
+                      fontSize: "14px",
+                    }}
+                  />
+                </div>
+              )}
+            </IconButton>
           </div>
         </Tooltip>
       </Box>
@@ -44,7 +59,6 @@ export default function BasicMenu({ children, count, label }: any) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {

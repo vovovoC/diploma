@@ -1,7 +1,6 @@
-import { Post } from "../../../../app/components/Post";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-
+import { Post } from "src/app/components/Post";
 import "./index.scss";
 
 interface Data {

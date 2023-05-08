@@ -194,8 +194,12 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                     <div>
                       {category.layout.icon}
                       <ul>
-                        <li>2 bedroom</li>
-                        <li>1 bath</li>
+                        <li>
+                          {data.bedroom} {`bedroom${data.bedroom > 1 && "s"}`}
+                        </li>
+                        <li>
+                          {data.bathroom} {`bathroom${data.bedroom > 1 && "s"}`}
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -212,29 +216,22 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                 </li>
                 <li>
                   <span>Published</span>
-                  <div>Apr 24</div>
+                  <div>{data.created_date}</div>
                 </li>
               </ul>
               <div className="post-about">
                 <p className="post-body-title">About Home</p>
-                <p className="post-about-text">{description}Description</p>
+                <p className="post-about-text">{data.about_home}</p>
               </div>
               <hr />
               <div className="post-about">
                 <p className="post-body-title">About roommates</p>
-                <p className="post-about-text">
-                  your roommates 2 girls, students from sdu,
-                  nfjneoafnfefefgegfegrrrrrrrg. Clean, cozy, refrigerator,
-                  washing machine, cable TV, + rent, for the long term, TV, all
-                  appliances.{" "}
-                </p>
+                <p className="post-about-text">{data.about_rommates}</p>
               </div>
               <hr />
               <div className="post-about">
                 <p className="post-body-title">About renters</p>
-                <p className="post-about-text">
-                  I want people - students (only girls) bla bla bla
-                </p>
+                <p className="post-about-text">{data.about_renters}</p>
               </div>
               <hr />
               <div className="post-amenities">
@@ -262,7 +259,10 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
               <div>
                 <p className="post-body-title">Map</p>
                 <div className="post-map">
-                  <MapContent />
+                  <MapContent
+                    submit={() => {}}
+                    coors={[43.238949, 43.238949]}
+                  />
                 </div>
               </div>
             </div>

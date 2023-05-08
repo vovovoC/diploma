@@ -7,10 +7,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-
-const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const PWD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,24}$/;
-
+import { EMAIL_VALIDATION, PWD_VALIDATION } from "src/shared/helper";
 interface Value {
   email: string | null;
   password: string | null;
@@ -23,7 +20,7 @@ const validate = (values: Value) => {
   if (!values.email) {
     errors.email = "Email address required";
     return errors;
-  } else if (!EMAIL_REGEX.test(values.email)) {
+  } else if (!EMAIL_VALIDATION.test(values.email)) {
     errors.email = "Invalid email address";
     return errors;
   }
@@ -31,7 +28,7 @@ const validate = (values: Value) => {
   if (!values.password) {
     errors.password = "Password is required";
     return errors;
-  } else if (!PWD_REGEX.test(values.password)) {
+  } else if (!PWD_VALIDATION.test(values.password)) {
     errors.password =
       "Password should be 8-20 characters and include at least 1 letter, 1 number!";
     return errors;
@@ -76,7 +73,7 @@ export const ResetPassword = (props: any) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          formik.handleSubmit();
+          props.handleSubmit(formik.values);
         }}
       >
         <TextField
@@ -87,7 +84,6 @@ export const ResetPassword = (props: any) => {
           label="Username or email address"
           name="email"
           autoComplete="email"
-          autoFocus
           error={!!formik.errors.email}
           helperText={formik.errors.email}
           onChange={formik.handleChange}
@@ -162,7 +158,10 @@ export const ResetPassword = (props: any) => {
         </Button>
         <div
           className="forget-psw-btn cancel"
-          onClick={() => navigate("/login")}
+          onClick={() => {
+            formik.resetForm();
+            navigate("/login");
+          }}
         >
           Cancel reset password
         </div>

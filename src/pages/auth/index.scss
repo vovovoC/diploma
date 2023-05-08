@@ -127,9 +127,9 @@
 }
 .forget-psw-btn{
     color: #AD3113; 
-    text-decoration: none; 
-    text-transform: "capitalize";
-    background-color: transparent;
+    text-transform: capitalize;
+    font-size: 14px;
+    cursor: pointer;
 }
 .forget-psw-btn:hover{
     color: #0a58ca;

@@ -1,20 +1,17 @@
 // @ts-nocheck
-import { useFormik, Formik } from "formik";
-import SelectInput from "../../../../app/components/Select";
+import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { useStyles } from "../../../../app/assets/style/filter-style";
-import { styled, alpha } from "@mui/material/styles";
+import { useStyles } from "src/app/assets/style/filter-style";
+import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import "./index.scss";
 import { useEffect, useState } from "react";
-import { DatePickerField } from "../../../../app/components/DatePicker";
-import BasicMenu from "../../../../app/components/Menu";
-import SelectField from "../../../../app/components/SelectField";
+import BasicMenu from "src/app/components/Menu";
+import SelectField from "src/app/components/SelectField";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
+import "src/entities/category/ui/room-category-bar/index.scss";
 
 interface Value {
   age: string;
@@ -73,38 +70,42 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const RoomCategoryBar = ({ data, submit }: Props) => {
   const classes = useStyles();
   const [selected, setSelected] = useState(1);
+  const [count, setCount] = useState({
+    age: 0,
+    gender: 0,
+    duration: 0,
+    layout: 0,
+    inthehome: 0,
+    location: 0,
+    min_price: 0,
+    max_price: 0,
+    room: 0,
+    amenities: 0,
+  });
 
-  const validate = (values: Value) => {
-    const errors: Value = {
+  const formik = useFormik({
+    initialValues: {
       age: "",
       gender: "",
       duration: "",
       layout: "",
       inthehome: "",
       location: "",
-      price: "",
-      date: "",
+      min_price: 0,
+      max_price: 0,
       room: "",
-    };
+      amenities: "",
+    },
+    onSubmit: (values) => {
+      // handle form submission
+      submit(values);
+    },
+  });
 
-    if (!values.location) {
-      errors.location = "Required";
-    }
-
-    return errors;
-  };
-
-  const initialValues = {
-    age: "",
-    gender: "",
-    duration: "",
-    layout: "",
-    inthehome: "",
-    location: "",
-    min_price: 0,
-    max_price: 0,
-    room: "",
-  };
+  useEffect(() => {
+    formik.submitForm();
+    console.log("here", count);
+  }, [formik.values]);
 
   return (
     <div>
@@ -125,130 +126,112 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
         </Search>
       </div>
       <div className="row m-1">
-        <Formik
-          initialValues={initialValues}
-          validate={validate}
-          onSubmit={(values) => {
-            submit(values);
-          }}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            values,
-            handleSubmit,
-            setFieldValue,
-          }) => (
-            <form className="filter" onSubmit={handleSubmit}>
-              <DatePickerField
-                label="posted date"
-                // value={values.date}
-                // onChange={(e) => {
-                //   setFieldValue("date", e.target.value);
-                // }}
-              />
-              <BasicMenu label="profile details" count={2}>
-                <SelectField
-                  options={data[0].subcategories}
-                  title={"Gender"}
-                  name="gender"
-                  value={values.gender}
-                  onChange={setFieldValue}
-                  onBlur={handleBlur}
-                />
-                <SelectField
-                  options={data[1].subcategories}
-                  title={"Age"}
-                  name="age"
-                  value={values.age}
-                  onChange={setFieldValue}
-                  onBlur={handleBlur}
-                />
-              </BasicMenu>
-              <BasicMenu label="Price" count={2}>
-                <div className="filter__price">
-                  <TextField
-                    id="standard-basic"
-                    size="small"
-                    value={values.min_price}
-                    label="min price"
-                    name="min_price"
-                    variant="outlined"
-                    sx={{ width: "120px" }}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  <TextField
-                    id="standard-basic"
-                    size="small"
-                    label="max price"
-                    value={values.max_price}
-                    name="max_price"
-                    variant="outlined"
-                    sx={{ width: "120px" }}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-              </BasicMenu>
-              <BasicMenu label="duration" count={3}>
-                <SelectField
-                  options={data[2]?.subcategories || []}
-                  title={"duration"}
-                  name="duration"
-                  value={values.duration}
-                  onChange={setFieldValue}
-                  onBlur={handleBlur}
-                />
-              </BasicMenu>
-              <BasicMenu label="listing details" count={3}>
-                <SelectField
-                  options={data[3]?.subcategories || []}
-                  title={"LAYOUT"}
-                  name="layout"
-                  value={values.layout}
-                  onChange={setFieldValue}
-                  onBlur={handleBlur}
-                />
-                <SelectField
-                  options={data[4]?.subcategories || []}
-                  title={"AMENITIES"}
-                  name="amenities"
-                  value={data[4]?.subcategories[0]?.id}
-                  onChange={setFieldValue}
-                  onBlur={handleBlur}
-                />
-              </BasicMenu>
-              <BasicMenu label="location" count={3}>
-                <List className="filter__location">
-                  {data[5]?.subcategories?.map((item) => {
-                    return (
-                      <ListItemButton
-                        key={item.id}
-                        className={
-                          item.id === selected ? "location_active" : ""
-                        }
-                        selected={item.id === selected}
-                        onClick={(event) => setSelected(item.id)}
-                      >
-                        <ListItemText primary={item.name} />
-                      </ListItemButton>
-                    );
-                  })}
-                </List>
-              </BasicMenu>
-              <Button
-                type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  submit(values);
+        <form className="filter" onSubmit={formik.handleSubmit}>
+          <BasicMenu label="profile details" count={count.age + count.gender}>
+            <SelectField
+              options={data[0].subcategories}
+              title="Gender"
+              name="gender"
+              value={formik.values.gender}
+              setCount={setCount}
+              onChange={formik.setFieldValue}
+            />
+            <SelectField
+              options={data[1].subcategories}
+              title="Age"
+              name="age"
+              value={formik.values.age}
+              setCount={setCount}
+              onChange={formik.setFieldValue}
+            />
+          </BasicMenu>
+          <BasicMenu label="Price" count={count.min_price + count.max_price}>
+            <div className="filter__price">
+              <TextField
+                id="standard-basic"
+                size="small"
+                value={formik.values.min_price}
+                label="min price"
+                name="min_price"
+                variant="outlined"
+                sx={{ width: "120px" }}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  formik.setFieldValue("min_price", event.target.value);
+                  setCount((prevState: any) => ({
+                    ...prevState,
+                    min_price: formik.values.min_price ? 1 : 0,
+                  }));
                 }}
-              >
-                Submit
-              </Button>
-            </form>
-          )}
-        </Formik>
+              />
+              <TextField
+                id="standard-basic"
+                size="small"
+                label="max price"
+                value={formik.values.max_price}
+                name="max_price"
+                variant="outlined"
+                sx={{ width: "120px" }}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  formik.setFieldValue("max_price", event.target.value);
+                  setCount((prevState: any) => ({
+                    ...prevState,
+                    max_price: formik.values.max_price ? 1 : 0,
+                  }));
+                }}
+              />
+            </div>
+          </BasicMenu>
+          <BasicMenu label="duration" count={count.duration}>
+            <SelectField
+              options={data[2]?.subcategories || []}
+              title="duration"
+              name="duration"
+              value={formik.values.duration}
+              setCount={setCount}
+              onChange={formik.setFieldValue}
+            />
+          </BasicMenu>
+          <BasicMenu
+            label="listing details"
+            count={count.layout + count.amenities}
+          >
+            <SelectField
+              options={data[3]?.subcategories || []}
+              title="LAYOUT"
+              name="layout"
+              value={formik.values.layout}
+              setCount={setCount}
+              onChange={formik.setFieldValue}
+            />
+            <SelectField
+              options={data[4]?.subcategories || []}
+              title="AMENITIES"
+              name="amenities"
+              value={formik.amenities}
+              setCount={setCount}
+              onChange={formik.setFieldValue}
+            />
+          </BasicMenu>
+          <BasicMenu label="location" count={count.location}>
+            <List className="filter__location">
+              {data[5]?.subcategories?.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    className={item.id === selected ? "location_active" : ""}
+                    selected={item.id === selected}
+                    onClick={(event) => {
+                      setSelected(item.id);
+                      setCount({ ...count, location: selected ? 1 : 0 });
+                    }}
+                  >
+                    <ListItemText primary={item.name} />
+                  </ListItemButton>
+                );
+              })}
+            </List>
+          </BasicMenu>
+        </form>
       </div>
     </div>
   );

@@ -1,14 +1,25 @@
 import { useFormik } from "formik";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
-import BackButton from "../../../../app/components/BackButton";
+import BackButton from "src/app/components/BackButton";
 import "./index.scss";
-import { Loader } from "../../../../app/components/Loader";
-import ImageAction from "../../../../app/components/ImageAction";
-import React from "react";
+import { Loader } from "src/app/components/Loader";
+import ImageAction from "src/app/components/ImageAction";
+import React, { useEffect, useState } from "react";
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { amenities, city, duration, layout } from "src/shared/filter";
+import { MapContent } from "src/app/components/Map";
 
 export const RoomAddPost = ({
   create,
@@ -21,6 +32,7 @@ export const RoomAddPost = ({
 }) => {
   const [files, setFiles] = React.useState<any>([]);
   const filesRef = React.useRef<any>(null);
+  const [currentImg, setCurrentImg] = useState();
 
   const validate = (values: any) => {
     const errors: any = {
@@ -37,7 +49,6 @@ export const RoomAddPost = ({
   });
 
   const addImages = (e: any) => {
-    //const selectedFIles: string[] = [];
     const targetFiles = e.target.files;
     const promise = new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -50,7 +61,12 @@ export const RoomAddPost = ({
       files.push(res);
       setFiles([...files]);
 
-      formik.setFieldValue("image", [...files]);
+      const formData = new FormData();
+
+      const blob = new Blob([res as any], { type: "image/png" });
+      formData.append("images", blob);
+      const prevFiles = formik.values.image;
+      formik.setFieldValue("image", [...prevFiles, formData]);
     });
   };
 
@@ -64,191 +80,194 @@ export const RoomAddPost = ({
     formik.setFieldValue("image", [...files]);
   };
 
+  useEffect(() => {
+    console.log("here", formik.values);
+  }, [formik.values]);
+
   return (
     <div className="wrapper addPost">
       <BackButton name="home" />
       <p className="page-title">Add post</p>
       <form className="add-post">
-        <FormControl
-          sx={{ width: { md: 500, s: 500, xs: "95%" } }}
-          size="small"
-        >
-          <label>City</label>
-          <Select
-            placeholder="Add city"
-            sx={{
-              background: "#FFFFFF",
-              border: "1px solid #D9D9D9",
-              color: "#808494",
-              borderRadius: "6px",
-            }}
-            id="city"
-            error={!!formik.errors.city} // @ts-ignore
-            helpertext={formik.errors.city}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.city}
-          >
-            <MenuItem value={1}>Almaty</MenuItem>
-            <MenuItem value={2}>Astana</MenuItem>
-            <MenuItem value={3}>Shymkent</MenuItem>
-            <MenuItem value={4}>Abayskaya area</MenuItem>
-            <MenuItem value={5}>Aktubinskaya area</MenuItem>
-            <MenuItem value={6}>Abayskaya area</MenuItem>
-            <MenuItem value={7}>Akmolinskaya area</MenuItem>
-            <MenuItem value={8}>Aktubinskaya area</MenuItem>
-          </Select>
-        </FormControl>
-
         <div className="add-post-container">
+          <FormControl fullWidth size="small">
+            <label>Location</label>
+            <Select
+              variant="outlined"
+              sx={{
+                background: "#FFFFFF",
+                color: "#808494",
+              }}
+              id="location"
+              name="location"
+              error={!!formik.errors.city} // @ts-ignore
+              helpertext={formik.errors.city}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.city}
+            >
+              <MenuItem value="">None</MenuItem>
+              {city.map((item: any) => {
+                return (
+                  <MenuItem value={item.name} key={item.id}>
+                    {item.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
           <FormControl>
             <label htmlFor="street">Street or microdistrict</label>
-            <OutlinedInput
+            <TextField
               id="street"
               name="street"
               error={!!formik.errors.street} // @ts-ignore
               helpertext={formik.errors.street}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               value={formik.values.street}
               placeholder="ex. Baitursynova"
+              variant="outlined"
+              size="small"
+              fullWidth
               sx={{
                 background: "#FFFFFF",
-                border: "1px solid #D9D9D9",
                 color: "#808494",
-                borderRadius: "6px",
-                height: 40,
               }}
             />
           </FormControl>
-          <FormControl>
-            <label htmlFor="home">№ of house</label>
-            <OutlinedInput
-              id="home"
-              name="home"
-              error={!!formik.errors.home} // @ts-ignore
-              helpertext={formik.errors.home}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="ex. 5"
-              sx={{
-                background: "#FFFFFF",
-                border: "1px solid #D9D9D9",
-                color: "#808494",
-                borderRadius: "6px",
-                height: 40,
-              }}
-            />
-          </FormControl>
+        </div>
+        <div className="flex">
+          <div className="add-post-container">
+            <FormControl>
+              <label htmlFor="street">Floor</label>
+              <TextField
+                id="street"
+                name="street"
+                error={!!formik.errors.street} // @ts-ignore
+                helpertext={formik.errors.street}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="ex. 5"
+                variant="outlined"
+                size="small"
+                fullWidth
+                sx={{
+                  background: "#FFFFFF",
+                  color: "#808494",
+                }}
+              />
+            </FormControl>
+            <FormControl>
+              <label htmlFor="home">Square area, m2</label>
+              <TextField
+                id="home"
+                name="home"
+                error={!!formik.errors.home} // @ts-ignore
+                helpertext={formik.errors.home}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="ex. 5"
+                variant="outlined"
+                size="small"
+                fullWidth
+                sx={{
+                  background: "#FFFFFF",
+                  color: "#808494",
+                }}
+              />
+            </FormControl>
+          </div>
+          <div className="add-post-container">
+            <FormControl>
+              <label htmlFor="room_nums">Number of Rooms</label>
+              <TextField
+                id="room_nums"
+                placeholder="ex. 2"
+                name="room_nums"
+                variant="outlined"
+                size="small"
+                fullWidth
+                sx={{
+                  background: "#FFFFFF",
+                  color: "#808494",
+                }}
+                error={!!formik.errors.room_nums} // @ts-ignore
+                helpertext={formik.errors.room_nums}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </FormControl>
+            <FormControl>
+              <label htmlFor="price">Price</label>
+              <TextField
+                id="price"
+                name="price"
+                error={!!formik.errors.price} // @ts-ignore
+                helpertext={formik.errors.price}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter the price"
+                variant="outlined"
+                size="small"
+                fullWidth
+                sx={{
+                  background: "#FFFFFF",
+                  color: "#808494",
+                }}
+              />
+            </FormControl>
+          </div>
         </div>
 
         <div>
           <p className="form-title">
             Be sure to specify the location on the map
           </p>
-          <div className="form-map"></div>
+          <div className="form-map">
+            <MapContent
+              submit={formik.setFieldValue}
+              coors={formik.values.coordinates}
+            />
+          </div>
         </div>
 
         <div>
           <p className="form-title">Available date and duration</p>
-          <div className="form-radio">
-            <div>
-              <input type="radio" id="date1" name="date" value="flexible" />
-              <label htmlFor="date1">
-                <p className="radio-title">Flexible</p>
-                <p className="radio-desc">
-                  Keep the move-out date open for now
-                </p>
-              </label>
-            </div>
-            <div>
-              <input type="radio" id="date2" name="date" value="fixed" />
-              <label htmlFor="date2">
-                <p className="radio-title">Fixed</p>
-                <p className="radio-desc">
-                  Only available between specific dates
-                </p>
-              </label>
-            </div>
-            <div>
-              <input type="radio" id="date3" name="date" value="month" />
-              <label htmlFor="date3">
-                <p className="radio-title">12 months</p>
-                <p className="radio-desc">An annual commitment is required</p>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <p className="form-title">Layout</p>
-          <div className="add-post-container">
-            <FormControl>
-              <label htmlFor="bedroom_nums">Total Bedrooms</label>
-              <OutlinedInput
-                id="bedroom_nums"
-                placeholder="ex. 1"
-                name="bedroom_nums"
-                error={!!formik.errors.bedroom_nums} // @ts-ignore
-                helpertext={formik.errors.bedroom_nums}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                sx={{
-                  background: "#FFFFFF",
-                  border: "1px solid #D9D9D9",
-                  color: "#808494",
-                  borderRadius: "6px",
-                  height: 40,
-                  width: "100%",
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <label htmlFor="home">Total Bathrooms</label>
-              <OutlinedInput
-                id="home"
-                placeholder="ex. 2"
-                sx={{
-                  background: "#FFFFFF",
-                  border: "1px solid #D9D9D9",
-                  color: "#808494",
-                  borderRadius: "6px",
-                  height: 40,
-                  width: "100%",
-                }}
-              />
-            </FormControl>
-          </div>
-          <div className="add-post-container">
-            <FormControl>
-              <label htmlFor="street">Floor</label>
-              <OutlinedInput
-                id="street"
-                placeholder="ex. 3"
-                sx={{
-                  background: "#FFFFFF",
-                  border: "1px solid #D9D9D9",
-                  color: "#808494",
-                  borderRadius: "6px",
-                  height: 40,
-                  width: "100%",
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <label htmlFor="home">Square area, m2</label>
-              <OutlinedInput
-                id="home"
-                placeholder="ex. 50"
-                sx={{
-                  background: "#FFFFFF",
-                  border: "1px solid #D9D9D9",
-                  color: "#808494",
-                  borderRadius: "6px",
-                  height: 40,
-                  width: "100%",
-                }}
-              />
+          <div>
+            <FormControl className="form-radio">
+              <RadioGroup
+                aria-labelledby="duration of rent rooms"
+                defaultValue=""
+                name="duration"
+                className="form-radio__group"
+              >
+                {duration.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className={`form-radio__item ${
+                        formik.values.duration === item.name &&
+                        "form-radio__item__active"
+                      }`}
+                      onClick={() => {
+                        formik.setFieldValue(
+                          "duration",
+                          formik.values.duration === item.name ? "" : item.name
+                        );
+                      }}
+                    >
+                      <FormControlLabel
+                        style={{ height: "20px" }}
+                        value={item.name}
+                        control={<Radio />}
+                        label={item.name}
+                        checked={formik.values.duration === item.name}
+                      />
+                      <p className="form-radio__helper">{item.text}</p>
+                    </div>
+                  );
+                })}
+              </RadioGroup>
             </FormControl>
           </div>
         </div>
@@ -280,114 +299,102 @@ export const RoomAddPost = ({
         <div>
           <p className="form-title">About home</p>
           <textarea
-            name="home-desc"
-            id="home-desc"
+            name="about_home"
+            placeholder="About..."
+            id="about_home"
             cols={30}
             rows={5}
+            onChange={(e) => {
+              formik.setFieldValue("about_home", e.target.value);
+            }}
           ></textarea>
         </div>
         <div>
           <p className="form-title">About roommates</p>
           <textarea
-            name="roommate-desc"
-            id="roommate-desc"
+            name="about_roommate"
+            id="about_roommate"
+            placeholder="About..."
             cols={30}
             rows={5}
+            onChange={(e) => {
+              formik.setFieldValue("about_roommate", e.target.value);
+            }}
           ></textarea>
         </div>
         <div>
           <p className="form-title">About renters</p>
           <textarea
-            name="renter-desc"
-            id="roommate-desc"
+            name="about_renter"
+            id="about_renter"
+            placeholder="About..."
             cols={30}
             rows={5}
+            onChange={(e) => {
+              formik.setFieldValue("about_renter", e.target.value);
+            }}
           ></textarea>
         </div>
-
         <div>
           <p className="form-title">Layout</p>
-          <div className="form-radio form-layout">
-            <div>
-              <input type="radio" id="entire" name="layout" value="entire" />
-              <label htmlFor="entire">Entire Place</label>
-            </div>
-            <div>
-              <input type="radio" id="private" name="layout" value="private" />
-              <label htmlFor="private">Private Room</label>
-            </div>
-            <div>
-              <input type="radio" id="shared" name="layout" value="shared" />
-              <label htmlFor="shared">Shared Room</label>
-            </div>
-          </div>
+          <FormControl className="form-radio">
+            <RadioGroup
+              aria-labelledby="duration of rent rooms"
+              defaultValue=""
+              name="layout"
+              className="form-amenities"
+            >
+              {layout.map((item) => {
+                return (
+                  <FormControlLabel
+                    key={item.id}
+                    value={item.name}
+                    control={<Radio />}
+                    label={item.name}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </FormControl>
         </div>
 
         <div>
           <p className="form-title">Amenities</p>
-          <div className="form-radio form-layout form-amenities">
-            <div>
-              <input type="checkbox" id="wifi" name="amenities" value="wifi" />
-              <label htmlFor="wifi">Wifi included</label>
-            </div>
-            <div>
-              <input type="checkbox" id="tv" name="amenitie" value="tv" />
-              <label htmlFor="tv">TV</label>
-            </div>
-            <div>
-              <input type="checkbox" id="air" name="amenitie" value="air" />
-              <label htmlFor="air">Air Conditioning</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="furnished"
-                name="amenitie"
-                value="furnished"
-              />
-              <label htmlFor="furnished">Furnished</label>
-            </div>
-            <div>
-              <input type="checkbox" id="pets" name="amenitie" value="pets" />
-              <label htmlFor="pets">Pets welcome</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="elevator"
-                name="amenitie"
-                value="elevator"
-              />
-              <label htmlFor="elevator">Elevator</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="parking"
-                name="amenitie"
-                value="parking"
-              />
-              <label htmlFor="parking">Parking</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="security"
-                name="amenitie"
-                value="security"
-              />
-              <label htmlFor="security">Security</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="camera"
-                name="amenitie"
-                value="camera"
-              />
-              <label htmlFor="camera">Security camera</label>
-            </div>
-          </div>
+          <FormGroup className="form-amenities">
+            {amenities.map((option) => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      defaultChecked
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<CheckCircleOutlineIcon color="primary" />}
+                    />
+                  }
+                  key={option.key}
+                  checked={formik.values.amenities.includes(option.key)}
+                  onChange={(e) => {
+                    if (formik.values.amenities.includes(option.key)) {
+                      const newArr = formik.values.amenities.filter(
+                        (key: string) => key !== option.key
+                      );
+                      formik.setFieldValue("amenities", newArr);
+                      console.log("here 1", formik.values);
+                    } else {
+                      const newArr = [...formik.values.amenities, option.key];
+                      let newValue = formik.values.amenities.map(
+                        (i: string) => i
+                      );
+                      newValue.push(option.key);
+                      formik.setFieldValue("amenities", newArr);
+                      console.log("here 2", formik.values);
+                    }
+                  }}
+                  label={option.name}
+                />
+              );
+            })}
+          </FormGroup>
         </div>
         <Button
           type="submit"

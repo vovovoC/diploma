@@ -35,8 +35,8 @@ interface LoginData {
     id: number;
 }
 export const login = ( params: Login ):Promise<LoginData> => axiosInstance.post(`${NEW_API_URL}/users/login`, params);
-export const register = ( params: Register ) => axiosInstance.post(`${NEW_API_URL}/users/register`, params);
-export const resetPassword = ( params: ResetPassword ) => axiosInstance.post(`${NEW_API_URL}/users/reset-pass`, params);
+export const register = ( params: Register ):Promise<LoginData> => axiosInstance.post(`${NEW_API_URL}/users/register`, params);
+export const resetPassword = ( params: ResetPassword ):Promise<LoginData>  => axiosInstance.post(`${NEW_API_URL}/users/reset-pass`, params);
 export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`${NEW_API_URL}/users/delete_user`, params);
 
 // accomodation

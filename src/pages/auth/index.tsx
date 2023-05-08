@@ -1,7 +1,7 @@
-import logo from "../../app/assets/icons/logo-green.svg";
-import img1 from "../../app/assets/images/registration2.svg";
-import img2 from "../../app/assets/images/registration1.svg";
-import img3 from "../../app/assets/images/registration3.svg";
+import logo from "src/app/assets/icons/logo-green.svg";
+import img1 from "src/app/assets/images/registration2.svg";
+import img2 from "src/app/assets/images/registration1.svg";
+import img3 from "src/app/assets/images/registration3.svg";
 import "./index.scss";
 
 import { CSSTransition } from "react-transition-group";
@@ -10,10 +10,7 @@ import {
   LoginContent,
   RegisterContent,
   ResetPasswordContent,
-} from "../../features/auth";
-import { Notification } from "../../app/components/Notification";
-
-type ntfType = { id: string; type: string; title: string; msg: string };
+} from "src/features/auth";
 
 export const AuthPage = ({ type }: { type: string }) => {
   const [showFront, setShowFront] = useState<any>({
@@ -21,7 +18,6 @@ export const AuthPage = ({ type }: { type: string }) => {
     register: true,
     reset: false,
   });
-  const [ntfList, setNtfList] = useState<ntfType[]>([]);
 
   useEffect(() => {
     setShowFront({
@@ -31,9 +27,6 @@ export const AuthPage = ({ type }: { type: string }) => {
     });
   }, [type]);
 
-  function showNtf(arr: any) {
-    setNtfList(arr);
-  }
   return (
     <div className="register">
       <img src={logo} alt="" className="logo" />
@@ -44,24 +37,23 @@ export const AuthPage = ({ type }: { type: string }) => {
       <div className="bachground-img-mpobile">
         <img src={img3} alt="" className="img3" />
       </div>
-      <Notification list={ntfList} showNtf={showNtf} />
       <div className="flippable-card-container">
         <CSSTransition in={showFront.login} timeout={500} classNames="flip">
           <div className="card">
             <div
               className={showFront.register ? "card-back" : "card-back notshow"}
             >
-              <RegisterContent ntfList={ntfList} showNtf={showNtf} />
+              <RegisterContent />
             </div>
             <div
               className={showFront.login ? "card-front" : "card-front  notshow"}
             >
-              <LoginContent ntfList={ntfList} showNtf={showNtf} />
+              <LoginContent />
             </div>
             <div
               className={showFront.reset ? "card-back" : "card-back notshow"}
             >
-              <ResetPasswordContent ntfList={ntfList} showNtf={showNtf} />
+              <ResetPasswordContent />
             </div>
           </div>
         </CSSTransition>

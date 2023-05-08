@@ -7,7 +7,7 @@ function Layout({ children, theme }: { children: any; theme: any }) {
   return (
     <ThemeProvider theme={theme}>
       <div style={{ position: "relative" }}>
-        <Header userName={localStorage.getItem("userName") || "user"} />
+        <Header userName={localStorage.getItem("userName") || ""} />
         <div>{children}</div>
         <Footer />
       </div>

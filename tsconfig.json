@@ -13,14 +13,19 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "module": "commonjs",
+    "paths": {
+      "@shared/*": ["src/shared/*"],
+      "@components/*": ["src/app/components/*"]
+    }
   },
   "include": [
     "src"
-  ]
+, "webpack.config.ts"  ]
 }

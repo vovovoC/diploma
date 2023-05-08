@@ -15,16 +15,17 @@ interface Props {
 
 export const RoomAddPostContent = ({ isEdit }: Props) => {
   const [initialValues, setValues] = useState<any>({
-    author: null,
-    title: null,
-    desc: null,
     price: null,
-    location: null,
+    location: "",
+    street: "",
+    duration: null,
     image: [],
-    user_id: null,
-    subcategory_idv: null,
-    bedroom_nums: null,
-    rental_period: null,
+    room_nums: null,
+    amenities: [],
+    coordinates: [],
+    about_roommate: "",
+    about_renter: "",
+    about_home: "",
   });
   const params = useParams();
   const {
@@ -50,7 +51,8 @@ export const RoomAddPostContent = ({ isEdit }: Props) => {
   );
 
   const create = (values: any) => {
-    mutate(values);
+    const user_id = localStorage.getItem("user_id");
+    mutate({ ...values, user_id });
   };
 
   if (isError || errorPost) {

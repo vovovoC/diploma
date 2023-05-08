@@ -10,6 +10,7 @@ interface Option {
 }
 interface Props {
   onChange: (...args: any) => void;
+  setCount: (...args: any) => void;
   handleBlur: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   name: string;
   options: Option[];
@@ -18,6 +19,7 @@ interface Props {
 }
 export default function SelectField({
   onChange,
+  setCount,
   title,
   name,
   options,
@@ -25,7 +27,7 @@ export default function SelectField({
 }: Props) {
   return (
     <div className="select-field">
-      <div className="select-field__title">{title}</div>
+      {title && <div className="select-field__title">{title}</div>}
       <FormGroup className="select-field__content">
         {options.map((option) => {
           return (
@@ -42,6 +44,10 @@ export default function SelectField({
               checked={value === option.id}
               onClick={() => {
                 onChange(name, option.id);
+                setCount((prevState: any) => ({
+                  ...prevState,
+                  [name]: value ? 1 : 0,
+                }));
               }}
               label={option.name}
             />
