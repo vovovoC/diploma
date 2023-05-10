@@ -1,4 +1,5 @@
 // @ts-nocheck
+import * as React from "react";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import { useStyles } from "src/app/assets/style/filter-style";
@@ -11,7 +12,11 @@ import SelectField from "src/app/components/SelectField";
 import ListItemButton from "@mui/material/ListItemButton";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
+import Backdrop from "@mui/material/Backdrop";
+import Modal from '@mui/material/Modal';
 import "src/entities/category/ui/room-category-bar/index.scss";
+
+import TuneIcon from '@mui/icons-material/Tune';
 
 interface Value {
   age: string;
@@ -68,7 +73,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const RoomCategoryBar = ({ data, submit }: Props) => {
-  const classes = useStyles();
+  const [openEditFilter, setOpenEditFilter] = React.useState(false);
+ 
+  const handleCloseEditFilter = () => {
+    setOpenEditFilter(false);
+  };
+  const handleToggleEditFilter = () => {
+    setOpenEditFilter(!openEditFilter);
+  };
+
   const [selected, setSelected] = useState(1);
   const [count, setCount] = useState({
     age: 0,
@@ -109,23 +122,148 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
 
   return (
     <div>
-      <div className="title">
+      <div className="title spaceBetween">
         <h6>Search appartment or room</h6>
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search..."
-            onChange={(e) => {
-              e.preventDefault(); // back end search - keyword
-              console.log("here", e.target.value);
-            }}
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search>
+        <div className="spaceBetween">
+          <div className="filter_icon"  onClick={handleToggleEditFilter}>
+            <TuneIcon sx={{float: "right", color: "white"}}/>
+            <p>Filters</p>
+          </div>
+          <Modal
+            open={openEditFilter}
+            onClose={handleCloseEditFilter}
+          >
+            <div className="filter_mobile" >
+              <form onSubmit={formik.handleSubmit}>
+              <SelectField
+                options={data[0].subcategories}
+                title="Gender"
+                name="gender"
+                style={{borderTopLeftRadius: 20 + "px", borderTopRightRadius: 20 + "px"}}
+                value={formik.values.gender}
+                setCount={setCount}
+                onChange={formik.setFieldValue}
+              />
+              <SelectField
+                options={data[1].subcategories}
+                title="Age"
+                name="age"
+                value={formik.values.age}
+                setCount={setCount}
+                onChange={formik.setFieldValue}
+              />
+              <div>
+                <div className="select-field__title">Price</div>
+                <div className="select-field__content">
+                  <div className="filter__price">
+                    <TextField
+                      id="standard-basic"
+                      size="small"
+                      value={formik.values.min_price}
+                      label="min price"
+                      name="min_price"
+                      variant="outlined"
+                      sx={{ width: "120px" }}
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        formik.setFieldValue("min_price", event.target.value);
+                        setCount((prevState: any) => ({
+                          ...prevState,
+                          min_price: formik.values.min_price ? 1 : 0,
+                        }));
+                      }}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      size="small"
+                      label="max price"
+                      value={formik.values.max_price}
+                      name="max_price"
+                      variant="outlined"
+                      sx={{ width: "120px" }}
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        formik.setFieldValue("max_price", event.target.value);
+                        setCount((prevState: any) => ({
+                          ...prevState,
+                          max_price: formik.values.max_price ? 1 : 0,
+                        }));
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <SelectField
+                options={data[2]?.subcategories || []}
+                title="Duration"
+                name="duration"
+                value={formik.values.duration}
+                setCount={setCount}
+                onChange={formik.setFieldValue}
+              />
+              <SelectField
+               options={data[3]?.subcategories || []}
+               title="Layout"
+               name="layout"
+               value={formik.values.layout}
+               setCount={setCount}
+               onChange={formik.setFieldValue}
+              />
+              <SelectField
+                options={data[4]?.subcategories || []}
+                title="Amenities"
+                name="amenities"
+                value={formik.amenities}
+                setCount={setCount}
+                onChange={formik.setFieldValue}
+              />
+              <div>
+                <div className="select-field__title">Location</div>
+                <div className="select-field__content">
+                <BasicMenu label="location" count={count.location}>
+                  <List className="filter__location">
+                    {data[5]?.subcategories?.map((item) => {
+                      return (
+                        <ListItemButton
+                          key={item.id}
+                          className={item.id === selected ? "location_active" : ""}
+                          selected={item.id === selected}
+                          onClick={(event) => {
+                            setSelected(item.id);
+                            setCount({ ...count, location: selected ? 1 : 0 });
+                          }}
+                        >
+                          <ListItemText primary={item.name} />
+                        </ListItemButton>
+                      );
+                    })}
+                  </List>
+                </BasicMenu>
+                </div>
+              </div>
+              </form>
+            </div>
+          </Modal>
+          {/* <Backdrop
+            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={openEditFilter}
+          >
+            
+          </Backdrop> */}
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search..."
+              onChange={(e) => {
+                e.preventDefault(); // back end search - keyword
+                console.log("here", e.target.value);
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+        </div>
       </div>
-      <div className="row m-1">
+      <div className="row m-1 filter_web">
         <form className="filter" onSubmit={formik.handleSubmit}>
           <BasicMenu label="profile details" count={count.age + count.gender}>
             <SelectField

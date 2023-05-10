@@ -5,6 +5,7 @@ import img3 from "src/app/assets/images/registration3.svg";
 import "./index.scss";
 
 import { CSSTransition } from "react-transition-group";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   LoginContent,
@@ -13,6 +14,7 @@ import {
 } from "src/features/auth";
 
 export const AuthPage = ({ type }: { type: string }) => {
+  const navigate = useNavigate();
   const [showFront, setShowFront] = useState<any>({
     login: true,
     register: true,
@@ -29,7 +31,7 @@ export const AuthPage = ({ type }: { type: string }) => {
 
   return (
     <div className="register">
-      <img src={logo} alt="" className="logo" />
+      <img src={logo} alt="" className="logo" onClick={() => navigate("/")}/>
       <div className="background-img">
         <img src={img1} alt="" className="img1" />
         <img src={img2} alt="" className="img2" />

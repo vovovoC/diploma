@@ -33,11 +33,12 @@
 .filter > div:not(:first-child) {
     padding-left: 12px;
 }
-
-.title{
+.spaceBetween{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.title{
     margin: 3.5rem 0 0;
 }
 .title>h6{
@@ -51,14 +52,65 @@
     background-color: #FFF;
     border-radius: 6px;
     padding: 5px;
+    margin-right: 5px;
 }
 .search:focus{
     outline: none;
     border: 2px solid #69a3f98c;
 }
+.filter_icon{
+    background-color: #564f4f;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: none;
+}
+.filter_icon:hover{
+    background-color: #423c3c;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+}
+.filter_icon>p{
+    margin: 0;
+    margin-left: 3px;
+    font-size: 16px;
+}
+.filter_mobile{
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    height: 85vh;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    animation: openFilter .5s 1 forwards;
+}
+.filter_mobile:focus{
+    outline: none !important;
+    border: none !important;
+}
+@keyframes openFilter {
+    0% {bottom: -100%;}
+    100% {bottom: 0px;}
+  }
+.filter_mobile::-webkit-scrollbar{
+    width: 0;
+}
 @media screen and (max-width: 940px){
     .title>h6{
         font-size: 3vw;
+    }
+}
+@media screen and (max-width: 750px){
+    .filter_icon{
+        display: flex;
+    }
+    .filter_web{
+        display: none;
+    }
+    .title>div{
+        margin-bottom: 1rem;
     }
 }
 @media screen and (max-width: 640px){
@@ -77,5 +129,14 @@
 @media screen and (max-width: 500px){
     .title{
         margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 480px){
+    .filter_icon>p{
+        display: none;
+    }
+    .filter_icon{
+        padding: 5px;
+        margin-right: 5px;
     }
 }

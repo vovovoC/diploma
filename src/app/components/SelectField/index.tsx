@@ -16,6 +16,7 @@ interface Props {
   options: Option[];
   title: string;
   value: string;
+  style: any;
 }
 export default function SelectField({
   onChange,
@@ -24,10 +25,11 @@ export default function SelectField({
   name,
   options,
   value,
+  style
 }: Props) {
   return (
     <div className="select-field">
-      {title && <div className="select-field__title">{title}</div>}
+      {title && <div className="select-field__title" style={style}>{title}</div>}
       <FormGroup className="select-field__content">
         {options.map((option) => {
           return (

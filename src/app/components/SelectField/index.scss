@@ -8,7 +8,7 @@
         display: flex;
         align-items: center;
         padding: 12px 14px;
-        font-family: 'Poppins';
+        font-family: 'poppins400';
         font-size: 14px;
         line-height: 20px;
         color: #8E8E8E;
@@ -44,4 +44,22 @@
 
 .css-1ofcqab-MuiPaper-root-MuiMenu-paper-MuiPopover-paper:before {
     background-color: transparent !important;
+}
+
+@media screen and (max-width: 480px){
+    .select-field {
+        &__content {
+            padding: 10px;
+        }
+        &__content > * {
+            gap: 5px;
+            padding: 4px;
+            height: auto;
+        }
+    }
+}
+@media screen and (max-width: 360px){
+    .css-ahj2mt-MuiTypography-root, .select-field__title{
+        font-size: 0.8rem !important;
+    }
 }

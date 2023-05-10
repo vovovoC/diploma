@@ -44,7 +44,7 @@ export const Post = (props: Props) => {
 
   return (
     <Card
-      sx={{ minWidth: 300, maxWidth: 345, height: 400 }}
+      sx={{ minWidth: 280, maxWidth: 345, maxHeight: 400, minHeight: 300 }}
       className="card"
       onClick={() => {
         navigate(`/posts/${item.id}`);

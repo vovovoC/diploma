@@ -1,25 +1,25 @@
 import React, { FC, ReactElement } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import playmarket from "../../assets/icons/playmarket.svg";
+import logo from "../../assets/icons/logo-green.svg";
 import "./index.scss";
 export const Footer: FC = (): ReactElement => {
   return (
     <footer>
-      <div className="container wrapper">
+      {/* <div className="container wrapper">
         <div className="content">
-          <h6>Download our app</h6>
-          <img src={playmarket} width="170" alt="playmarket" />
+          <h6><img src={logo} width="30" alt="playmarket" />onys app</h6>
         </div>
         <div className="content">
           <h6>Support</h6>
-          <p>Help center</p>
-          <p>Help center</p>
-          <p>Help center</p>
+          <p>SDU</p>
         </div>
         <div className="content">
           <h6>Company</h6>
-          <p>Blog</p>
+          <p>Blog</p> 
         </div>
+      </div> */}
+      <div className="footer">
+        <p>© Qonys, 2023</p>
       </div>
     </footer>
   );

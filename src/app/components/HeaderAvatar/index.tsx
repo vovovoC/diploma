@@ -72,6 +72,8 @@ function HeaderAvatar({ userName }: Props) {
         path = "/profile";
         break;
       case "Logout":
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("userName");
         path = "/login";
         break;
       default:
@@ -208,7 +210,7 @@ function HeaderAvatar({ userName }: Props) {
           <Tooltip title="Open settings">
             <button onClick={handleOpenUserMenu} className="avatar-btn">
               <Avatar
-                alt="user name info"
+                alt={userName}
                 sx={{ width: "32px", height: "32px" }}
                 src="/static/images/avatar/2.jpg"
               />
