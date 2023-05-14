@@ -58,7 +58,7 @@
   },
   "scripts": {
     "start": "react-scripts start --config ./webpack.config.ts",
-    "build": "webpack",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -88,9 +88,6 @@
     "ansi-html-community": "0.0.8",
     "react-hook-geolocation": "^1.1.0",
     "react-query": "^3.39.3",
-    "react-yandex-maps": "^4.6.0",
-    "webpack": "^5.82.0",
-    "webpack-cli": "^5.0.2",
-    "webpack-dev-server": "^4.13.3"
+    "react-yandex-maps": "^4.6.0"
   }
 }

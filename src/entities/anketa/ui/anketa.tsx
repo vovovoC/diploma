@@ -1,9 +1,7 @@
 import * as React from "react";
 import "./index.scss";
-import user from "../../../app/assets/images/user.png";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { CnfDelete } from "../../../app/components/CnfDelete";
 import { EditSettings } from "../../../app/components/EditSettings";
