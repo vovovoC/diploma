@@ -22,10 +22,13 @@
         width: 90vw !important;
     }
     .add-roommate-post-right{
-        padding: 20px !important;
+        padding: 0px !important;
     }
     .add-user-anketa-left-card img{
         width: 60vw !important;
+    }
+    .add-roommate-post{
+        width: 100%;
     }
     .add-roommate-post tr{
         display: flex;
@@ -33,7 +36,7 @@
     }
     .add-roommate-post th, .add-roommate-post td{
         padding: 0;
-        width: 75vw !important;
+        width: 100% !important;
     }
     .add-roommate-post td{
         margin-bottom: 5px;

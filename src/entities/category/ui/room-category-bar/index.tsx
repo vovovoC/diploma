@@ -72,7 +72,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const RoomCategoryBar = ({ data, submit }: Props) => {
+export const RoomCategoryBar = ({ data = [], submit }: Props) => {
+
   const [openEditFilter, setOpenEditFilter] = React.useState(false);
  
   const handleCloseEditFilter = () => {
@@ -117,7 +118,6 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
 
   useEffect(() => {
     formik.submitForm();
-    console.log("here", count);
   }, [formik.values]);
 
   return (
@@ -136,7 +136,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
             <div className="filter_mobile" >
               <form onSubmit={formik.handleSubmit}>
               <SelectField
-                options={data[0].subcategories}
+                options={data[0]?.subcategories || []}
                 title="Gender"
                 name="gender"
                 style={{borderTopLeftRadius: 20 + "px", borderTopRightRadius: 20 + "px"}}
@@ -145,7 +145,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
                 onChange={formik.setFieldValue}
               />
               <SelectField
-                options={data[1].subcategories}
+                options={data[1]?.subcategories || []}
                 title="Age"
                 name="age"
                 value={formik.values.age}
@@ -267,7 +267,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
         <form className="filter" onSubmit={formik.handleSubmit}>
           <BasicMenu label="profile details" count={count.age + count.gender}>
             <SelectField
-              options={data[0].subcategories}
+              options={data[0]?.subcategories || []}
               title="Gender"
               name="gender"
               value={formik.values.gender}
@@ -275,7 +275,7 @@ export const RoomCategoryBar = ({ data, submit }: Props) => {
               onChange={formik.setFieldValue}
             />
             <SelectField
-              options={data[1].subcategories}
+              options={data[1]?.subcategories || []}
               title="Age"
               name="age"
               value={formik.values.age}

@@ -223,12 +223,10 @@ export const RoomAddPost = ({
           <p className="form-title">
             Be sure to specify the location on the map
           </p>
-          <div className="form-map">
-            <MapContent
+          <MapContent
               submit={formik.setFieldValue}
               coors={formik.values.coordinates}
             />
-          </div>
         </div>
 
         <div>

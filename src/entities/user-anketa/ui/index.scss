@@ -83,7 +83,7 @@ li{
     border-left: 1px solid #BABBFF;
     border-radius: 0px 9px 9px 0px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 .user-anketa-left-card{
@@ -134,7 +134,7 @@ a{
         border-radius: 9px;
         margin: 2% auto;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     .user-anketa-left{
         border-radius: 9px 9px 0px 0px;
@@ -163,6 +163,9 @@ a{
     }
     .user-anketa-left-card>div ul{
         align-items: center;
+    }
+    .user-anketa {
+        padding: 20px;
     }
     table th{
         font-size: 12px;

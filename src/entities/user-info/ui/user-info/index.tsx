@@ -9,9 +9,11 @@ interface Props {
     nickname: string;
     password: string;
   };
+  edit: any;
+  isLoading: boolean;
 }
 
-export const UserInfo = ({ data }: Props) => {
+export const UserInfo = ({ data, edit, isLoading }: Props) => {
   return (
     <div className="user-info">
       <div className="user-data">
