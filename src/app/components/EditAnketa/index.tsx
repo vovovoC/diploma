@@ -36,7 +36,9 @@ export const EditAnketa = ({fn } : Props) => {
               <tr>
                 <th>Firstname</th>
                 <td>
-                  <OutlinedInput id="first-name" placeholder="First Name" defaultValue="Madina"  sx={{background: "#FFFFFF",border: "0px solid transparent", borderRadius: "6px", height: 30, width: "100%"}} />
+                  <OutlinedInput id="first-name" placeholder="First Name"  sx={{background: "#FFFFFF",border: "0px solid transparent", borderRadius: "6px", height: 30, width: "100%"}} onChange={(e)=>{
+                      
+                  }}/>
                 </td>
               </tr>
               <tr>

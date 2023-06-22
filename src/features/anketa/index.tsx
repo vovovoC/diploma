@@ -16,6 +16,15 @@ import {
 export const AnketaContent = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem("user_id");
+  const initialData = {
+    email: '...',
+    firstname: '...',
+    id: null,
+    username: '...',
+    nickname: '...',
+    password: '...',
+    fullname: "..."
+  }
 
   const { isLoading: isLoadingUser, data: userInfo } = useQuery(
     "USER_INFO",
@@ -66,16 +75,10 @@ export const AnketaContent = () => {
     return <Loader />;
   }
 
-  return (
-    <>
-      {data?.length > 0 && (
-        <Anketa
-          data={data?.[0]}
-          deleteData={userInfo}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
-        />
-      )}
-    </>
-  );
+  return  <Anketa
+  data={(data && data.length>0) ? data[0]:initialData}
+  deleteData={userInfo || {email:"..."}}
+  handleDelete={handleDelete}
+  handleEdit={handleEdit}
+/>
 };

@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "react-query";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { ErrorBoundary } from "../../app/components/ErrorBoundary";
 import { Loader } from "../../app/components/Loader";
@@ -7,6 +8,15 @@ import { UserInfo } from "../../entities/user-info/ui";
 import { editMyProfile, getUserInfo } from "../../shared/model";
 
 export const UserInfoContent = () => {
+  const dispatch = useDispatch()
+  const initialData = {
+    email: '...',
+    firstname: '...',
+    id: null,
+    username: '...',
+    nickname: '...',
+    password: '...',
+  }
   const userId = localStorage.getItem("user_id");
   const { isLoading, isError, data, error } = useQuery(
     "USER_INFO",
@@ -34,9 +44,5 @@ export const UserInfoContent = () => {
     return <Loader />;
   }
 
-  // @ts-ignore
-  return <UserInfo data={data[0]} edit={mutate} isLoading={isLoadingEdit} />;
+  return <UserInfo data={(data && data.length >0) ? data[0] : initialData} edit={mutate} isLoading={isLoadingEdit} />;
 };
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}
