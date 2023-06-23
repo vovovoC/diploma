@@ -11,6 +11,7 @@ import {
   RoomAddPostPage,
   RoommateAddPostPage,
   RoommateDetailPage,
+  MainPage
 } from "./pages";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -22,7 +23,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route>
-            <Route path="/" element={<FilterPage type="landlord" />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/register" element={<AuthPage type="register" />} />
             <Route path="/login" element={<AuthPage type="login" />} />
             <Route path="/resetPsw" element={<AuthPage type="resetPsw" />} />
