@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from '@mui/material/Modal';
 import "src/entities/category/ui/room-category-bar/index.scss";
+import {gender, amenities, housingCategory, city, duration, layout, age} from 'src/shared/filter'
 
 import TuneIcon from '@mui/icons-material/Tune';
 
@@ -31,6 +32,7 @@ interface Value {
 interface Props {
   data: any;
   submit: (args: Value) => void;
+  getkeyword: (args: any) => void
 }
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -72,7 +74,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const RoomCategoryBar = ({ data = [], submit }: Props) => {
+export const RoomCategoryBar = ({ data = [], submit, getkeyword }: Props) => {
 
   const [openEditFilter, setOpenEditFilter] = React.useState(false);
  
@@ -136,7 +138,7 @@ export const RoomCategoryBar = ({ data = [], submit }: Props) => {
             <div className="filter_mobile" >
               <form onSubmit={formik.handleSubmit}>
               <SelectField
-                options={data[0]?.subcategories || []}
+                options={gender}
                 title="Gender"
                 name="gender"
                 style={{borderTopLeftRadius: 20 + "px", borderTopRightRadius: 20 + "px"}}
@@ -145,7 +147,7 @@ export const RoomCategoryBar = ({ data = [], submit }: Props) => {
                 onChange={formik.setFieldValue}
               />
               <SelectField
-                options={data[1]?.subcategories || []}
+                options={age}
                 title="Age"
                 name="age"
                 value={formik.values.age}
@@ -192,7 +194,7 @@ export const RoomCategoryBar = ({ data = [], submit }: Props) => {
                 </div>
               </div>
               <SelectField
-                options={data[2]?.subcategories || []}
+                options={duration}
                 title="Duration"
                 name="duration"
                 value={formik.values.duration}
@@ -200,7 +202,7 @@ export const RoomCategoryBar = ({ data = [], submit }: Props) => {
                 onChange={formik.setFieldValue}
               />
               <SelectField
-               options={data[3]?.subcategories || []}
+               options={layout}
                title="Layout"
                name="layout"
                value={formik.values.layout}

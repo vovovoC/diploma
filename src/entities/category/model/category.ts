@@ -9,11 +9,13 @@ import {
   export const initialState: {
     data: any[]; 
     isLoading: boolean;
-    filterData: any
+    filterData: any;
+    keyword: any;
   } = {
     data: [],
     isLoading: false,
-    filterData: {}
+    filterData: {},
+    keyword: ''
   };
   
   export const categoryModel = createSlice({
@@ -29,9 +31,12 @@ import {
       SET_CATEGORY_FILTER: (state = initialState, { payload }: PayloadAction<any[]>) => {
         state.filterData = {...payload};                              
       },
+      SET_KEYWORD: (state = initialState, { payload }: PayloadAction<any[]>) => {
+        state.keyword = {...payload};                              
+      },
     },
   });
-  const { SET_CATEGORY, SET_CATEGORY_FILTER } = categoryModel.actions
+  const { SET_CATEGORY, SET_CATEGORY_FILTER, SET_KEYWORD } = categoryModel.actions
 
   export const useCategories = () =>
     useSelector(
@@ -57,6 +62,11 @@ import {
       }
     }
   
+    export const setKeyword = (params: any) => {
+      return async (dispatch: Dispatch) => {
+          dispatch(SET_KEYWORD(params))
+      }
+    }
   
     export const setCategoryList = (obj: any) => ({
       type: 'SET_CATEGORY',

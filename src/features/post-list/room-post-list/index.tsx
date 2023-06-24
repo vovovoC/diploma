@@ -8,7 +8,7 @@ import { RoomPostList } from "../../../entities/post-list/ui";
 import { getAccomodationPosts } from "../../../shared/model";
 
 export const RoomPostListContent = () => {
-  const { filterData } = useCategories();
+  const { filterData, keyword } = useCategories();
   const userId = localStorage.getItem("user_id");
 
   const [page, setPage] = useState(1);
@@ -25,7 +25,7 @@ export const RoomPostListContent = () => {
 
   useEffect(() => {
     refetch();
-  }, [filterData, refetch, page]);
+  }, [filterData, refetch, page, keyword]);
 
   if (isError) {
     return <ErrorBoundary error={error} />;

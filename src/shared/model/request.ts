@@ -1,7 +1,7 @@
 import { PostDetailData } from '../types';
 import { axiosInstance } from './instance';
 
-const NEW_API_URL = 'http://159.223.21.6';
+const NEW_API_URL = 'http://159.223.21.6:5000';
 
 
 interface Login {
@@ -40,36 +40,36 @@ export const resetPassword = ( params: ResetPassword ):Promise<LoginData>  => ax
 export const deleteUser = ( params: { user_id: number} ) => axiosInstance.post(`${NEW_API_URL}/users/delete_user`, params);
 
 // accomodation
-export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/list?${paramsToString(params)}`); // user post id
-export const getAccomodationPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get/${id}`);
+export const getAccomodationPosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/accomodation/posts?${paramsToString(params)}`); // user post id
+export const getAccomodationPostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/accomodation/posts/${id}`);
 // user acc posts
 export const getUserAccomodationPosts = (id: number, params: any) => axiosInstance.get(`${NEW_API_URL}/users/accomodation/${id}`, params);
-export const createUserAccomodationPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/create`, params);
-export const editUserAccomodationPost = (id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/accomodation/update/${id}`, params);
-export const deleteUserAccomodationPost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete/${id}`);
+export const createUserAccomodationPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/accomodation/posts/create`, params);
+export const editUserAccomodationPost = (id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/accomodation/posts/update/${id}`, params);
+export const deleteUserAccomodationPost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/accomodation/posts/delete/${id}`);
 
 
 // roommate
-export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/list?${paramsToString(params)}`);
-export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get/${id}`);
+export const getRoommatePosts = (params: any = {}) => axiosInstance.get(`${NEW_API_URL}/roommate/posts?${paramsToString(params)}`);
+export const getRoommatePostId = (id: number| string): Promise<PostDetailData[]> => axiosInstance.get(`${NEW_API_URL}/roommate/posts/${id}`);
 // user roommate posts
 export const getUserRoommatePosts = (id: number, params: any) => axiosInstance.get(`${NEW_API_URL}/users/roommate/${id}`, params);
-export const createUserRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/create`, params);
-export const editUserRoommatePost = ( id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/posts/roommate/update/${id}`, params);
-export const deleteUserRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete${id}`);
+export const createUserRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/roommate/posts/create`, params);
+export const editUserRoommatePost = ( id: number, params: any ) => axiosInstance.put(`${NEW_API_URL}/roommate/posts/update/${id}`, params);
+export const deleteUserRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/roommate/posts/delete${id}`);
 
 // fav roommate posts
-export const getFavRoommatePosts = (user_id: number | string, params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/roommate/get_favourites/${user_id}`, params);
-export const addFavRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/roommate/add_to_favourite`, params);
-export const deleteFavRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/posts/roommate/delete_favourite/${id}`);
+export const getFavRoommatePosts = (user_id: number | string, params: any = {}) => axiosInstance.get(`${NEW_API_URL}/roommate/favourites/${user_id}`, params);
+export const addFavRoommatePost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/roommate/favourites/add`, params);
+export const deleteFavRoommatePost = ( id: number ) => axiosInstance.delete(`${NEW_API_URL}/roommate/favourites/delete/${id}`);
 
 // fav acc posts
-export const getFavRoomPosts = (user_id: number | string,params: any = {}) => axiosInstance.get(`${NEW_API_URL}/posts/accomodation/get_favourites/${user_id}`, params);
-export const addFavRoomPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/posts/accomodation/add_to_favourite`, params);
-export const deleteRoomFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/posts/accomodation/delete_favourite`, params);
+export const getFavRoomPosts = (user_id: number | string,params: any = {}) => axiosInstance.get(`${NEW_API_URL}/accomodation/favourites/${user_id}`, params);
+export const addFavRoomPost = ( params: any ) => axiosInstance.post(`${NEW_API_URL}/accomodation/favourites/add`, params);
+export const deleteRoomFavPost = ( params: any ) => axiosInstance.delete(`${NEW_API_URL}/accomodation/posts/delete_favourite`, params);
 
-export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/posts/categories`);
-export const getUserInfo = (id: number | string):Promise<any> => axiosInstance.get(`${NEW_API_URL}/users/get/${id}`);
+export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/accomodation/categories`);
+export const getUserInfo = (id: number | string):Promise<any> => axiosInstance.get(`${NEW_API_URL}/users/user/${id}`);
 export const editMyProfile = (params: any) => axiosInstance.post(`${NEW_API_URL}/edit_profile`, params);
-export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/get_form/${id}`);
-export const editAnketa = (params: any) => axiosInstance.post(`${NEW_API_URL}/posts/categories`, params);
+export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/form/${id}`);
+export const editAnketa = (params: any) => axiosInstance.post(`${NEW_API_URL}/accomodation/categories`, params);

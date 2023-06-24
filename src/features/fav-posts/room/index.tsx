@@ -10,7 +10,7 @@ export const FavRoomListContent = () => {
   const [page, setPage] = useState(1);
   const userId = localStorage.getItem("user_id");
   const { isLoading, isError, data, refetch, error } = useQuery(
-    "FAV_ROOMMATE_POST_LIST",
+    "FAV_ROOM_POST_LIST",
     async () => await getFavRoomPosts(userId, { page, limit: 10 })
   );
 
