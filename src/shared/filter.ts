@@ -4,6 +4,11 @@ export const gender = [
     {id: 1, name: 'Male'},
     {id: 2, name: 'Female'}
 ];
+export const age = [
+    {id: 0, name: 'Not binary'},
+    {id: 1, name: 'Male'},
+    {id: 2, name: 'Female'}
+];
 export const amenities = [
     {name: 'Private bath', key: 'bathroom' },
     {name: 'Free parking', key: 'free_parking'  },
