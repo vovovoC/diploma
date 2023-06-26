@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import { useStyles } from "src/app/assets/style/filter-style";
@@ -121,6 +122,8 @@ export const RoomCategoryBar = ({ data = [], submit, getkeyword }: Props) => {
   useEffect(() => {
     formik.submitForm();
   }, [formik.values]);
+
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -259,6 +262,7 @@ export const RoomCategoryBar = ({ data = [], submit, getkeyword }: Props) => {
               onChange={(e) => {
                 e.preventDefault(); // back end search - keyword
                 console.log("here", e.target.value);
+                dispatch()
               }}
               inputProps={{ "aria-label": "search" }}
             />

@@ -19,7 +19,7 @@ interface Value {
 
 export const RoommateCategoryContent = () => {
   const { isLoading, isError, data, error } = useQuery(
-    "CATEGORIES",
+    "CATEGORIES_ROMMATE",
     async () => await getCategories()
   );
 
@@ -29,6 +29,9 @@ export const RoommateCategoryContent = () => {
     dispatch(setCategoryFilter(values));
   };
 
+  const getKeyword = (val: string) => {
+
+  }
   if (isError) {
     return <ErrorBoundary error={error} />;
   }
@@ -36,5 +39,5 @@ export const RoommateCategoryContent = () => {
     return <Loader />;
   }
 
-  return <RoommateCategoryBar data={data} submit={handleSubmit} />;
+  return <RoommateCategoryBar data={data} submit={handleSubmit} getkeyword={getKeyword}/>;
 };

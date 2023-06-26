@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { RoommatePostList } from "src/entities/post-list/ui";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
 import { Loader } from "../../../app/components/Loader";
 import { FavPostList } from "../../../entities/fav-posts/ui";
@@ -25,5 +26,5 @@ export const FavRoommateListContent = () => {
     return <Loader />;
   }
 
-  return <> {data && <FavPostList setPage={setPage} data={data} />} </>;
+  return <> {data && <RoommatePostList setPage={setPage} data={data} />} </>;
 };

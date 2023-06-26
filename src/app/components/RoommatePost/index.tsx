@@ -14,20 +14,7 @@ import { addFavRoommatePostList } from "../../../entities/fav-posts/model/fav-po
 import { useState } from "react";
 
 interface Props {
-  item: {
-    city: string;
-    location: string;
-    description: string;
-    id: string;
-    category: number;
-    price: number;
-    image: string;
-    amenities: string[];
-    duraction: string;
-    rooms: number;
-    gender: number;
-    verified: boolean;
-  };
+  item: any;
   fn: () => void;
 }
 
@@ -46,11 +33,18 @@ export const RoommatePost = (props: Props) => {
       className="card"
       onClick={() => fn()}
     >
-      <CardMedia
+      {
+        Array.isArray(item.image) ? <CardMedia
         sx={{ height: 200, borderRadius: "6px" }}
         title="User Image"
         image={item.image?.length > 0 ? getImage(item.image[0]) : defaultImage}
+      />:
+      <CardMedia
+        sx={{ height: 200, borderRadius: "6px" }}
+        title="User Image"
+        image={getImage(item.image)}
       />
+      }
       <CardContent sx={{ m: "5px 10px 0px 30px" }}>
         <Grid container spacing={2}>
           <Grid
@@ -70,7 +64,7 @@ export const RoommatePost = (props: Props) => {
                 color: "#000000",
               }}
             >
-              Jasmina, 19
+              {item.firstname} {item.lastname}, {item.age}
             </Typography>
             <CardActions>
               <IconButton

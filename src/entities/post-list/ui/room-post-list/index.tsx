@@ -36,7 +36,8 @@ export const RoomPostList = ({ data, setPage , type }: Props) => {
           count={data?.lastPage || 1}
           color="primary"
           sx={{ m: "2rem auto 3rem" }}
-          onChange={(_e, p) => {
+          onChange={(e, p) => {
+            e.preventDefault()
             setPage(p);
           }}
         />

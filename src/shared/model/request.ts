@@ -72,7 +72,7 @@ export const getCategories = () => axiosInstance.get(`${NEW_API_URL}/accomodatio
 export const getUserInfo = (id: number | string):Promise<any> => axiosInstance.get(`${NEW_API_URL}/users/user/${id}`);
 export const editMyProfile = (id: number|string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/form/${id}`, params);
 export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users/form/${id}`);
-export const editAnketa = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/user/${id}`, params);
+export const editAnketa = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/form/${id}`, params);
 
 export const addRating = (id: number |string, params: any) => axiosInstance.get(`${NEW_API_URL}/rate`, params);
 export const editRating = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/rate?id=${id}&rating=${params.rating}`);

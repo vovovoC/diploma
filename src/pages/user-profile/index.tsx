@@ -9,6 +9,7 @@ import {
 } from "../../features";
 import BackButton from "../../app/components/BackButton";
 
+
 const UserPostsList = () => {
   return (
     <div className="">
@@ -48,7 +49,7 @@ export const UserProfilePage = () => {
           </div>
         </div>
         <div className="userprofile-body">
-          {page === 0 ? <UserAnketaContent /> : <UserPostsList />}
+          {page === 0 ? <UserAnketaContent  /> : <UserPostsList />}
         </div>
       </div>
     </Layout>
