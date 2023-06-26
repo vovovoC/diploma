@@ -19,7 +19,7 @@ export const RegisterContent = () => {
       localStorage.setItem("user_id", `${data.id}`);
       dispatch(userInfo() as any);
       setTimeout(() => {
-        navigate("/");
+        navigate("/posts");
       }, 1000);
     },
     onError(error: any) {

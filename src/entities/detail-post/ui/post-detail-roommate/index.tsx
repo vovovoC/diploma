@@ -1,14 +1,21 @@
 import "./index.scss";
+import * as React from "react";
 import user from "../../../../app/assets/images/user1.png";
 import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Backdrop from "@mui/material/Backdrop";
+import SocialMedia from "../../../../app/components/SocialMediaShare";
 interface Props {
   data: any;
   fn: () => void;
 }
 export const RoommatePostDetail = ({ data, fn }: Props) => {
+  const [openChat, setOpenChat] = React.useState(false);
+  const handleToggleChat = () => {
+    setOpenChat(!openChat);
+  };
   return (
     <div className="user-anketa roommate-detail">
       <div className="user-anketa-right roommate-post-right">
@@ -89,10 +96,17 @@ export const RoommatePostDetail = ({ data, fn }: Props) => {
         <div className="user-anketa-left-card">
           <img src={user} alt="Author" />
           <div className="roommate-post-action">
-            <button className="post-author-chat">
+            <button className="post-author-chat" onClick={handleToggleChat}>
               <CommentIcon sx={{ color: "white", mr: "2px", width: "18px" }} />
               Start a chat
             </button>
+            <Backdrop
+              sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={openChat}
+              onClick={handleToggleChat}
+            >
+              <SocialMedia/>
+            </Backdrop>
             <IconButton
               aria-label="add to favorites"
               sx={{

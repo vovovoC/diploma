@@ -27,6 +27,9 @@ import { PostDetailData } from "../../../../shared/types";
 import { MapContent } from "../../../../app/components/Map";
 import {RoomPostListContent} from 'src/features/post-list/room-post-list/index';
 
+import * as React from "react";
+import Backdrop from "@mui/material/Backdrop";
+import SocialMedia from "../../../../app/components/SocialMediaShare";
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -77,6 +80,10 @@ const category = {
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
+  const [openChat, setOpenChat] = React.useState(false);
+  const handleToggleChat = () => {
+    setOpenChat(!openChat);
+  };
   const dispatch = useDispatch();
   const { location, address, bedroom, square, description, price, image, id } =
     data;
@@ -302,10 +309,17 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                   </div>
                 </div>
                 <div className="post-card-btns">
-                  <button className="post-author-chat">
+                  <button className="post-author-chat"  onClick={handleToggleChat}>
                     <CommentIcon sx={{ color: "white", mr: "2px" }} />
                     Start a chat
                   </button>
+                  <Backdrop
+                    sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={openChat}
+                    onClick={handleToggleChat}
+                  >
+                    <SocialMedia/>
+                  </Backdrop>
                   <button className="post-author-more">
                     <CommentIcon sx={{ color: "#5681FB", mr: "2px" }} />
                     Get more info about author
