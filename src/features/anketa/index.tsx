@@ -11,6 +11,7 @@ import {
   editAnketa,
   getAnketa,
   getUserInfo,
+  createAnketa
 } from "../../shared/model";
 
 export const AnketaContent = () => {
@@ -62,12 +63,28 @@ export const AnketaContent = () => {
     }
   );
 
+
+  const { mutate: handleCreate } = useMutation(
+    (values: any) => createAnketa(userId, values),
+    {
+      onSuccess(data) {
+        toast.success("Create successfully");
+        refetch();
+      },
+      onError(error: any) {
+        toast.error("Create not successfully");
+      },
+    }
+  );
+
   const handleDelete = () => {
     mutate();
   };
 
   const handleEditAnketa = (val: any) => {
-    handleEdit(val)
+    if(!data) {
+      handleCreate(val)
+    }else{ handleEdit(val)}
   }
 
   if (isError) {

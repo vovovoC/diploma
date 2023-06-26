@@ -50,6 +50,7 @@ body{
 .wrapper{
     width: var(--max-width);
     margin: 0 auto;
+    min-height: calc(100vh - 185px);
 }
 .center{
     display: flex;

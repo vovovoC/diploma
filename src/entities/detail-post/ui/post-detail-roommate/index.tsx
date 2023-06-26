@@ -12,12 +12,14 @@ import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Backdrop from "@mui/material/Backdrop";
 import SocialMedia from "../../../../app/components/SocialMediaShare";
+import {Rating} from 'src/app/components/Rating';
 interface Props {
   data: Record<any, any>;
   fn: () => void;
 }
 export const RoommatePostDetail = ({ data, fn }: Props) => {
   const [openChat, setOpenChat] = useState(false);
+  const [rate, setRate] = useState(4)
   const [images, setImages] = useState([])
   const dispatch = useDispatch();
   const handleToggleChat = () => {
@@ -25,6 +27,7 @@ export const RoommatePostDetail = ({ data, fn }: Props) => {
   };
   useEffect(()=>{
     setImages(data.image)
+    setRate(data.rating)
   },[data])
 
   console.log('here', data)
@@ -108,6 +111,7 @@ export const RoommatePostDetail = ({ data, fn }: Props) => {
            ?  images?.map((i: string) => <img src={`http://159.223.21.6/images/${i}`} alt="Author" key={i}/> )
            :  <img src={`http://159.223.21.6/images/${data.image}`} alt="Author" />
           }
+           <Rating onChange={setRate} max={5} initialValue={rate}/>
           <div className="roommate-post-action">
             <button className="post-author-chat" onClick={handleToggleChat}>
               <CommentIcon sx={{ color: "white", mr: "2px", width: "18px" }} />

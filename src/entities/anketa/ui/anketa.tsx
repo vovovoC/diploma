@@ -145,8 +145,10 @@ export const Anketa = ({
               <tr>
                 <th>Lifestyle</th>
                 <td className="anketa-lifestyle">
-                  <ul>
-                    <li>{data.additional}</li>
+                <ul>
+                  {
+                    data?.tags?.split(',').map((i: string)=> (<li key={i}>{i}</li>))
+                  }
                   </ul>
                 </td>
               </tr>

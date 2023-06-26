@@ -11,8 +11,6 @@ interface Props {
 }
 
 export const UserInfo = ({ data, edit, isLoading, rate, setRate }: Props) => {
-console.log(rate);
-
   return (
     <div className="user-info">
       <div className="user-data">
