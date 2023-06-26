@@ -196,12 +196,11 @@ export const EditAnketa = ({ fn, handleEditAnketa, initialValues }: Props) => {
               <td>
                 <OutlinedInput
                   id="phone"
-                  name="phone"
+                  name="phonenumber"
                   placeholder="Phone number"
-                  defaultValue="+7 707 855 2200"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.phone}
+                  value={formik.values.phonenumber}
                   sx={{
                     background: "#FFFFFF",
                     border: "0px solid transparent",

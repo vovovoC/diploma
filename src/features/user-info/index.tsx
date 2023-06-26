@@ -42,7 +42,7 @@ export const UserInfoContent = () => {
     { enabled: !!userId }
   );
 
-  const {  data: dataAnketa, } = useQuery(
+  const {  data: dataAnketa, refetch } = useQuery(
     "USER_INFO_ANKETA",
     async () => await getAnketa(Number(userId)),
     { enabled: !!userId }
@@ -85,6 +85,7 @@ export const UserInfoContent = () => {
 
   const setRate = (rating: number) => {
     mutateRating({rating});
+    refetch();
   }
 
   if (isError) {

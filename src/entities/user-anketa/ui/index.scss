@@ -199,3 +199,16 @@ a{
         padding: 6% 9%;
     }
 }
+
+.title-looking {
+    margin: 20px 0px;
+}
+
+.rating {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    div button {
+        width: fit-content;
+    }
+}
