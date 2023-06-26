@@ -7,9 +7,9 @@ function Layout({ children, theme }: { children: any; theme: any }) {
   console.log(localStorage.getItem("userName"))
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative"}}>
         <Header userName={localStorage.getItem("userName") || ""} />
-        <div>{children}</div>
+        <div style={{ minHeight: "90vh"}}>{children}</div>
         <Footer />
       </div>
     </ThemeProvider>

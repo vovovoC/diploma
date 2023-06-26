@@ -8,7 +8,7 @@ function Header({ userName }: { userName: string }) {
   const navigate = useNavigate();
   return (
     <header className="center">
-      <img src={logo} alt="logo" className="app-logo" />
+      <img src={logo} alt="logo" className="app-logo" onClick={() => navigate("/")} style={{cursor: "pointer"}}/>
       <div className="header-change-posts">
         <ChangePostsBtns />
       </div>
