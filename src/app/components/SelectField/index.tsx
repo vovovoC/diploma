@@ -27,7 +27,7 @@ export default function SelectField({
   value,
   style
 }: Props) {
-  console.log(options)
+ 
   return (
     <div className="select-field">
       {title && <div className="select-field__title" style={style}>{title}</div>}

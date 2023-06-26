@@ -1,20 +1,22 @@
-.fav-posts>.post-list{
+.fav-posts{
+    width: fit-content;
+}
+.fav-post-list{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    margin: 0 auto;
+    gap: 5px;
 }
-@media screen and (max-width: 1050px){
-    .post-list{
-        width: 90%;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media screen and (max-width: 600px){
-    .post-list{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
+// @media screen and (max-width: 1050px){
+//     .post-list{
+//         width: 90%;
+//         grid-template-columns: repeat(2, 1fr);
+//     }
+// }
+// @media screen and (max-width: 600px){
+//     .post-list{
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//     }
+// }

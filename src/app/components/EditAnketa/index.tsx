@@ -185,7 +185,6 @@ export const EditAnketa = ({ fn, handleEditAnketa, initialValues }: Props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.about}
-                  defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it"
                   placeholder="...text"
                   multiline
                   rows={4}
@@ -283,7 +282,10 @@ export const EditAnketa = ({ fn, handleEditAnketa, initialValues }: Props) => {
             <tr>
               <th></th>
               <td>
-                <button title="Edit anketa" className="save-btn">
+                <button title="Edit anketa" className="save-btn" onClick={() => {
+                  console.log('here', formik.values)
+                  handleEditAnketa(formik.values)
+                }}>
                   Save
                 </button>
               </td>

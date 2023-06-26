@@ -12,7 +12,7 @@ interface Props {
 export const FavPostList = ({ data, setPage }: Props) => {
   return (
     <div className="fav-posts">
-      <div className="post-list">
+      <div className="fav-post-list">
         {Array.isArray(data?.data) && data?.data.map((value: any) => <Post item={value} />)}
       </div>
      { data?.lastPage > 1 && <Stack spacing={2}>

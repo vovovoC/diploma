@@ -1,19 +1,22 @@
 // @ts-nocheck
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import { ErrorBoundary } from "../../app/components/ErrorBoundary";
 import { Loader } from "../../app/components/Loader";
 import { UserAnketa } from "../../entities/user-anketa";
 import { getAnketa } from "../../shared/model";
 
 export const UserAnketaContent = () => {
-  const id = localStorage.getItem("user_id");
+  const params = useParams();
+  
   const { isLoading, isError, data, error, refetch } = useQuery(
-    "ANKETA",
-    async () => await getAnketa(Number(id)),
-    { enabled: !!id }
+    "ANKETA_USER_PROFILE",
+    async () => await getAnketa(Number(params.id )),
+    { enabled: !!params.id }
   );
 
+  console.log(params.id )
   useEffect(() => {
     refetch();
   }, [refetch]);

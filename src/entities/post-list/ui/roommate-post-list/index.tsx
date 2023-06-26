@@ -6,6 +6,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { RoommatePostDetail } from "../../../../entities/detail-post/ui/post-detail-roommate";
 
 import "./index.scss";
+import { NoData } from "src/app/components/NoData";
 interface Data {
   created_date: string;
   description: string;
@@ -24,20 +25,29 @@ interface Props {
 }
 export const RoommatePostList = ({ data, setPage, open }: Props) => {
   const [openDetail, setOpenDetail] = useState(false);
+  const [current, setCurrent] = useState({})
 
-  useEffect(() => {
-    // if(openDetail){
-    //   open(data?.id)
-    // }
-  }, [openDetail, data]);
+  console.log('here', data)
   return (
     <div className="wrapper">
       <div className="post-list">
-        {Array.isArray(data?.data) &&
+        {Array.isArray(data?.data) ?
           data?.data?.map((value: any, index: number) => (
             <div key={index}>
-              <Backdrop
-                sx={{
+              <RoommatePost
+                item={value}
+                fn={() => {
+                  setOpenDetail(true);
+                  setCurrent(value);
+                }}
+              />
+            </div>
+          )) :<NoData />
+        }
+      </div>
+
+      {openDetail && <Backdrop
+        sx={{
                   zIndex: (theme) => theme.zIndex.drawer + 1,
                   backgroundColor: "rgba(217, 217, 217, 0.1);",
                   width: "100vw",
@@ -45,25 +55,15 @@ export const RoommatePostList = ({ data, setPage, open }: Props) => {
                 }}
                 open={openDetail}
               >
-                <div>
                   <RoommatePostDetail
-                    data={{}}
+                    data={current}
                     fn={() => {
                       setOpenDetail(false);
                     }}
                   />
-                </div>
-              </Backdrop>
-              <RoommatePost
-                item={value}
-                fn={() => {
-                  setOpenDetail(true);
-                }}
-              />
-            </div>
-          ))}
-      </div>
-      <Stack spacing={2}>
+              </Backdrop>}
+      {
+        data.lastPage > 1 && <Stack spacing={2}>
         <Pagination
           count={data?.lastPage || 1}
           color="primary"
@@ -73,6 +73,7 @@ export const RoommatePostList = ({ data, setPage, open }: Props) => {
           }}
         />
       </Stack>
+      }
     </div>
   );
 };

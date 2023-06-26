@@ -19,13 +19,14 @@ export const RoomPostListContent = ({type='basic'}) => {
       await getAccomodationPosts({
         ...filterData,
         page,
-        limit: 10,
+        limit: 9,
         user_id: Number(userId),
       })
   );
 
   useEffect(() => {
     refetch();
+    console.log('here', page)
   }, [filterData, refetch, page, keyword]);
 
   if (isError) {
@@ -37,7 +38,7 @@ export const RoomPostListContent = ({type='basic'}) => {
 
   return (
     <>
-    { data?.length > 0 
+    { data?.data?.length > 0 
       ? <RoomPostList data={data} setPage={setPage} type={type}/>
       : <NoData />
     }

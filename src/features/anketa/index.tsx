@@ -50,7 +50,7 @@ export const AnketaContent = () => {
   });
 
   const { mutate: handleEdit } = useMutation(
-    (values: any) => editAnketa(userId, {...userInfo, ...values}),
+    (values: any) => editAnketa(userId, values),
     {
       onSuccess(data) {
         toast.success("Edit successfully");
@@ -63,8 +63,12 @@ export const AnketaContent = () => {
   );
 
   const handleDelete = () => {
-    mutate(userId);
+    mutate();
   };
+
+  const handleEditAnketa = (val: any) => {
+    handleEdit(val)
+  }
 
   if (isError) {
     return <ErrorBoundary error={error} />;
@@ -78,6 +82,7 @@ export const AnketaContent = () => {
   deleteData={userInfo || {email:"..."}}
   handleDelete={handleDelete}
   handleEdit={handleEdit}
+  handleEditAnketa={handleEditAnketa}
   initialValues={{email: userInfo?.email, password: userInfo?.password}}
 />
 };

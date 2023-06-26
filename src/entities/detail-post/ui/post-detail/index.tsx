@@ -82,10 +82,10 @@ const category = {
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
   const [openChat, setOpenChat] = React.useState(false);
+  const dispatch = useDispatch();
   const handleToggleChat = () => {
     setOpenChat(!openChat);
   };
-  const dispatch = useDispatch();
   const { location, address, bedroom, square, description, price, image, id } =
     data;
 

@@ -176,8 +176,6 @@ export const RoomAddPost = ({
                 }}
               />
             </FormControl>
-          </div>
-          <div className="add-post-container">
             <FormControl>
               <label htmlFor="room_nums">Number of Rooms</label>
               <TextField
@@ -197,6 +195,9 @@ export const RoomAddPost = ({
                 onBlur={formik.handleBlur}
               />
             </FormControl>
+          </div>
+          <div className="add-post-container">
+   
             <FormControl>
               <label htmlFor="price">Price</label>
               <TextField
