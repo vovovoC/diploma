@@ -1,26 +1,29 @@
 import "./index.scss";
-import user from "../../../../app/assets/images/user.png";
+import {Rating} from 'src/app/components/Rating/index';
+
 interface Props {
-  data: {
-    email: string;
-    firstname: string;
-    id: number;
-    username: string;
-    nickname: string;
-    password: string;
-  };
+  data: Record<any, string| number>;
   edit: any;
   isLoading: boolean;
+  rate: number;
+  setRate: any;
 }
 
-export const UserInfo = ({ data, edit, isLoading }: Props) => {
+export const UserInfo = ({ data, edit, isLoading, rate, setRate }: Props) => {
+
   return (
     <div className="user-info">
       <div className="user-data">
-        <img src={user} alt="" className="user-img" />
+        <img
+            src={`http://159.223.21.6/images/${data.image}`}
+            alt=""
+            className="user-img"
+        />
         <div className="user-text">
-          <p className="user-name">{data.username}</p>
+          <p className="user-name">{data.fullname}</p>
           <p className="user-job">{data.email}</p>
+          <p className="user-job">{data.rating}</p>
+          <Rating onChange={setRate} max={5} initialValue={rate}/>
         </div>
       </div>
     </div>

@@ -191,7 +191,7 @@ export const Post = (props: Props) => {
               }}
             >
               <HomeIcon sx={{ color: "#5681FB", mr: "5px" }} />
-              {item.layout}Private Room
+              {item.layout}
             </Typography>
           </Grid>
         </Grid>

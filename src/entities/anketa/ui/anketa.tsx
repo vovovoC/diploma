@@ -30,6 +30,10 @@ interface Props {
   deleteData: {
     email: string;
   };
+  initialValues: {
+    email: string;
+    password: string;
+  };
   handleDelete: () => void;
   handleEdit: (values: any) => void;
 }
@@ -38,6 +42,7 @@ export const Anketa = ({
   deleteData,
   handleDelete,
   handleEdit,
+  initialValues
 }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [openEditAnketa, setOpenEditAnketa] = React.useState(false);
@@ -174,7 +179,7 @@ export const Anketa = ({
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={openEditSettings}
           >
-            <EditSettings fn={handleCloseEditSettings} edit={handleEdit} />
+            <EditSettings fn={handleCloseEditSettings} edit={handleEdit} initialValues={initialValues}/>
           </Backdrop>
           <Backdrop
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}

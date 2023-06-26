@@ -4,6 +4,7 @@ import Header from "../Header";
 import "./index.scss";
 
 function Layout({ children, theme }: { children: any; theme: any }) {
+  console.log(localStorage.getItem("userName"))
   return (
     <ThemeProvider theme={theme}>
       <div style={{ position: "relative" }}>

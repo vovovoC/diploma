@@ -17,19 +17,21 @@ interface Props {
     data: Data[];
   };
   setPage: (p: number) => {};
+  type: string
 }
-export const RoomPostList = ({ data, setPage }: Props) => {
+export const RoomPostList = ({ data, setPage , type }: Props) => {
   return (
     <div className="wrapper">
-      <div className="post-list">
-        {Array.isArray(data?.data) &&
+      <div className={type==='similar' ? 'post-similar': ""}>
+       <div className={type==='similar' ? 'post-similar__list': "post-list"}> {Array.isArray(data?.data) &&
           data?.data?.map((value: any, index: number) => (
             <div key={index}>
               <Post item={value} />
             </div>
           ))}
+       </div>
       </div>
-      <Stack spacing={2}>
+      { type==='basic' && <Stack spacing={2}>
         <Pagination
           count={data?.lastPage || 1}
           color="primary"
@@ -38,7 +40,7 @@ export const RoomPostList = ({ data, setPage }: Props) => {
             setPage(p);
           }}
         />
-      </Stack>
+      </Stack> }
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import Slider from "react-slick";
+import { useDispatch } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import copy from 'copy-to-clipboard';
+import { addFavRoomPostList } from "src/entities/fav-posts/model/fav-post";
 
 import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -22,6 +25,7 @@ import { SetStateAction, Dispatch } from "react";
 import BackButton from "../../../../app/components/BackButton";
 import { PostDetailData } from "../../../../shared/types";
 import { MapContent } from "../../../../app/components/Map";
+import {RoomPostListContent} from 'src/features/post-list/room-post-list/index';
 
 interface Props {
   open: boolean;
@@ -73,7 +77,8 @@ const category = {
 };
 
 export const PostDetail = ({ open, setOpen, data }: Props) => {
-  const { location, address, bedroom, square, description, price, image } =
+  const dispatch = useDispatch();
+  const { location, address, bedroom, square, description, price, image, id } =
     data;
 
   const getImage = (item: string) => {
@@ -94,11 +99,19 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
           <div className="post-header">
             <p className="post-location">{location}</p>
             <div className="post-btns">
-              <button>
+              <button onClick={()=> {
+                copy(window.location.href)
+              }}>
                 <LinkIcon sx={{ color: "#5D89FA", mr: "5px" }} />
                 Share
               </button>
-              <button>
+              <button onClick={(e) => {
+                  e.stopPropagation();
+                  console.log(id)
+                  dispatch(
+                    addFavRoomPostList({ post_id: Number(id) }) as any
+                  );
+                }}>
                 <FavoriteBorderIcon sx={{ color: "#5D89FA", mr: "5px" }} />
                 Favourite
               </button>
@@ -195,10 +208,10 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                       {category.layout.icon}
                       <ul>
                         <li>
-                          {data.bedroom} {`bedroom${data.bedroom > 1 && "s"}`}
+                          {data.bedroom} {`bedroom${data.bedroom > 1 ? "s" : ""}`}
                         </li>
                         <li>
-                          {data.bathroom} {`bathroom${data.bedroom > 1 && "s"}`}
+                          {data.bathroom} {`bathroom${data.bedroom > 1 ? "s" : ""}`}
                         </li>
                       </ul>
                     </div>
@@ -305,7 +318,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
       </div>
       <div className="similarListing wrapper">
         <p className="similarListing-title">Similar listing</p>
-        <div className="similarListing-container"></div>
+        <RoomPostListContent type="similar"/>
       </div>
     </div>
   );
