@@ -52,6 +52,18 @@
     padding: 64px 0;
     width: 100%;
 }
+.posts-lists{
+    width: 54.7vw;
+    overflow: hidden;
+}
+.posts-lists>p{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 @media screen and (max-width: 1040px){
     .profile-body{
         display: flex;
@@ -79,6 +91,9 @@
         justify-content: space-around;
     }
     .user-info{
+        width: 100%;
+    }
+    .posts-lists{
         width: 100%;
     }
 }

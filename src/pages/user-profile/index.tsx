@@ -12,12 +12,12 @@ import BackButton from "../../app/components/BackButton";
 
 const UserPostsList = () => {
   return (
-    <div className="">
-      <div>
+    <div className="user-post-list">
+      <div className="posts-lists">
         <p> Rooms </p>
         <UserRoomPostContent />
       </div>
-      <div>
+      <div className="posts-lists">
         <p> Roommates</p>
         <UserRoommatePostContent />
       </div>

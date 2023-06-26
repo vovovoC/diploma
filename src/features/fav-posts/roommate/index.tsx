@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { NoData } from "src/app/components/NoData";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { RoommatePostList } from "src/entities/post-list/ui";
@@ -26,5 +27,10 @@ export const FavRoommateListContent = () => {
     return <Loader />;
   }
 
-  return <> {data && <RoommatePostList setPage={setPage} data={data} />} </>;
+  return <> {
+    data?.length > 0 
+      ? <RoommatePostList setPage={setPage} data={data} />
+      : <NoData />
+    
+  } </>;
 };

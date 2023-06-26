@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { NoData } from "src/app/components/NoData";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
@@ -25,5 +26,13 @@ export const FavRoomListContent = () => {
     return <Loader />;
   }
 
-  return <> {data && <FavPostList setPage={setPage} data={data} />} </>;
+  return (
+    <> 
+    { data?.length > 0 
+      ? <FavPostList setPage={setPage} data={data} />
+      : <NoData />
+    }
+    </>
+    
+  )
 };

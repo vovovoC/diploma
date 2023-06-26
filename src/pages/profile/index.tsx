@@ -16,11 +16,11 @@ import BackButton from "../../app/components/BackButton";
 const UserPostsList = () => {
   return (
     <div className="">
-      <div>
+      <div className="posts-lists">
         <p> Rooms </p>
         <UserRoomPostContent />
       </div>
-      <div>
+      <div className="posts-lists">
         <p> Roommates</p>
         <UserRoommatePostContent />
       </div>
@@ -31,11 +31,11 @@ const UserPostsList = () => {
 const FavPostsList = () => {
   return (
     <div>
-      <div>
+      <div className="posts-lists">
         <p>Rooms</p>
         <FavRoomListContent />
       </div>
-      <div>
+      <div className="posts-lists">
         <p>Roommates</p>
         <FavRoommateListContent />
       </div>
