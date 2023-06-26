@@ -31,7 +31,7 @@ export const AuthPage = ({ type }: { type: string }) => {
 
   return (
     <div className="register">
-      <img src={logo} alt="" className="logo" onClick={() => navigate("/")}/>
+      <img src={logo} alt="" className="logo" onClick={() => navigate("/")} style={{cursor: "pointer"}}/>
       <div className="background-img">
         <img src={img1} alt="" className="img1" />
         <img src={img2} alt="" className="img2" />

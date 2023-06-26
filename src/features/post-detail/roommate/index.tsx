@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { useState } from "react";
+import { NoData } from "src/app/components/NoData";
 import { PostDetail } from "../../../entities/detail-post/ui";
 import { useQuery } from "react-query";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
@@ -25,10 +26,16 @@ export const RoommateDetailContent = () => {
     return <Loader />;
   }
   return (
-    <PostDetail
-      open={open}
-      setOpen={setOpen}
-      data={data?.length > 0 ? data[0] : {}}
-    />
+    <>
+    { data?.length > 0 
+      ? <PostDetail
+        open={open}
+        setOpen={setOpen}
+        data={data?.length > 0 ? data[0] : {}}
+      />
+      : <NoData />
+    }
+    </>
+    
   );
 };

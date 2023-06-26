@@ -66,7 +66,7 @@ function HeaderAvatar({ userName }: Props) {
     let path = "";
     switch (e) {
       case "Home":
-        path = "/";
+        path = "/posts";
         break;
       case "Profile":
         path = "/profile";
@@ -74,10 +74,10 @@ function HeaderAvatar({ userName }: Props) {
       case "Logout":
         localStorage.removeItem("user_id");
         localStorage.removeItem("userName");
-        path = "/login";
+        path = "/";
         break;
       default:
-        path = "";
+        path = "/";
     }
     navigate(path);
   };

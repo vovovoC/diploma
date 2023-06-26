@@ -67,7 +67,7 @@ export const Anketa = ({
   const handleToggleEditSettings = () => {
     setOpenEditSettings(!openEditSettings);
   };
-
+ 
   return (
     <div className="profile">
       <div className="anketa">
@@ -90,6 +90,7 @@ export const Anketa = ({
         <div className="anketa-body">
           <table>
             <tbody>
+             
               <tr>
                 <th>Name</th>
                 <td>{data.fullname}</td>

@@ -26,6 +26,7 @@ export const FavPostList = ({ data, setPage }: Props) => {
          />
        </Stack>
      }
+
     </div>
   );
 };

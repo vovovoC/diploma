@@ -1,5 +1,6 @@
 import "./index.scss";
 import {Rating} from 'src/app/components/Rating/index';
+import img from 'src/app/assets/images/default_pfp.png';
 
 interface Props {
   data: Record<any, string| number>;
@@ -14,7 +15,7 @@ export const UserInfo = ({ data, edit, isLoading, rate, setRate }: Props) => {
     <div className="user-info">
       <div className="user-data">
         <img
-            src={`http://159.223.21.6/images/${data.image}`}
+            src={ (data.image) ? `http://159.223.21.6/images/${data.image}` : img}
             alt=""
             className="user-img"
         />
