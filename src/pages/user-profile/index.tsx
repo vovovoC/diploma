@@ -48,7 +48,7 @@ export const UserProfilePage = () => {
           </div>
         </div>
         <div className="userprofile-body">
-          {page === 1 ? <UserAnketaContent /> : <UserPostsList />}
+          {page === 0 ? <UserAnketaContent /> : <UserPostsList />}
         </div>
       </div>
     </Layout>

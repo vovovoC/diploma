@@ -20,7 +20,7 @@ export const LoginContent = (props: any) => {
       dispatch(userInfo() as any);
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/posts");
       }, 1000);
     },
     onError(error: any) {
