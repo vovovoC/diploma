@@ -1,5 +1,5 @@
 import "./index.scss";
-import user from "../../../../app/assets/images/user1.png";
+import user from "src/app/assets/images/user1.png";
 import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";

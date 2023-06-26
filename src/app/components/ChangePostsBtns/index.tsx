@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import reverse_icon from "../../assets/icons/reverse.svg";
-import home_pointer_icon from "../../assets/icons/iconRoom.svg";
-import user_pointer_icon from "../../assets/icons/iconUser.svg";
+import reverse_icon from "src/app/assets/icons/reverse.svg";
+import home_pointer_icon from "src/app/assets/icons/iconRoom.svg";
+import user_pointer_icon from "src/app/assets/icons/iconUser.svg";
 import "./index.scss";
 
 function ChangePostsBtns() {

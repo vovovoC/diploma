@@ -1,7 +1,7 @@
 import "./index.scss";
-import user from "../../../app/assets/images/user1.png";
-import instagram from "../../../app/assets/icons/instagram.svg";
-import telegram from "../../../app/assets/icons/telegram.svg";
+import user from "src/app/assets/images/user1.png";
+import instagram from "src/app/assets/icons/instagram.svg";
+import telegram from "src/app/assets/icons/telegram.svg";
 import CommentIcon from "@mui/icons-material/Comment";
 
 export const UserAnketa = () => {

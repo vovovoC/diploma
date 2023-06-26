@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { NoData } from "src/app/components/NoData";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
@@ -33,7 +34,7 @@ export const UserRoomPostContent = () => {
       {data?.lastPage > 1 ? (
         <RoomPostList data={data} setPage={setPage} />
       ) : (
-        "no data"
+       <NoData />
       )}
     </>
   );

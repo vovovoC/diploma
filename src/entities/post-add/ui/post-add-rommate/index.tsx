@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useFormik } from "formik";
-import user from "../../../../app/assets/images/user1.png";
+import user from "src/app/assets/images/user1.png";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
@@ -8,10 +8,10 @@ import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 
-import BackButton from "../../../../app/components/BackButton";
+import BackButton from "src/app/components/BackButton";
 import "./index.scss";
-import { Loader } from "../../../../app/components/Loader";
-import ImageAction from "../../../../app/components/ImageAction";
+import { Loader } from "src/app/components/Loader";
+import ImageAction from "src/app/components/ImageAction";
 interface Value {
   firstname: string;
   lastname: string;

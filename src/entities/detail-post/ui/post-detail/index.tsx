@@ -20,11 +20,11 @@ import ElevatorIcon from "@mui/icons-material/Elevator";
 import CommentIcon from "@mui/icons-material/Comment";
 
 import "./index.scss";
-import profile from "../../../../app/assets/images/profile.jpg";
+import profile from "src/app/assets/images/profile.jpg";
 import { SetStateAction, Dispatch } from "react";
-import BackButton from "../../../../app/components/BackButton";
-import { PostDetailData } from "../../../../shared/types";
-import { MapContent } from "../../../../app/components/Map";
+import BackButton from "src/app/components/BackButton";
+import { PostDetailData } from "src/shared/types";
+import { MapContent } from "src/app/components/Map";
 import {RoomPostListContent} from 'src/features/post-list/room-post-list/index';
 import { useNavigate } from "react-router-dom";
 

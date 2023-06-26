@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/store/index";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./app/assets/style/index.scss";
+import "src/app/assets/style/index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
