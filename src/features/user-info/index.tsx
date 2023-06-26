@@ -1,15 +1,23 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { ErrorBoundary } from "../../app/components/ErrorBoundary";
 import { Loader } from "../../app/components/Loader";
-import { setUser } from "../../entities/auth/model/save";
+import { setUser, userInfo } from "../../entities/auth/model/save";
 import { UserInfo } from "../../entities/user-info/ui";
-import { editMyProfile, getUserInfo, editRating } from "../../shared/model";
+import { editMyProfile, getUserInfo, editRating, getAnketa } from "../../shared/model";
 
 export const UserInfoContent = () => {
   const dispatch = useDispatch()
+  const initialUserData = {
+    email: '...',
+    firstname: '...',
+    username: '...',
+    password: '...',
+    lastname: "..."
+  }
   const [initialData, setInitialDate] = useState({
     user_id: 6,
     additional: "",
@@ -33,6 +41,21 @@ export const UserInfoContent = () => {
     async () => await getUserInfo(Number(userId)),
     { enabled: !!userId }
   );
+
+  const {  data: dataAnketa, } = useQuery(
+    "USER_INFO_ANKETA",
+    async () => await getAnketa(Number(userId)),
+    { enabled: !!userId }
+  );
+
+
+  useEffect(()=> {
+  if(Array.isArray(dataAnketa)) {
+    setInitialDate({...dataAnketa[0]})
+  }
+  },[dataAnketa])
+
+  console.log(initialData)
 
   const { mutate, isLoading: isLoadingEdit } = useMutation(
     (values: any) => editMyProfile(userId, values),
@@ -71,5 +94,5 @@ export const UserInfoContent = () => {
     return <Loader />;
   }
 
-  return <UserInfo data={(data && data.length >0) ? data[0] : initialData} edit={mutate} isLoading={isLoadingEdit} rate={data?.rating || 0} setRate={setRate}/>;
+  return <UserInfo data={(data && data.length >0) ? data[0] : initialUserData} edit={mutate} isLoading={isLoadingEdit} rate={initialData?.rating || 0} setRate={setRate}/>;
 };

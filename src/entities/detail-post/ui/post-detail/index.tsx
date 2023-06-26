@@ -26,6 +26,7 @@ import BackButton from "../../../../app/components/BackButton";
 import { PostDetailData } from "../../../../shared/types";
 import { MapContent } from "../../../../app/components/Map";
 import {RoomPostListContent} from 'src/features/post-list/room-post-list/index';
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   open: boolean;
@@ -84,6 +85,7 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
   const getImage = (item: string) => {
     return `http://159.223.21.6/images/${item}`;
   };
+  const navigate = useNavigate();
 
   const defaultImage =
     "https://img.ksl.com/mx/mplace-rent.ksl.com/no-image-default.png?width=940&height=529&operation=fit";
@@ -306,7 +308,9 @@ export const PostDetail = ({ open, setOpen, data }: Props) => {
                     <CommentIcon sx={{ color: "white", mr: "2px" }} />
                     Start a chat
                   </button>
-                  <button className="post-author-more">
+                  <button className="post-author-more" onClick={()=>{
+                    navigate(`/userProfile/${data.id}`)
+                  }}>
                     <CommentIcon sx={{ color: "#5681FB", mr: "2px" }} />
                     Get more info about author
                   </button>
