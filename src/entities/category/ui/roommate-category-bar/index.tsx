@@ -1,10 +1,10 @@
 // @ts-nocheck
 import { useFormik, Formik } from "formik";
-import SelectInput from "../../../../app/components/Select";
+import SelectInput from "src/app/components/Select";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useStyles } from "../../../../app/assets/style/filter-style";
-import { styled, alpha } from '@mui/material/styles';
+import { useStyles } from "src/app/assets/style/filter-style";
+import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import "./index.scss";

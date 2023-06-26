@@ -75,4 +75,4 @@ export const getAnketa = (id: number) => axiosInstance.get(`${NEW_API_URL}/users
 export const editAnketa = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/user/${id}`, params);
 
 export const addRating = (id: number |string, params: any) => axiosInstance.get(`${NEW_API_URL}/rate`, params);
-export const editRating = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/rate`, params);
+export const editRating = (id: number| string, params: any) => axiosInstance.put(`${NEW_API_URL}/users/rate?id=${id}&rating=${params.rating}`);

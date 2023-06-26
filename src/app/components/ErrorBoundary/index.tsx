@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
 
-import logo from "../../assets/icons/logo-green.svg";
-import errorImg from "../../assets/images/404.png";
+import logo from "src/app/assets/icons/logo-green.svg";
+import errorImg from "src/app/assets/images/404.png";
 import "./index.scss";
 
 const useStyles = makeStyles({

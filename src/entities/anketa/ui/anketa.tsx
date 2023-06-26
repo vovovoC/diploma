@@ -36,13 +36,15 @@ interface Props {
   };
   handleDelete: () => void;
   handleEdit: (values: any) => void;
+  handleEditAnketa: (values: any) => void;
 }
 export const Anketa = ({
   data,
   deleteData,
   handleDelete,
   handleEdit,
-  initialValues
+  initialValues,
+  handleEditAnketa
 }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [openEditAnketa, setOpenEditAnketa] = React.useState(false);
@@ -66,7 +68,6 @@ export const Anketa = ({
     setOpenEditSettings(!openEditSettings);
   };
 
-  console.log("here", data);
   return (
     <div className="profile">
       <div className="anketa">
@@ -83,7 +84,7 @@ export const Anketa = ({
             sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={openEditAnketa}
           >
-            <EditAnketa fn={handleCloseEditAnketa} />
+            <EditAnketa fn={handleCloseEditAnketa} handleEditAnketa={handleEditAnketa} initialValues={{}}/>
           </Backdrop>
         </div>
         <div className="anketa-body">

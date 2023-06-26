@@ -2,9 +2,9 @@
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useStyles } from "../../assets/style/filter-style";
-import { FocusEventHandler, ReactNode } from "react";
+import Select from "@mui/material/Select";
+import { useStyles } from "src/app/assets/style/filter-style";
+import { FocusEventHandler } from "react";
 
 interface Option {
   id: number | string;

@@ -1,12 +1,12 @@
 import "./index.scss";
-import logo from "../../../src/app/assets/icons/logo-grey.svg";
-import icon1 from "../../../src/app/assets/icons/iconSignIn.svg";
-import icon2 from "../../../src/app/assets/icons/iconMark.svg";
-import icon3 from "../../../src/app/assets/icons/iconHandshake.svg";
-import img1 from "../../../src/app/assets/images/img1.png";
-import img2 from "../../../src/app/assets/images/img2.png";
-import img3 from "../../../src/app/assets/images/img3.png";
-import lineImg from "../../../src/app/assets/images/mainLine.svg";
+import logo from "src/app/assets/icons/logo-grey.svg";
+import icon1 from "src/app/assets/icons/iconSignIn.svg";
+import icon2 from "src/app/assets/icons/iconMark.svg";
+import icon3 from "src/app/assets/icons/iconHandshake.svg";
+import img1 from "src/app/assets/images/img1.png";
+import img2 from "src/app/assets/images/img2.png";
+import img3 from "src/app/assets/images/img3.png";
+import lineImg from "src/app/assets/images/mainLine.svg";
 import CallIcon from '@mui/icons-material/Call';
 import { useNavigate } from "react-router-dom";
 

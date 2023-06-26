@@ -1,6 +1,6 @@
 import "./index.scss";
-import * as React from "react";
-import user from "../../../../app/assets/images/user1.png";
+import { useState } from "react";
+import user from "src/app/assets/images/user1.png";
 import CommentIcon from "@mui/icons-material/Comment";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
@@ -12,7 +12,7 @@ interface Props {
   fn: () => void;
 }
 export const RoommatePostDetail = ({ data, fn }: Props) => {
-  const [openChat, setOpenChat] = React.useState(false);
+  const [openChat, setOpenChat] = useState(false);
   const handleToggleChat = () => {
     setOpenChat(!openChat);
   };

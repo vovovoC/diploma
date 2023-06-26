@@ -37,7 +37,7 @@ export default function App() {
               element={<FilterPage type="renter" />}
             />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/userProfile" element={<UserProfilePage />} />
+            <Route path="/userProfile/:id" element={<UserProfilePage />} />
             <Route path="/posts/:id" element={<PostDetailPage />} />
             <Route path="/roommate/:id" element={<RoommateDetailPage />} />
             <Route

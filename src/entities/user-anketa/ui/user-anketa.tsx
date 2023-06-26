@@ -1,7 +1,7 @@
 import "./index.scss";
+import user from "src/app/assets/images/user1.png";
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
-import user from "../../../app/assets/images/user1.png";
 import CommentIcon from "@mui/icons-material/Comment";
 import SocialMedia from "../../../app/components/SocialMediaShare";
 

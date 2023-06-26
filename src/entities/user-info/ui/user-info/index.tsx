@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const UserInfo = ({ data, edit, isLoading, rate, setRate }: Props) => {
-
+console.log(rate)
   return (
     <div className="user-info">
       <div className="user-data">
@@ -22,7 +22,6 @@ export const UserInfo = ({ data, edit, isLoading, rate, setRate }: Props) => {
         <div className="user-text">
           <p className="user-name">{data.fullname}</p>
           <p className="user-job">{data.email}</p>
-          <p className="user-job">{data.rating}</p>
           <Rating onChange={setRate} max={5} initialValue={rate}/>
         </div>
       </div>

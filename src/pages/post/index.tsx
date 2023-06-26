@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Layout from "../../app/components/Layout";
+import Layout from "src/app/components/Layout";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import LinkIcon from "@mui/icons-material/Link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -22,10 +22,10 @@ import CommentIcon from "@mui/icons-material/Comment";
 
 import "./index.scss";
 
-import room1 from "../../app/assets/images/room1.jpg";
-import room2 from "../../app/assets/images/room2.jpg";
-import room3 from "../../app/assets/images/room3.jpg";
-import profile from "../../app/assets/images/profile.jpg";
+import room1 from "src/app/assets/images/room1.jpg";
+import room2 from "src/app/assets/images/room2.jpg";
+import room3 from "src/app/assets/images/room3.jpg";
+import profile from "src/app/assets/images/profile.jpg";
 
 export function Post() {
   const theme = createTheme();

@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { NoData } from "src/app/components/NoData";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ErrorBoundary } from "../../../app/components/ErrorBoundary";
@@ -34,5 +35,12 @@ export const RoomPostListContent = ({type='basic'}) => {
     return <Loader />;
   }
 
-  return <RoomPostList data={data} setPage={setPage} type={type}/>;
+  return (
+    <>
+    { data?.length > 0 
+      ? <RoomPostList data={data} setPage={setPage} type={type}/>
+      : <NoData />
+    }
+    </>
+  );
 };
