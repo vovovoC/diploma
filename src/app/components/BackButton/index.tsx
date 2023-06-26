@@ -10,7 +10,7 @@ interface Props {
 function BackButton({ name }: Props) {
   const navigate = useNavigate();
   return (
-    <button className="back-btn" onClick={() => navigate("/")}>
+    <button className="back-btn" onClick={() => navigate("/posts")}>
       <ChevronLeftIcon sx={{ color: "#0032E4",ml: "-5px"}} /> Back to {name}
     </button>
   );

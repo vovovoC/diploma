@@ -1,10 +1,15 @@
 import "./index.scss";
 import user from "src/app/assets/images/user1.png";
-import instagram from "src/app/assets/icons/instagram.svg";
-import telegram from "src/app/assets/icons/telegram.svg";
+import * as React from "react";
+import Backdrop from "@mui/material/Backdrop";
 import CommentIcon from "@mui/icons-material/Comment";
+import SocialMedia from "../../../app/components/SocialMediaShare";
 
 export const UserAnketa = () => {
+  const [openChat, setOpenChat] = React.useState(false);
+  const handleToggleChat = () => {
+    setOpenChat(!openChat);
+  };
   return (
     <div className="user-anketa">
       <div className="user-anketa-right">
@@ -49,14 +54,17 @@ export const UserAnketa = () => {
           <div className="user-anketa-left-card">
             <img src={user} alt="Author" />
             <div>
-                <button className="post-author-chat">
+                <button className="post-author-chat"  onClick={handleToggleChat}>
                   <CommentIcon sx={{ color: "white", mr: "2px", width: "18px" }} />
                   Start a chat
                 </button>
-                <ul>
-                    <li><a href="https://www.instagram.com/sdukz/"><img src={telegram} alt="" /> @madinkalzh</a></li>
-                    <li><a href="https://t.me/it_community_sdu"><img src={instagram} alt="" /> @madinkalzh</a></li>
-                </ul>
+                <Backdrop
+                  sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                  open={openChat}
+                  onClick={handleToggleChat}
+                >
+                  <SocialMedia/>
+                </Backdrop>
             </div>
           </div>
       </div>
