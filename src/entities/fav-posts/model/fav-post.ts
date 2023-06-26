@@ -19,10 +19,10 @@ import { addFavRoommatePost, addFavRoomPost, getFavRoommatePosts, getFavRoomPost
     initialState,
     reducers: {
       SET_FAV_ROOM: (state = initialState, {payload}: PayloadAction<any[]>) => {     
-        state.rooms = [...payload];                                       
+        state.rooms = [...state.rooms, payload];                                       
       },
       SET_FAV_ROOMMATE: (state = initialState, {payload}: PayloadAction<any[]>) => {     
-        state.roommates = [...payload];                                       
+        state.roommates = [...state.roommates, payload];                                    
       }
     },
   });

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import copy from 'copy-to-clipboard';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -72,7 +73,10 @@ export function Post() {
             <div className="post-header">
               <p className="post-location">Almaty, Medeu district</p>
               <div className="post-btns">
-                <button>
+                <button onClick={()=>{ 
+                 copy(window.location.href);
+                  console.log(window.location.href)
+                }}>
                   <LinkIcon sx={{ color: "#5D89FA", mr: "5px" }} />
                   Share
                 </button>

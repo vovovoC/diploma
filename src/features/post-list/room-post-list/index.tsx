@@ -7,7 +7,7 @@ import { useCategories } from "../../../entities/category/model";
 import { RoomPostList } from "../../../entities/post-list/ui";
 import { getAccomodationPosts } from "../../../shared/model";
 
-export const RoomPostListContent = () => {
+export const RoomPostListContent = ({type='basic'}) => {
   const { filterData, keyword } = useCategories();
   const userId = localStorage.getItem("user_id");
 
@@ -34,5 +34,5 @@ export const RoomPostListContent = () => {
     return <Loader />;
   }
 
-  return <RoomPostList data={data} setPage={setPage} />;
+  return <RoomPostList data={data} setPage={setPage} type={type}/>;
 };

@@ -19,11 +19,9 @@ export const AnketaContent = () => {
   const initialData = {
     email: '...',
     firstname: '...',
-    id: null,
     username: '...',
-    nickname: '...',
     password: '...',
-    fullname: "..."
+    lastname: "..."
   }
 
   const { isLoading: isLoadingUser, data: userInfo } = useQuery(
@@ -52,7 +50,7 @@ export const AnketaContent = () => {
   });
 
   const { mutate: handleEdit } = useMutation(
-    (values: any) => editAnketa(values),
+    (values: any) => editAnketa(userId, {...userInfo, ...values}),
     {
       onSuccess(data) {
         toast.success("Edit successfully");
@@ -80,5 +78,6 @@ export const AnketaContent = () => {
   deleteData={userInfo || {email:"..."}}
   handleDelete={handleDelete}
   handleEdit={handleEdit}
+  initialValues={{email: userInfo?.email, password: userInfo?.password}}
 />
 };
